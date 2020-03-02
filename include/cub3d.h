@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/02/28 15:03:35 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/02 15:40:18 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ typedef struct		rec_s
 	double			deltadistX;//distance sur l'axe des x
 	double			deltadistY;//distance sur l'ace des y
 	double			perpwalldist;
-	int				stepX;
+	int				stepX;//what direction to step in x or y-direction (+1 or -1)
 	int				stepY;
 	int				hit;
-	int				side;
+	int				side;//was a NS or a EW wall hit?
 	int				lineheight;
 	int				drawstart;
 	int				drawend;
@@ -83,6 +83,15 @@ void				ft_algo(int argc, char **argv);
 
 void				ft_init_struct(data_t *data);
 
+/*
+** ft_position_direction
+*/
+
 void				ray_pos_dir(data_t *data, int w, int y);
+void				make_step(data_t *data);
+void				perf_DDA(data_t *data, int **world_map);
+void				projection_wall(data_t *data, int w, int h);
+void				wall_color(data_t *data);
+
 #endif
 

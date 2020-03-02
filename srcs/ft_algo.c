@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 13:31:12 by edessain          #+#    #+#             */
-/*   Updated: 2020/02/28 15:03:41 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/02 15:34:27 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,27 @@ int		world_map[mapWidth][mapHeight] =
 void	pos_init(data_t *data)
 {
 	//position de depart
-	data->pos->posX = 22; 
-	data->pos->posY = 12;
+	data->rec->posX = 22; 
+	data->rec->posY = 12;
 	//direction de depart
-	data->pos->dirX = -1;
-	data->pos->dirY = 0;
+	data->rec->dirX = -1;
+	data->rec->dirY = 0;
 	//vison de la camera
-	data->pos->planeX = 0;
-	data->pos->planeY = 0.66;
+	data->rec->planeX = 0;
+	data->rec->planeY = 0.66;
 	//temps
-	data->pos->time = 0;
-	data->pos->oldtime = 0;
+	data->rec->time = 0;
+	data->rec->oldtime = 0;
+	//which box of the map we're in
+	data->rec->mapX = data->rec->posX;
+	data->rec->mapY = data->rec->posY;
+
+	//length of ray from one x or y-side to next x or y-side
+	data->rec->deltadistX = fabs(1 / data->rec->raydirX);
+	data->rec->deltadistY = fabs(1 / data->rec->raydirY);
+	
+	data->rec->hit = 0; //was there a wall hit?
+
 }
 
 void	ft_algo(int argc, char **argv)
@@ -72,6 +82,9 @@ void	ft_algo(int argc, char **argv)
 	while (++x < mapWidth)
 	{
 		ray_pos_dir(&data, mapWidth, mapHeight);
+		make_step(&data);
+		perf_DDA(&data, **world_map);
+		projection_wall(&data, mapWidth, mapHeight);
 
 
 
