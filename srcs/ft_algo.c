@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 13:31:12 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/02 15:42:28 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/04 16:36:41 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #define mapWidth 24
 #define mapHeight 24
 
-int		world_map[mapWidth][mapHeight] =
+int		worldMap[mapWidth][mapHeight] =
 {
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -45,6 +45,28 @@ int		world_map[mapWidth][mapHeight] =
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
+void	ft_verline(int x, data_t *data)
+{
+	int i;
+
+	i = 0;
+	while (i < data->rec->drawstart)
+	{
+		data->rec->color = 65536 * 210 + 256 * 25 + 50;
+		i++;
+	}
+	while (data->rec->drawstart < data->rec->drawend)
+	{
+		data->rec->color = 65536 * 100 + 256 * 25 + 50;
+		data->rec->drawstart++;
+	}
+	while (data->rec->drawend < screenHeight)
+	{
+		data->rec->color = 65536 * 10 + 256 * 25 + 50;;
+		data->rec->drawend++;
+	}
+}
+
 void	pos_init(data_t *data)
 {
 	//position de depart
@@ -66,10 +88,11 @@ void	pos_init(data_t *data)
 	//length of ray from one x or y-side to next x or y-side
 	data->rec->deltadistX = fabs(1 / data->rec->raydirX);
 	data->rec->deltadistY = fabs(1 / data->rec->raydirY);
-	
+
 	data->rec->hit = 0; //was there a wall hit?
 
 }
+
 
 void	ft_algo(int argc, char **argv)
 {
@@ -83,17 +106,7 @@ void	ft_algo(int argc, char **argv)
 	{
 		ray_pos_dir(&data, mapWidth, mapHeight);
 		make_step(&data);
-		perf_DDA(&data, **world_map);
-		projection_wall(&data, mapWidth, mapHeight);
-
-
-
-
-
-
-
-
-
+		perf_DDA(&data);
+		projection_wall(x, &data, mapWidth, mapHeight);
 	}
-
 }

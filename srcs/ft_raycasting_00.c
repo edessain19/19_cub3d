@@ -6,11 +6,12 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 11:54:37 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/02 15:42:00 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:29:33 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
 
 void	ray_pos_dir(data_t *data, int w, int h)//calculate ray posi & dir
 {
@@ -50,7 +51,7 @@ void	make_step(data_t *data) //calculate step and initial sideDist
 	}
 }
 
-void	perf_DDA(data_t *data, int **world_map)
+void	perf_DDA(data_t *data)
 {
 	while (data->rec->hit == 0)
 	{
@@ -73,7 +74,7 @@ void	perf_DDA(data_t *data, int **world_map)
 	}
 }
 
-void	projection_wall(data_t *data, int w, int h)
+void	projection_wall(int x, data_t *data, int w, int h)
 {
 	if (data->rec->side == 0)
 		data->rec->perpwalldist = (data->rec->mapX - data->rec->posX 
@@ -90,19 +91,18 @@ void	projection_wall(data_t *data, int w, int h)
 	data->rec->drawend = data->rec->lineheight / 2 + h / 2;
 	if(data->rec->drawend >= h)
 		data->rec->drawend = h - 1;
-	wall_color(data_t *data);
+	ft_verline(x, data);
+	//	wall_color(data, world_map);
 }
 
-void	wall_color(data_t *data)
-{
-	ColorRGB color;
-	switch(worldMap[mapX][mapY])
-	{
-		case 1:  color = RGB_Red;  break; //red
-		case 2:  color = RGB_Green;  break; //green
-		case 3:  color = RGB_Blue;   break; //blue
-		case 4:  color = RGB_White;  break; //white
-		default: color = RGB_Yellow; break; //yellow
+/*
+   void	wall_color(data_t *data, int **world_map)
+   {
+   data->rec->color = 65536 * 210 + 256 * 25 + 50;
+   if (data->rec->side == 1)
+   data->rec->color = data->rec->color / 2;
+   drawn_line(data->rec->posX, data->rec->drawstart, data->rec->drawend, 
+   data->rec->color);
+   }
+   */
 
-
-	}
