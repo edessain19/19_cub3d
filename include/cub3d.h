@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/04 16:46:58 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/05 13:52:47 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,59 +19,32 @@
 # include <string.h>
 # include <math.h>
 # include "../minilibx/mlx.h"
+
 /*
-#define screeWidth 640
-#define screeHeight 480
-#define mapWidth 24
-#define mapHeight 24
-
-int worldMap[mapWidth][mapHeight]=
-{
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-};
-
-
+** definition structure
 */
 
-typedef struct		display_s
+typedef struct		s_display
 {
-	char			*addr;
-	int				color_wall;
+	int				*addr;
+	void			*img;
+	int				line_length;
+	int				endian;
+	int				bits_per_pixel;
+	int				color_wall1;
+	int				color_wall2;
 	int				color_sky;
 	int				color_floor;
-}					display_t;
+}					t_display;
 
-typedef struct		mlx_s
+typedef struct		s_mlx
 {
 	void			*mlx_ptr;
 	void			*mlx_win;
 
-}					mlx_t;
+}					t_mlx;
 
-typedef struct		rec_s
+typedef struct		s_rec
 {
 	double			posX;//position initiale
 	double			posY;//position initiale
@@ -104,44 +77,29 @@ typedef struct		rec_s
 	double			olddirX;
 	double			oldplaneX;
 	int				color;
-}					rec_t;
+}					t_rec;
 
-typedef struct		data_s
+typedef struct		s_data
 {
-	rec_t			*rec;
-	mlx_t			*mlx;
-	display_t		*dis;
+	t_rec			rec;
+	t_mlx			mlx;
+	t_display		dis;
 
-}					data_t;
-
-
-/*
- ** main.c
- */
-
-void				ft_algo(int argc, char **argv);
+}					t_data;
 
 /*
- ** init_structure
- */
-
-void				ft_init_struct(data_t *data);
-
-/*
- ** ft_position_direction
- */
-
-void	ft_algo(int agrc, char **argv);
-void	ft_start_algo(data_t *data);
-void	ft_verline(int x, data_t *data);
-
-/*
-void				ray_pos_dir(data_t *data, int w, int y);
-void				make_step(data_t *data);
-void				perf_DDA(data_t *data);
-void				projection_wall(int x, data_t *data, int w, int h);
-void				wall_color(data_t *data);
-void				ft_verline(int x, data_t *data);
+** init_struct
 */
+
+void				ft_init_struct(t_data *data);
+
+/*
+** ft_position_direction
+*/
+
+void	ft_algo(t_data *data);
+void	*ft_start_algo(t_data *data);
+void	ft_verline(int x, t_data *data);
+
 #endif
 
