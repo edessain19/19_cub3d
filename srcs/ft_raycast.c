@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:07:36 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/05 13:57:48 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/05 14:14:27 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	*ft_start_algo(t_data *data)
 		data->rec.deltadistY = fabs(1 / data->rec.raydirY);
 		
 		data->rec.hit = 0;
+		
 		if (data->rec.raydirX < 0)
 		{
 			data->rec.stepX = -1;
