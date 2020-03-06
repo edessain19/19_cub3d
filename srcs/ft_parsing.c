@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 13:38:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/06 14:44:37 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:52:56 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		parse_data(int fd, t_data *data)
 		if (ft_isdigit(line[0]) == 0)
 			data->parse.info = ft_strjoin(data->parse.info, line);
 	}
-
+	printf("\n%s\n", data->parse.info);
 
 
 
