@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/06 10:55:16 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/06 13:18:12 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ void		init_dis(t_data *data)
 	data->dis.bits_per_pixel = 0;
 	data->dis.color_sky = 0;
 	data->dis.color_floor = 0;
-	data->dis.color_wall1 = 0;
-	data->dis.color_wall2 = 0;
+	data->dis.color_wall_n = 0;
+	data->dis.color_wall_s = 0;
+	data->dis.color_wall_w = 0;
+	data->dis.color_wall_e = 0;
 }
 
 void		ft_init_struct(t_data *data)

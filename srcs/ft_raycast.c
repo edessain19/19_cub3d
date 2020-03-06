@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:07:36 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/06 11:27:33 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/06 13:37:42 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,23 @@ int		ft_keyboard(int keycode, t_data *data)
 	double		speed;
 	double		rotation;
 	
-	speed = 0.5;
+	speed = 0.2;
 	rotation = 0.2;
 	
 	if (keycode == 53)
 		exit(1);
 	if (keycode == 126 || keycode == 13)
 	{
-		if (worldMap[(int)(data->rec.posX + data->rec.dirX * speed)][(int)data->rec.posY] == '0')
+//		if (worldMap[(int)(data->rec.posX + data->rec.dirX * speed)][(int)data->rec.posY] != '1')
 			data->rec.posX += data->rec.dirX * speed;
-		if (worldMap[(int)data->rec.posX][(int)(data->rec.posY + data->rec.dirY * speed)] == '0')
+//		if (worldMap[(int)data->rec.posX][(int)(data->rec.posY + data->rec.dirY * speed)] != '1')
 			data->rec.posY += data->rec.dirY * speed;
 	}
 	if (keycode == 125 || keycode == 1)
 	{
-		if (worldMap[(int)(data->rec.posX - data->rec.dirX * speed)][(int)data->rec.posY] == '0')
+//		if (worldMap[(int)(data->rec.posX - data->rec.dirX * speed)][(int)data->rec.posY] != '1')
 			data->rec.posX -= data->rec.dirX * speed;
-		if (worldMap[(int)data->rec.posX][(int)(data->rec.posY - data->rec.dirY * speed)] == '0')
+//		if (worldMap[(int)data->rec.posX][(int)(data->rec.posY - data->rec.dirY * speed)] != '1')
 			data->rec.posY -= data->rec.dirY * speed;
 	}
 	if (keycode == 124 || keycode == 2)
@@ -75,7 +75,7 @@ int		ft_keyboard(int keycode, t_data *data)
 		data->rec.dirX = data->rec.dirX * cos(-rotation) - data->rec.dirY * sin(-rotation);
 		data->rec.dirY = data->rec.olddirX * sin(-rotation) + data->rec.dirY * cos(-rotation);
 		data->rec.oldplaneX = data->rec.planeX;
-		data->rec.planeX = data->rec.planeX * cos(rotation) - data->rec.planeY * cos(-rotation);
+		data->rec.planeX = data->rec.planeX * cos(-rotation) - data->rec.planeY * sin(-rotation);
 		data->rec.planeY = data->rec. oldplaneX * sin(-rotation) + data->rec.planeY * cos(-rotation);
 	}
 	if (keycode == 123 || keycode == 0)
@@ -87,16 +87,14 @@ int		ft_keyboard(int keycode, t_data *data)
 		data->rec.planeX = data->rec.planeX *  cos(rotation) - data->rec.planeY * sin(rotation);
 		data->rec.planeY = data->rec.oldplaneX * sin(rotation) + data->rec.planeY * cos(rotation);
 	}
-	ft_start_algo(data);
+	mlx_clear_window(data->mlx.mlx_ptr, data->mlx.mlx_win);
+	ft_algo(data);
 	mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.mlx_win, data->dis.img, 0, 0);
 	return (0);
 }
 
-void	*ft_start_algo(t_data *data)
+void	ft_start_algo(t_data *data)
 {
-	int x;
-
-	x = 0;
 	data->rec.posX = 22;
 	data->rec.posY = 12;
 	data->rec.dirX = -1;
@@ -104,11 +102,19 @@ void	*ft_start_algo(t_data *data)
 	data->rec.planeX = 0;
 	data->rec.planeY = 0.66;
 	
+	ft_algo(data);
+}
+
+void	*ft_algo(t_data *data)
+{
 	data->dis.color_sky = 65536 * 200 + 256 * 50 + 25;
-	data->dis.color_wall1 = 65536 * 100 + 256 * 150 + 25;
-	data->dis.color_wall2 = 65536 * 100 + 256 * 250 + 25;
+	data->dis.color_wall_n = 65536 * 100 + 256 * 150 + 25;
+	data->dis.color_wall_s = 65536 * 100 + 256 * 250 + 125;
 	data->dis.color_floor = 65536 * 50 + 256 * 50 + 200;
 	
+	int		x;
+
+	x = 0;
 	while (x < screenWidth)
 	{
 		
@@ -122,8 +128,9 @@ void	*ft_start_algo(t_data *data)
 		data->rec.deltadistX = fabs(1 / data->rec.raydirX);
 		data->rec.deltadistY = fabs(1 / data->rec.raydirY);
 		
-		data->rec.hit = 0;
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 		
+		data->rec.hit = 0;
 		if (data->rec.raydirX < 0)
 		{
 			data->rec.stepX = -1;
@@ -148,6 +155,10 @@ void	*ft_start_algo(t_data *data)
 			data->rec.sidedistY = (data->rec.mapY + 1.0 - data->rec.posY) *
 				data->rec.deltadistY;
 		}
+		
+		
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 		while (data->rec.hit == 0)
 		{
 			if (data->rec.sidedistX < data->rec.sidedistY)
@@ -165,6 +176,11 @@ void	*ft_start_algo(t_data *data)
 			if (worldMap[data->rec.mapX][data->rec.mapY] > 0)
 				data->rec.hit = 1;
 		}
+		
+		
+		
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 		if (data->rec.side == 0)
 			data->rec.perpwalldist = (data->rec.mapX - data->rec.posX
 					+ (1 - data->rec.stepX) / 2) / data->rec.raydirX;
@@ -175,17 +191,23 @@ void	*ft_start_algo(t_data *data)
 		data->rec.lineheight = (int)(screenHeight / data->rec.perpwalldist);
 		data->rec.drawstart = -data->rec.lineheight / 2 + screenHeight / 2;
 		
+		
+		
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
 		if (data->rec.drawstart < 0)
 			data->rec.drawstart = 0;
 		data->rec.drawend = data->rec.lineheight / 2 + screenHeight / 2;
 		if (data->rec.drawend >= screenHeight)
 			data->rec.drawend = screenHeight - 1;
 		
-		if (data->rec.side == 2)
-			data->dis.color_wall1 = data->dis.color_wall2;
+//		if (data->rec.side == 1)
+//			data->dis.color_wall_n = data->dis.color_wall_n / 2;
+
 		ft_verline(x, data);
 		x++;
 	}
+//	mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.mlx_win, data->dis.img, 0, 0);
 	return (NULL);
 }
 
@@ -201,7 +223,7 @@ void	ft_verline(int x, t_data *data)
 	}
 	while (y < data->rec.drawend)
 	{
-		data->dis.addr[y * screenWidth + x] = data->dis.color_wall1;
+		data->dis.addr[y * screenWidth + x] = data->dis.color_wall_n;
 		y++;
 	}
 	while (y < screenHeight)

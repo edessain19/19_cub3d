@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/06 11:30:56 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/06 13:19:09 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ typedef struct		s_display
 	int				line_length;
 	int				endian;
 	int				bits_per_pixel;
-	int				color_wall1;
-	int				color_wall2;
+	int				color_wall_n;
+	int				color_wall_s;
+	int				color_wall_e;
+	int				color_wall_w;
 	int				color_sky;
 	int				color_floor;
 }					t_display;
@@ -93,7 +95,8 @@ void				ft_init_struct(t_data *data);
 */
 
 int		ft_keyboard(int keycode, t_data *data);
-void	*ft_start_algo(t_data *data);
+void	ft_start_algo(t_data *data);
+void	*ft_algo(t_data *data);
 void	ft_verline(int x, t_data *data);
 
 #endif
