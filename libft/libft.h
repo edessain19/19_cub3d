@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 09:16:31 by edessain          #+#    #+#             */
-/*   Updated: 2020/02/19 09:28:15 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:35:40 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ char		**ft_split(char const *s, char c);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strjoin_2(char const *s1, char const *s2);
+int			get_next_line(int fd, char **line);
 
 #endif

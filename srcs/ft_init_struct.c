@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/06 13:18:12 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:32:03 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ void		init_raycasting(t_data *data)
 	data->rec.drawend = 0;
 }
 
+void		init_parse(t_data *data)
+{
+	data->parse.info = NULL;
+	data->parse.tab = NULL;
+}
+
 void		init_mlx(t_data *data)
 {
 	data->mlx.mlx_ptr = 0;
@@ -64,4 +70,5 @@ void		ft_init_struct(t_data *data)
 	init_raycasting(data);
 	init_dis(data);
 	init_mlx(data);
+	init_parse(data);
 }
