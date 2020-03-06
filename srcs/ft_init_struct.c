@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/05 13:46:55 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/06 10:55:16 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void		init_raycasting(t_data *data)
 	data->rec.dirY = 0;
 	data->rec.planeX = 0;
 	data->rec.planeY = 0;
-	data->rec.time = 0;
-	data->rec.oldtime = 0;
+	data->rec.oldplaneX = 0;
 	data->rec.cameraX = 0;
 	data->rec.raydirX = 0;
 	data->rec.raydirY = 0;
@@ -37,7 +36,6 @@ void		init_raycasting(t_data *data)
 	data->rec.lineheight = 0;
 	data->rec.drawstart = 0;
 	data->rec.drawend = 0;
-	data->rec.color = 0;
 }
 
 void		init_mlx(t_data *data)

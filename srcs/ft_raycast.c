@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:07:36 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/05 14:14:27 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/06 11:27:33 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,51 @@ int worldMap[mapWidth][mapHeight]=
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-void	ft_algo(t_data *data)
+int		ft_keyboard(int keycode, t_data *data)
 {
+	double		speed;
+	double		rotation;
+	
+	speed = 0.5;
+	rotation = 0.2;
+	
+	if (keycode == 53)
+		exit(1);
+	if (keycode == 126 || keycode == 13)
+	{
+		if (worldMap[(int)(data->rec.posX + data->rec.dirX * speed)][(int)data->rec.posY] == '0')
+			data->rec.posX += data->rec.dirX * speed;
+		if (worldMap[(int)data->rec.posX][(int)(data->rec.posY + data->rec.dirY * speed)] == '0')
+			data->rec.posY += data->rec.dirY * speed;
+	}
+	if (keycode == 125 || keycode == 1)
+	{
+		if (worldMap[(int)(data->rec.posX - data->rec.dirX * speed)][(int)data->rec.posY] == '0')
+			data->rec.posX -= data->rec.dirX * speed;
+		if (worldMap[(int)data->rec.posX][(int)(data->rec.posY - data->rec.dirY * speed)] == '0')
+			data->rec.posY -= data->rec.dirY * speed;
+	}
+	if (keycode == 124 || keycode == 2)
+	{
+		data->rec.olddirX = data->rec.dirX;
+		data->rec.dirX = data->rec.dirX * cos(-rotation) - data->rec.dirY * sin(-rotation);
+		data->rec.dirY = data->rec.olddirX * sin(-rotation) + data->rec.dirY * cos(-rotation);
+		data->rec.oldplaneX = data->rec.planeX;
+		data->rec.planeX = data->rec.planeX * cos(rotation) - data->rec.planeY * cos(-rotation);
+		data->rec.planeY = data->rec. oldplaneX * sin(-rotation) + data->rec.planeY * cos(-rotation);
+	}
+	if (keycode == 123 || keycode == 0)
+	{
+		data->rec.olddirX = data->rec.dirX;
+		data->rec.dirX = data->rec.dirX * cos(rotation) - data->rec.dirY * sin(rotation);
+		data->rec.dirY = data->rec.olddirX * sin(rotation) + data->rec.dirY * cos(rotation);
+		data->rec.oldplaneX = data->rec.planeX;
+		data->rec.planeX = data->rec.planeX *  cos(rotation) - data->rec.planeY * sin(rotation);
+		data->rec.planeY = data->rec.oldplaneX * sin(rotation) + data->rec.planeY * cos(rotation);
+	}
 	ft_start_algo(data);
+	mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.mlx_win, data->dis.img, 0, 0);
+	return (0);
 }
 
 void	*ft_start_algo(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 13:33:14 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/05 13:13:05 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/06 11:30:58 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ int main(int argc, char **argv)
 	data.dis.img = mlx_new_image(data.mlx.mlx_ptr, screenWidth, screenHeight);
 	data.dis.addr = (int*)mlx_get_data_addr(data.dis.img, &data.dis.bits_per_pixel, &data.dis.line_length, &data.dis.endian);
 
-	ft_algo(&data);
-
+	ft_start_algo(&data);
 	mlx_put_image_to_window(data.mlx.mlx_ptr, data.mlx.mlx_win, data.dis.img, 0, 0);
+	mlx_hook(data.mlx.mlx_win, 2, 1L<<0, ft_keyboard, &data);
+	
 	mlx_loop(data.mlx.mlx_ptr);
 	return (EXIT_SUCCESS);
 }

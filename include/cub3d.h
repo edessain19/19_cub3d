@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/05 13:52:47 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/06 11:30:56 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ typedef struct		s_rec
 	double			posY;//position initiale
 	double			dirX;//direction initiale
 	double			dirY;//direction initiale
+	double			olddirX;
+	double			olddirY;
 	double			planeX;//plan de la camera
 	double			planeY;//plan de la camera
-	double			time;
-	double			oldtime;
+	double			oldplaneX;
 	double			cameraX;//coordonee x sur le plan de la camera
 	double			raydirX;//direction du mouvement
 	double			raydirY;//diection du mouvement
@@ -71,12 +72,6 @@ typedef struct		s_rec
 	int				lineheight;
 	int				drawstart;
 	int				drawend;
-	double			frametime;
-	double			movespeed;
-	double			rotspeed;
-	double			olddirX;
-	double			oldplaneX;
-	int				color;
 }					t_rec;
 
 typedef struct		s_data
@@ -97,7 +92,7 @@ void				ft_init_struct(t_data *data);
 ** ft_position_direction
 */
 
-void	ft_algo(t_data *data);
+int		ft_keyboard(int keycode, t_data *data);
 void	*ft_start_algo(t_data *data);
 void	ft_verline(int x, t_data *data);
 
