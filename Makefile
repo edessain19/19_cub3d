@@ -6,7 +6,7 @@
 #    By: hbuisser <hbuisser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/25 12:47:05 by hbuisser          #+#    #+#              #
-#    Updated: 2020/03/09 15:39:19 by edessain         ###   ########.fr        #
+#    Updated: 2020/03/09 16:28:08 by edessain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ MINILIBX_PATH   = ./miniLibX
 #SRCS			= $(addprefix ${FOLDER}/, ${SRCS_LIST})
 SRCS 			= ./srcs/main.c \
 					./srcs/ft_init_struct.c \
-					./srcs/ft_parsing.c \
+#					./srcs/ft_parsing.c \
+
 					./srcs/ft_raycast.c \
 
 OBJS			= ${SRCS:.c=.o}
