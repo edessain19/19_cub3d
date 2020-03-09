@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:07:36 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/06 13:37:42 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/09 15:32:01 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,16 @@ int		ft_keyboard(int keycode, t_data *data)
 		exit(1);
 	if (keycode == 126 || keycode == 13)
 	{
-//		if (worldMap[(int)(data->rec.posX + data->rec.dirX * speed)][(int)data->rec.posY] != '1')
+//		if (worldMap[(int)(data->rec.posX + data->rec.dirX * speed)][(int)data->rec.posY] == '0')
 			data->rec.posX += data->rec.dirX * speed;
-//		if (worldMap[(int)data->rec.posX][(int)(data->rec.posY + data->rec.dirY * speed)] != '1')
+//		if (worldMap[(int)data->rec.posX][(int)(data->rec.posY + data->rec.dirY * speed)] == '0')
 			data->rec.posY += data->rec.dirY * speed;
 	}
 	if (keycode == 125 || keycode == 1)
 	{
-//		if (worldMap[(int)(data->rec.posX - data->rec.dirX * speed)][(int)data->rec.posY] != '1')
+//		if (worldMap[(int)(data->rec.posX - data->rec.dirX * speed)][(int)data->rec.posY] == '0')
 			data->rec.posX -= data->rec.dirX * speed;
-//		if (worldMap[(int)data->rec.posX][(int)(data->rec.posY - data->rec.dirY * speed)] != '1')
+//		if (worldMap[(int)data->rec.posX][(int)(data->rec.posY - data->rec.dirY * speed)] == '0')
 			data->rec.posY -= data->rec.dirY * speed;
 	}
 	if (keycode == 124 || keycode == 2)
@@ -101,35 +101,42 @@ void	ft_start_algo(t_data *data)
 	data->rec.dirY = 0;
 	data->rec.planeX = 0;
 	data->rec.planeY = 0.66;
-	
+
+//	ft_parse_cub(data, filename);
 	ft_algo(data);
 }
 
 void	*ft_algo(t_data *data)
 {
-	data->dis.color_sky = 65536 * 200 + 256 * 50 + 25;
-	data->dis.color_wall_n = 65536 * 100 + 256 * 150 + 25;
-	data->dis.color_wall_s = 65536 * 100 + 256 * 250 + 125;
-	data->dis.color_floor = 65536 * 50 + 256 * 50 + 200;
+	data->dis.color_sky = 65536 * 200 + 256 * 200 + 25;
+	data->dis.color_wall_n = 65536 * 200 + 256 * 50 + 25;
+	data->dis.color_wall_s = 65536 * 150 + 256 * 100 + 25;
+	data->dis.color_wall_e = 65536 * 100 + 256 * 150 + 25;
+	data->dis.color_wall_w = 65536 * 50 + + 256 * 200 + 25;
+	data->dis.color_floor = 65536 * 200 + 256 * 175 + 150;
 	
 	int		x;
 
 	x = 0;
 	while (x < screenWidth)
 	{
-		
-		data->rec.cameraX = 2 * x / (double)screenWidth - 1;
+		//caluclate ray position and direction
+		data->rec.cameraX = 2 * x / (double)screenWidth - 1;//x-coordinate in camera space
 		data->rec.raydirX = data->rec.dirX + data->rec.planeX * data->rec.cameraX;
 		data->rec.raydirY = data->rec.dirY + data->rec.planeY * data->rec.cameraX;
 		
+		//which box of the map we're in
 		data->rec.mapX = (int)data->rec.posX;
 		data->rec.mapY = (int)data->rec.posY;
-
+		
+		//length of ray from one x or y-side to next x or y-side
 		data->rec.deltadistX = fabs(1 / data->rec.raydirX);
 		data->rec.deltadistY = fabs(1 / data->rec.raydirY);
 		
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-		
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+		//sidedist = length of ray from current position to next x or y-side
+		//calculate step and initial sideDist
 		data->rec.hit = 0;
 		if (data->rec.raydirX < 0)
 		{
@@ -157,8 +164,8 @@ void	*ft_algo(t_data *data)
 		}
 		
 		
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
+///////////////////////////////////////////////////////////////////////////////////////////
+		//jump to next map square, OR in x-direction, OR in y-direction
 		while (data->rec.hit == 0)
 		{
 			if (data->rec.sidedistX < data->rec.sidedistY)
@@ -200,9 +207,6 @@ void	*ft_algo(t_data *data)
 		data->rec.drawend = data->rec.lineheight / 2 + screenHeight / 2;
 		if (data->rec.drawend >= screenHeight)
 			data->rec.drawend = screenHeight - 1;
-		
-//		if (data->rec.side == 1)
-//			data->dis.color_wall_n = data->dis.color_wall_n / 2;
 
 		ft_verline(x, data);
 		x++;
@@ -223,7 +227,14 @@ void	ft_verline(int x, t_data *data)
 	}
 	while (y < data->rec.drawend)
 	{
-		data->dis.addr[y * screenWidth + x] = data->dis.color_wall_n;
+//		if (data->rec.side == 0 && data->rec.raydirX <= 0)
+//			data->dis.addr[y * screenWidth + x] = data->dis.color_wall_w;
+//		if (data->rec.side == 0 && data->rec.raydirY > 0)
+			data->dis.addr[y * screenWidth + x] = data->dis.color_wall_e;
+//		if (data->rec.side == 1 && data->rec.raydirY > 0)
+//			data->dis.addr[y * screenWidth + x] = data->dis.color_wall_s;
+//		if (data->rec.side == 1 && data->rec.raydirY <= 0)
+//			data->dis.addr[y * screenWidth + x] = data->dis.color_wall_n;
 		y++;
 	}
 	while (y < screenHeight)

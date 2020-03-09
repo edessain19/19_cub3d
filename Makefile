@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: edessain <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: hbuisser <hbuisser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/02/27 09:46:31 by edessain          #+#    #+#              #
-#    Updated: 2020/02/27 12:21:24 by edessain         ###   ########.fr        #
+#    Created: 2020/01/25 12:47:05 by hbuisser          #+#    #+#              #
+#    Updated: 2020/03/09 15:39:19 by edessain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,10 @@ LIBFT_PATH 		= ./libft
 MINILIBX_PATH   = ./miniLibX
 #SRCS_LIST 		= main.c
 #SRCS			= $(addprefix ${FOLDER}/, ${SRCS_LIST})
-SRCS 			= main.c \
+SRCS 			= ./srcs/main.c \
+					./srcs/ft_init_struct.c \
+					./srcs/ft_parsing.c \
+					./srcs/ft_raycast.c \
 
 OBJS			= ${SRCS:.c=.o}
 INCLUDE 		= cube3d.h

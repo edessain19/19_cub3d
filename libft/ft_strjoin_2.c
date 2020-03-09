@@ -6,13 +6,13 @@
 /*   By: edessain <edessain@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 16:53:38 by edessain          #+#    #+#             */
-/*   Updated: 2020/02/10 17:56:06 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/09 15:44:04 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_2(char const *s1, char const *s2)
 {
 	int		i;
 	int		j;

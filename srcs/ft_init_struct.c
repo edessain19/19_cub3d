@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/06 14:32:03 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/09 13:04:48 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		init_raycasting(t_data *data)
 void		init_parse(t_data *data)
 {
 	data->parse.info = NULL;
-	data->parse.tab = NULL;
+	data->parse.map = NULL;
 }
 
 void		init_mlx(t_data *data)

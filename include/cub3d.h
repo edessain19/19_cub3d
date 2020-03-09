@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/06 14:43:32 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/09 15:43:01 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
+# include <fcntl.h>
 # include "../minilibx/mlx.h"
 
 /*
@@ -27,7 +28,7 @@
 typedef struct		s_parse
 {
 	char			*info;
-	char			*tab;
+	char			*map;
 }					t_parse;
 
 typedef struct		s_display
@@ -96,6 +97,14 @@ typedef struct		s_data
 */
 
 void				ft_init_struct(t_data *data);
+
+/*
+** parsing
+*/
+
+int					ft_parse_cub(t_data *data, char *filename);
+int					parse_map(int fd, t_data *data);
+int					parse_info(int fd, t_data *data);
 
 /*
 ** ft_position_direction
