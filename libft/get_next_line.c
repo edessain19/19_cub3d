@@ -6,12 +6,11 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 09:42:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/09 15:39:48 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/10 13:02:06 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#define BUFFER_SIZE 40
 
 int		ft_free(char **string, int nb)
 {
@@ -23,7 +22,7 @@ int		ft_free(char **string, int nb)
 	return (nb);
 }
 
-char	*ft_strchr_2(const char *str, int c)
+char	*ft_strchr_g(const char *str, int c)
 {
 	int			i;
 
@@ -41,7 +40,7 @@ char	*ft_strchr_2(const char *str, int c)
 	return (NULL);
 }
 
-char	*ft_strndup(const char *str, const char c)
+char	*ft_strndup_g(const char *str, const char c)
 {
 	int			i;
 	int			j;
@@ -50,7 +49,7 @@ char	*ft_strndup(const char *str, const char c)
 	i = 0;
 	j = 0;
 	if (str == NULL)
-		return (ft_strndup("", '\0'));
+		return (ft_strndup_g("", '\0'));
 	while (str[j] != c)
 		j++;
 	if (!(src = malloc((j + 1) * sizeof(*src))))
@@ -67,18 +66,18 @@ char	*ft_strndup(const char *str, const char c)
 int		ft_read(int fd, char **line, char *rest)
 {
 	int			ret;
-	char		buf[BUFFER_SIZE + 1];
+	char		buf[50 + 1];
 	char		*tmp;
 
 	ret = 0;
 	if (rest != NULL)
-		if ((*line = ft_strndup(rest, '\0')) == NULL)
+		if ((*line = ft_strndup_g(rest, '\0')) == NULL)
 			return (ft_free(&rest, -1));
 	if (rest == NULL)
-		if ((*line = ft_strndup("", '\0')) == NULL)
+		if ((*line = ft_strndup_g("", '\0')) == NULL)
 			return (-1);
-	while ((ft_strchr_2(*line, '\n') == NULL) &&
-			(ret = read(fd, buf, BUFFER_SIZE)) > 0)
+	while ((ft_strchr_g(*line, '\n') == NULL) &&
+			(ret = read(fd, buf, 50)) > 0)
 	{
 		tmp = *line;
 		buf[ret] = '\0';
@@ -95,18 +94,18 @@ int		get_next_line(int fd, char **line)
 	static char	*rest = NULL;
 	char		*tmp;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || line == NULL)
+	if (fd < 0 || 50 <= 0 || line == NULL)
 		return (-1);
 	if ((ret = ft_read(fd, line, rest)) == -1)
 		return (ft_free(&rest, -1));
 	if (rest != NULL)
 		ft_free(&rest, 1);
-	if ((rest = ft_strndup(ft_strchr(*line, '\n'), '\0')) == NULL)
+	if ((rest = ft_strndup_g(ft_strchr_g(*line, '\n'), '\0')) == NULL)
 		return (ft_free(&rest, -1));
-	if (ft_strchr_2(*line, '\n') == NULL)
+	if (ft_strchr_g(*line, '\n') == NULL)
 		return (ft_free(&rest, 0));
 	tmp = *line;
-	if ((*line = ft_strndup(*line, '\n')) == NULL)
+	if ((*line = ft_strndup_g(*line, '\n')) == NULL)
 		return (ft_free(&rest, -1));
 	free(tmp);
 	tmp = NULL;

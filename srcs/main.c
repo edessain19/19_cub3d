@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 13:33:14 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/09 15:48:17 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/10 10:20:33 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 	if (argc < 2)
 		return (-1);
 	ft_init_struct(&data);
-//	ft_parse_cub(&data, argv[1]);
+	ft_parse_cub(&data, argv[1]);
 	if ((data.mlx.mlx_ptr = mlx_init()) == NULL)
 		return (EXIT_FAILURE);
 	if ((data.mlx.mlx_win = mlx_new_window(data.mlx.mlx_ptr, 640, 480, "Hello world")) == NULL)

@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 13:38:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/09 15:31:23 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/10 13:13:47 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,20 @@ int		parse_data(int fd, t_data *data)
 	int		i;
 
 	i = 0;
+	data->parse.info = "";
 	while (get_next_line(fd, &line) && i < 7)
 	{
+//		write (1, "b", 1);
 		if (line[0] == '\0')
+		{
+//			write(1, "c", 1);
 			get_next_line(fd, &line);
+		}
 		if (ft_isdigit(line[0]) == 0)
 		{
-			data->parse.info = ft_strjoin(data->parse.info, line);
-			data->parse.info = ft_strjoin(data->parse.info, "\n");
+//			write(1, "A", 1);
+			data->parse.info = ft_strjoin_2(data->parse.info, line);
+			data->parse.info = ft_strjoin_2(data->parse.info, "\n");
 			free(line);
 			line = NULL;
 			i++;
@@ -44,6 +50,8 @@ int		parse_map(int fd, t_data *data)
 	line = "";
 	while (line[0] == 0)
 		get_next_line(fd, &line);
+	data->parse.map = ft_strjoin_2(data->parse.map, line);
+	data->parse.map = ft_strjoin_2(data->parse.map, "\n");
 	while (get_next_line(fd, &line))
 	{
 		data->parse.map = ft_strjoin(data->parse.map, line);
@@ -51,6 +59,8 @@ int		parse_map(int fd, t_data *data)
 		free(line);
 		line = NULL;
 	}
+	data->parse.info = ft_strjoin_2(data->parse.info, line);
+	data->parse.info = ft_strjoin_2(data->parse.info, "\0");
 	printf("\n%s\n", data->parse.map);
 	return (1);
 }
@@ -60,10 +70,14 @@ int ft_parse_cub(t_data *data, char *filename)
 	int		fd;
 
 	fd = open(filename, O_RDONLY);
+//	write(1, "1", 1);
 	if (parse_data(fd, data) < 0)
 		return (-1);
+//	write(1, "2", 1);
 	if (parse_map(fd, data) < 0)
 		return (-1);
+//	write(1, "3", 1);
+	close(fd);
 	return (0);
 
 }
