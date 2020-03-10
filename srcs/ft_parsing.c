@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 13:38:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/10 13:13:47 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/10 13:18:04 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,10 @@ int		parse_data(int fd, t_data *data)
 	data->parse.info = "";
 	while (get_next_line(fd, &line) && i < 7)
 	{
-//		write (1, "b", 1);
 		if (line[0] == '\0')
-		{
-//			write(1, "c", 1);
 			get_next_line(fd, &line);
-		}
 		if (ft_isdigit(line[0]) == 0)
 		{
-//			write(1, "A", 1);
 			data->parse.info = ft_strjoin_2(data->parse.info, line);
 			data->parse.info = ft_strjoin_2(data->parse.info, "\n");
 			free(line);

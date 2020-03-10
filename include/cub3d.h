@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/10 09:16:03 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/10 13:25:38 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,18 @@ typedef struct		s_parse
 	char			*info;
 	char			*map;
 }					t_parse;
+
+typedef struct		s_info_map
+{
+	char			r;
+	char			no;
+	char			so;
+	char			we;
+	char			ea;
+	char			s;
+	int				f;
+	int				c;
+}					t_info_map;
 
 typedef struct		s_display
 {
@@ -89,6 +101,7 @@ typedef struct		s_data
 	t_mlx			mlx;
 	t_display		dis;
 	t_parse			parse;
+	t_info_map		info;
 
 }					t_data;
 
