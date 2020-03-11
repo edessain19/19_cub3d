@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 13:38:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/11 10:01:18 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/11 13:52:33 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int		parse_data(int fd, t_data *data)
 			i++;
 		}
 	}
-	data->parse.info = ft_strjoin_2(data->parse.info, "\n");
-	printf("\n%s\n", data->parse.info);
+	data->parse.info = ft_strjoin_2(data->parse.info, "\0");
+//	printf("\n%s\n", data->parse.info);
 	return (1);
 }
 
@@ -57,7 +57,7 @@ int		parse_map(int fd, t_data *data)
 	}
 	data->parse.info = ft_strjoin_2(data->parse.info, line);
 	data->parse.info = ft_strjoin_2(data->parse.info, "\0");
-	printf("\n%s\n", data->parse.map);
+//	printf("\n%s\n", data->parse.map);
 	return (1);
 }
 
@@ -66,14 +66,12 @@ int ft_parse_cub(t_data *data, char *filename)
 	int		fd;
 
 	fd = open(filename, O_RDONLY);
-//	write(1, "1", 1);
 	if (parse_data(fd, data) < 0)
 		return (-1);
-//	write(1, "2", 1);
 	if (parse_map(fd, data) < 0)
 		return (-1);
-//	write(1, "3", 1);
 	close(fd);
+	ft_parsing_info(data);
 	return (0);
 
 }

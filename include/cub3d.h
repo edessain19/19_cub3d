@@ -6,7 +6,7 @@
 /*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/10 13:25:38 by edessain         ###   ########.fr       */
+/*   Updated: 2020/03/11 13:11:58 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ typedef struct		s_parse
 
 typedef struct		s_info_map
 {
-	char			r;
-	char			no;
-	char			so;
-	char			we;
-	char			ea;
-	char			s;
+	char			*r;
+	char			*no;
+	char			*so;
+	char			*we;
+	char			*ea;
+	char			*s;
 	int				f;
 	int				c;
 }					t_info_map;
@@ -119,6 +119,9 @@ int					ft_parse_cub(t_data *data, char *filename);
 int					parse_map(int fd, t_data *data);
 int					parse_info(int fd, t_data *data);
 
+
+int					ft_parsing_info(t_data *data);
+int					ft_get_texture(char *str, int i, t_data *data, char c);
 /*
 ** ft_position_direction
 */
