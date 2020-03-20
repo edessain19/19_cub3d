@@ -46,8 +46,7 @@ int		ft_get_texture(char *str, int i, t_data *data, char c)
 		data->info.ea = ft_strdup(tab);
 	if (c == 'w')
 		data->info.we = ft_strdup(tab);
-	if (c == 'S')
-		data->info.s = ft_strdup(tab);
+
 	if (tab == NULL)
 		return (-1);
 	free(tab);

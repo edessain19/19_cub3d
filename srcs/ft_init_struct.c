@@ -41,6 +41,7 @@ void		init_raycasting(t_data *data)
 void		init_parse(t_data *data)
 {
 	data->parse.info = NULL;
+	data->parse.map_str = NULL;
 	data->parse.map = NULL;
 }
 

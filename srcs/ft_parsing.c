@@ -33,7 +33,6 @@ int		parse_data(int fd, t_data *data)
 		}
 	}
 	data->parse.info = ft_strjoin_2(data->parse.info, "\0");
-//	printf("\n%s\n", data->parse.info);
 	return (1);
 }
 
@@ -46,18 +45,19 @@ int		parse_map(int fd, t_data *data)
 	line = "";
 	while (line[0] == 0)
 		get_next_line(fd, &line);
-	data->parse.map = ft_strjoin_2(data->parse.map, line);
-	data->parse.map = ft_strjoin_2(data->parse.map, "\n");
+	data->parse.map_str = ft_strjoin_2(data->parse.map_str, line);
+	data->parse.map_str = ft_strjoin_2(data->parse.map_str, "\n");
 	while (get_next_line(fd, &line))
 	{
-		data->parse.map = ft_strjoin(data->parse.map, line);
-		data->parse.map = ft_strjoin(data->parse.map, "\n");
-		free(line);
-		line = NULL;
+		data->parse.map_str = ft_strjoin(data->parse.map_str, line);
+		data->parse.map_str = ft_strjoin(data->parse.map_str, "\n");
+//		free(line);
+//		line = NULL;
 	}
-	data->parse.info = ft_strjoin_2(data->parse.info, line);
-	data->parse.info = ft_strjoin_2(data->parse.info, "\0");
-//	printf("\n%s\n", data->parse.map);
+	data->parse.map_str = ft_strjoin_2(data->parse.map_str, line);
+	data->parse.map_str = ft_strjoin_2(data->parse.map_str, "\0");
+	free(line);
+	line = NULL;
 	return (1);
 }
 

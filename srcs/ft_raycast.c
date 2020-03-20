@@ -12,8 +12,8 @@
 
 #include "../include/cub3d.h"
 
-#define screenWidth 640
-#define screenHeight 480
+//#define screenWidth 640
+//#define screenHeight 480
 #define mapWidth 24
 #define mapHeight 24
 
@@ -118,10 +118,10 @@ void	*ft_algo(t_data *data)
 	int		x;
 
 	x = 0;
-	while (x < screenWidth)
+	while (x < data->info.r1)
 	{
 		//caluclate ray position and direction
-		data->rec.cameraX = 2 * x / (double)screenWidth - 1;//x-coordinate in camera space
+		data->rec.cameraX = 2 * x / (double)data->info.r1 - 1;//x-coordinate in camera space
 		data->rec.raydirX = data->rec.dirX + data->rec.planeX * data->rec.cameraX;
 		data->rec.raydirY = data->rec.dirY + data->rec.planeY * data->rec.cameraX;
 		
@@ -195,8 +195,8 @@ void	*ft_algo(t_data *data)
 			data->rec.perpwalldist = (data->rec.mapY - data->rec.posY
 					+ (1 - data->rec.stepY) / 2) / data->rec.raydirY;
 
-		data->rec.lineheight = (int)(screenHeight / data->rec.perpwalldist);
-		data->rec.drawstart = -data->rec.lineheight / 2 + screenHeight / 2;
+		data->rec.lineheight = (int)(data->info.r2 / data->rec.perpwalldist);
+		data->rec.drawstart = -data->rec.lineheight / 2 + data->info.r2 / 2;
 		
 		
 		
@@ -204,9 +204,9 @@ void	*ft_algo(t_data *data)
 
 		if (data->rec.drawstart < 0)
 			data->rec.drawstart = 0;
-		data->rec.drawend = data->rec.lineheight / 2 + screenHeight / 2;
-		if (data->rec.drawend >= screenHeight)
-			data->rec.drawend = screenHeight - 1;
+		data->rec.drawend = data->rec.lineheight / 2 + data->info.r2 / 2;
+		if (data->rec.drawend >= data->info.r2)
+			data->rec.drawend = data->info.r2 - 1;
 
 		ft_verline(x, data);
 		x++;
@@ -222,7 +222,7 @@ void	ft_verline(int x, t_data *data)
 	y = 0;
 	while (y < data->rec.drawstart)
 	{
-		data->dis.addr[y * screenWidth + x] = data->dis.color_floor;
+		data->dis.addr[y * data->info.r1 + x] = data->dis.color_floor;
 		y++;
 	}
 	while (y < data->rec.drawend)
@@ -230,16 +230,16 @@ void	ft_verline(int x, t_data *data)
 //		if (data->rec.side == 0 && data->rec.raydirX <= 0)
 //			data->dis.addr[y * screenWidth + x] = data->dis.color_wall_w;
 //		if (data->rec.side == 0 && data->rec.raydirY > 0)
-			data->dis.addr[y * screenWidth + x] = data->dis.color_wall_e;
+			data->dis.addr[y * data->info.r1 + x] = data->dis.color_wall_e;
 //		if (data->rec.side == 1 && data->rec.raydirY > 0)
 //			data->dis.addr[y * screenWidth + x] = data->dis.color_wall_s;
 //		if (data->rec.side == 1 && data->rec.raydirY <= 0)
 //			data->dis.addr[y * screenWidth + x] = data->dis.color_wall_n;
 		y++;
 	}
-	while (y < screenHeight)
+	while (y < data->info.r2)
 	{
-		data->dis.addr[y * screenWidth + x] = data->dis.color_sky;
+		data->dis.addr[y * data->info.r1 + x] = data->dis.color_sky;
 		y++;
 	}
 }

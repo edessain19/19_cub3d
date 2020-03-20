@@ -28,7 +28,8 @@
 typedef struct		s_parse
 {
 	char			*info;
-	char			*map;
+	char			*map_str;
+	char			**map;
 }					t_parse;
 
 typedef struct		s_info_map
@@ -122,9 +123,13 @@ int					ft_parse_cub(t_data *data, char *filename);
 int					parse_map(int fd, t_data *data);
 int					parse_info(int fd, t_data *data);
 
-
-int					ft_parsing_info(t_data *data);
+int					ft_strlen_parsing(char *str, int i, char c);
 int					ft_get_texture(char *str, int i, t_data *data, char c);
+int					ft_get_size(char *str, int i, t_data *data, char c);
+int					ft_parsing_lettre(char *str, int i, t_data *data, char c);
+int					ft_parsing_info(t_data *data);
+
+
 /*
 ** ft_position_direction
 */
