@@ -33,13 +33,16 @@ typedef struct		s_parse
 
 typedef struct		s_info_map
 {
-	char			*r;
+	int				r1;
+	int				r2;
 	char			*no;
 	char			*so;
 	char			*we;
 	char			*ea;
 	char			*s;
-	int				f;
+	int				f1;
+	int				f2;
+	int				f3;
 	int				c;
 }					t_info_map;
 

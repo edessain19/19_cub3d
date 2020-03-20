@@ -64,7 +64,7 @@ int		ft_get_size(char *str, int i, t_data *data, char c)
 			i++;
 		while (ft_isdigit(str[i]) == 1)
 		{
-			data->info.r = data->info.r1 * 10 + str[i] - 48;
+			data->info.r1 = data->info.r1 * 10 + str[i] - 48;
 			i++;
 		}
 		while (str[i] == ' ')

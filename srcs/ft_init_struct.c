@@ -46,13 +46,16 @@ void		init_parse(t_data *data)
 
 void		init_info_map(t_data *data)
 {
-	data->info.r = 0;
+	data->info.r1 = 0;
+	data->info.r2 = 0;
 	data->info.no = 0;
 	data->info.so = 0;
 	data->info.we = 0;
 	data->info.ea = 0;
 	data->info.s = 0;
-	data->info.f = 0;
+	data->info.f1 = 0;
+	data->info.f2 = 0;
+	data->info.f3 = 0;
 	data->info.c = 0;
 }
 
