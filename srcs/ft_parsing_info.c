@@ -12,26 +12,17 @@
 
 #include "../include/cub3d.h"
 
-int		ft_strlen_parsing(char *str, int i)
+int		ft_strlen_parsing(char *str, int i, char c)
 {
 	int		count;
 
 	count = 0;
-	while (str[i] != '\n')
+	while (str[i] != c)
 	{
 		i++;
 		count++;
 	}
 	return (count);
-}
-
-int		ft_next_stuff(char c)
-{
-	if (c == 'N' || c == 'S' || c == 'W' || c == 'E' || c == 'R' || c == 'F' || 
-			c == 'C')
-		return (1);
-	else
-		return (0);
 }
 
 int		ft_get_texture(char *str, int i, t_data *data, char c)
@@ -42,7 +33,7 @@ int		ft_get_texture(char *str, int i, t_data *data, char c)
 	j = 0;
 	while (str[i] == ' ')
 		i++;
-	if (!(tab = malloc(ft_strlen_parsing(str, i) + 1)))
+	if (!(tab = malloc(ft_strlen_parsing(str, i, '\n') + 1)))
 		return (-1);
 	while (str[i] != '\n')
 		tab[j++] = str[i++];
@@ -54,9 +45,55 @@ int		ft_get_texture(char *str, int i, t_data *data, char c)
 		data->info.ea = ft_strdup(tab);
 	if (c == 'w')
 		data->info.we = ft_strdup(tab);
-	printf("%s\n", tab);
+	if (c == 'S')
+		data->info.s = ft_strdup(tab);
+	if (tab == NULL)
+		return (-1);
 	free(tab);
 	return (0);
+}
+
+int		ft_get_size(char *str, int i, t_data *data, char c)
+{
+	int		j;
+
+	j = 0;
+	if (c == 'r')
+	{
+		while (str[i] == ' ')
+			i++;
+		while (ft_isdigit(str[i]) == 1)
+		{
+			data->info.r = data->info.r1 * 10 + str[i] - 48;
+			i++;
+		}
+		while (str[i] == ' ')
+			i++;
+		while (ft_isdigit(str[i]) == 1)
+		{
+			data->info.r2 = data->info.r2 * 10 + str[i] - 48;
+			i++;
+		}
+	}
+	if (c == 'f')
+	{
+		while (str[i] == ' ')
+			i++;
+		while (ft_isdigit(str[i] == 1))
+		{
+			data->info.f1 = 
+		}
+	}
+	return (0);
+}
+
+int		ft_parsing_lettre(char *str, int i, t_data *data, char c)
+{
+	if (c == 'n' || c == 's' || c == 'e' || c == 'w' || c == 'S')
+		ft_get_texture(str, i + 2, data, c);
+	else if (c == 'r' || c == 'f')
+		ft_get_size(str, i + 1, data, c);
+	return (i + 1);
 }
 
 int		ft_parsing_info(t_data *data)
@@ -68,28 +105,22 @@ int		ft_parsing_info(t_data *data)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == 'N' && str[i + 1] == 'O')
-		{
-			ft_get_texture(str, i + 2, data, 'n');
-			i++;
-		}
+		if (str[i] == 'R')
+			i = ft_parsing_lettre(str, i, data, 'r');
+		else if (str[i] == 'N' && str[i + 1] == 'O')
+			i = ft_parsing_lettre(str, i, data, 'n');
 		else if (str[i] == 'S' && str[i + 1] == 'O')
-		{
-			ft_get_texture(str, i + 2, data, 's');
-			i++;
-		}
+			i = ft_parsing_lettre(str, i, data, 's');
 		else if (str[i] == 'W' && str[i + 1] == 'E')
-		{
-			ft_get_texture(str, i + 2, data, 'w');
-			i++;
-		}
+			i = ft_parsing_lettre(str, i, data, 'w');
 		else if (str[i] == 'E' && str[i + 1] == 'A')
-		{
-			ft_get_texture(str, i + 2, data, 'e');
+			i = ft_parsing_lettre(str, i, data, 'e');
+		else if (str[i] == 'S' && str[i + 1] != 'O')
+			i = ft_parsing_lettre(str, i, data, 'S');
+		else if (str[i] == 'F')
+			i = ft_parsing_lettre(str, i, data, 'f');
+		else
 			i++;
-		}
-		i++;
-
 	}
 	return (0);
 }

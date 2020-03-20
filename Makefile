@@ -16,8 +16,8 @@ MINILIBX_PATH   = ./miniLibX
 #SRCS_LIST 		= main.c
 #SRCS			= $(addprefix ${FOLDER}/, ${SRCS_LIST})
 SRCS 			= main.c \
-					ft_init_struct \
-					ft_raycast \
+					ft_init_struct.c \
+					ft_raycast.c \
 OBJS			= ${SRCS:.c=.o}
 INCLUDE 		= cube3d.h
 #FOLDER			= srcs
