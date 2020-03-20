@@ -17,7 +17,7 @@ int		ft_strlen_parsing(char *str, int i, char c)
 	int		count;
 
 	count = 0;
-	while (str[i] != c)
+	while (str[i] && str[i] != c)
 	{
 		i++;
 		count++;
@@ -37,6 +37,7 @@ int		ft_get_texture(char *str, int i, t_data *data, char c)
 		return (-1);
 	while (str[i] != '\n')
 		tab[j++] = str[i++];
+	tab[j] = 0;
 	if (c == 'n')
 		data->info.no = ft_strdup(tab);
 	if (c == 's')
@@ -79,9 +80,22 @@ int		ft_get_size(char *str, int i, t_data *data, char c)
 	{
 		while (str[i] == ' ')
 			i++;
-		while (ft_isdigit(str[i] == 1))
+		while (ft_isdigit(str[i]) == 1)
 		{
-			data->info.f1 = 
+			data->info.f1 = data->info.f1 * 10 + str[i] - 48;
+			i++;
+		}
+		i++;
+		while (ft_isdigit(str[i]) == 1)
+		{
+			data->info.f2 = data->info.f2 * 10 + str[i] - 48;
+			i++;
+		}
+		i++;
+		while (ft_isdigit(str[i]) == 1)
+		{
+			data->info.f3 = data->info.f3 * 10 + str[i] - 48;
+			i++;
 		}
 	}
 	return (0);
@@ -122,5 +136,6 @@ int		ft_parsing_info(t_data *data)
 		else
 			i++;
 	}
+	printf(" %i\n %i\n %s\n %s\n %s\n %s\n %i\n %i\n %i\n", data->info.r1, data->info.r2, data->info.no, data->info.so, data->info.we, data->info.ea, data->info.f1, data->info.f2, data->info.f3);
 	return (0);
 }
