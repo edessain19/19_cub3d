@@ -117,7 +117,6 @@ void	*ft_algo(t_data *data)
 	data->dis.color_wall_w = 65536 * 50 + + 256 * 200 + 25;
 	data->dis.color_floor = 65536 * 200 + 256 * 175 + 150;
 	
-//	write (1, "1", 1);
 	int		x;
 	x = 0;
 	while (x < data->info.r1)
@@ -165,7 +164,6 @@ void	*ft_algo(t_data *data)
 				data->rec.deltadistY;
 		}
 		
-		
 ///////////////////////////////////////////////////////////////////////////////////////////
 		//jump to next map square, OR in x-direction, OR in y-direction
 		while (data->rec.hit == 0)
@@ -182,8 +180,10 @@ void	*ft_algo(t_data *data)
 				data->rec.mapY += data->rec.stepY;
 				data->rec.side = 1;
 			}
-			if (data->parse.map[data->rec.mapX][data->rec.mapY] > 0)
+			if (data->parse.map[data->rec.mapX][data->rec.mapY] == '1')
 				data->rec.hit = 1;
+//			if (worldMap[data->rec.mapX][data->rec.mapY] > 0)
+//				data->rec.hit = 1;
 		}
 		
 		
@@ -209,7 +209,6 @@ void	*ft_algo(t_data *data)
 		data->rec.drawend = data->rec.lineheight / 2 + data->info.r2 / 2;
 		if (data->rec.drawend >= data->info.r2)
 			data->rec.drawend = data->info.r2 - 1;
-
 		ft_verline(x, data);
 		x++;
 	}

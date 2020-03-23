@@ -34,6 +34,7 @@ int main(int argc, char **argv)
 	data.dis.addr = (int*)mlx_get_data_addr(data.dis.img, &data.dis.bits_per_pixel, &data.dis.line_length, &data.dis.endian);
 
 	ft_start_algo(&data);
+	write(1, "4", 1);
 	mlx_put_image_to_window(data.mlx.mlx_ptr, data.mlx.mlx_win, data.dis.img, 0, 0);
 	mlx_hook(data.mlx.mlx_win, 2, 1L<<0, ft_keyboard, &data);
 	

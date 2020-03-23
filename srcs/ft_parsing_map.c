@@ -65,14 +65,10 @@ int ft_get_position(t_data *data)
 
 int		ft_parsing_map(t_data *data)
 {
-	write(1, "A", 1);
 	ft_size_map(data, data->parse.map_str);
-	write(1, "B", 1);
 	if (!(data->parse.map = ft_split(data->parse.map_str, '\n')))
 		return (-1);
-	write(1, "C", 1);
 	if (ft_get_position(data) < 0)
 		return (-1);
-	write(1, "D", 1);
 	return (0);
 }
