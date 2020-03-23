@@ -135,6 +135,6 @@ int		ft_parsing_info(t_data *data)
 		else
 			i++;
 	}
-	printf(" %i\n %i\n %s\n %s\n %s\n %s\n %i\n %i\n %i\n", data->info.r1, data->info.r2, data->info.no, data->info.so, data->info.we, data->info.ea, data->info.f1, data->info.f2, data->info.f3);
+//	printf(" %i\n %i\n %s\n %s\n %s\n %s\n %i\n %i\n %i\n", data->info.r1, data->info.r2, data->info.no, data->info.so, data->info.we, data->info.ea, data->info.f1, data->info.f2, data->info.f3);
 	return (0);
 }

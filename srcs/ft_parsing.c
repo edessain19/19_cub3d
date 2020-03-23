@@ -72,6 +72,7 @@ int ft_parse_cub(t_data *data, char *filename)
 		return (-1);
 	close(fd);
 	ft_parsing_info(data);
+	ft_parsing_map(data);
 	return (0);
 
 }

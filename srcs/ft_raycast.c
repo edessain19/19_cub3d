@@ -14,9 +14,11 @@
 
 //#define screenWidth 640
 //#define screenHeight 480
+
+
 #define mapWidth 24
 #define mapHeight 24
-
+/*
 int worldMap[mapWidth][mapHeight]=
 {
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -44,7 +46,7 @@ int worldMap[mapWidth][mapHeight]=
 	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
-
+*/
 int		ft_keyboard(int keycode, t_data *data)
 {
 	double		speed;
@@ -95,8 +97,8 @@ int		ft_keyboard(int keycode, t_data *data)
 
 void	ft_start_algo(t_data *data)
 {
-	data->rec.posX = 22;
-	data->rec.posY = 12;
+//	data->rec.posX = 22;
+//	data->rec.posY = 12;
 	data->rec.dirX = -1;
 	data->rec.dirY = 0;
 	data->rec.planeX = 0;
@@ -115,8 +117,8 @@ void	*ft_algo(t_data *data)
 	data->dis.color_wall_w = 65536 * 50 + + 256 * 200 + 25;
 	data->dis.color_floor = 65536 * 200 + 256 * 175 + 150;
 	
+//	write (1, "1", 1);
 	int		x;
-
 	x = 0;
 	while (x < data->info.r1)
 	{
@@ -180,7 +182,7 @@ void	*ft_algo(t_data *data)
 				data->rec.mapY += data->rec.stepY;
 				data->rec.side = 1;
 			}
-			if (worldMap[data->rec.mapX][data->rec.mapY] > 0)
+			if (data->parse.map[data->rec.mapX][data->rec.mapY] > 0)
 				data->rec.hit = 1;
 		}
 		

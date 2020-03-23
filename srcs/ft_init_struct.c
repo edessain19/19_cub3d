@@ -43,6 +43,8 @@ void		init_parse(t_data *data)
 	data->parse.info = NULL;
 	data->parse.map_str = NULL;
 	data->parse.map = NULL;
+	data->parse.dir = 0;
+	data->parse.nb_sprites = 0;
 }
 
 void		init_info_map(t_data *data)
@@ -58,6 +60,8 @@ void		init_info_map(t_data *data)
 	data->info.f2 = 0;
 	data->info.f3 = 0;
 	data->info.c = 0;
+	data->info.map_h = 0;
+	data->info.map_w = 0;
 }
 
 void		init_mlx(t_data *data)

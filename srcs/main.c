@@ -21,8 +21,11 @@ int main(int argc, char **argv)
 
 	if (argc < 2)
 		return (-1);
+	write(1, "1", 1);
 	ft_init_struct(&data);
+	write(1, "2", 1);
 	ft_parse_cub(&data, argv[1]);
+	write(1, "3", 1);
 	if ((data.mlx.mlx_ptr = mlx_init()) == NULL)
 		return (EXIT_FAILURE);
 	if ((data.mlx.mlx_win = mlx_new_window(data.mlx.mlx_ptr, 640, 480, "Hello world")) == NULL)

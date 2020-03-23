@@ -30,7 +30,10 @@ typedef struct		s_parse
 	char			*info;
 	char			*map_str;
 	char			**map;
-}					t_parse;
+	char			dir;
+	int				nb_sprites;
+	
+	}					t_parse;
 
 typedef struct		s_info_map
 {
@@ -45,6 +48,8 @@ typedef struct		s_info_map
 	int				f2;
 	int				f3;
 	int				c;
+	int				map_h;
+	int				map_w;
 }					t_info_map;
 
 typedef struct		s_display
@@ -128,6 +133,10 @@ int					ft_get_texture(char *str, int i, t_data *data, char c);
 int					ft_get_size(char *str, int i, t_data *data, char c);
 int					ft_parsing_lettre(char *str, int i, t_data *data, char c);
 int					ft_parsing_info(t_data *data);
+
+void				ft_size_map(t_data *data, char *str);
+
+int					ft_parsing_map(t_data *data);
 
 
 /*
