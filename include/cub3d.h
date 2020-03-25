@@ -47,7 +47,9 @@ typedef struct		s_info_map
 	int				f1;
 	int				f2;
 	int				f3;
-	int				c;
+	int				c1;
+	int				c2;
+	int				c3;
 	int				map_h;
 	int				map_w;
 }					t_info_map;

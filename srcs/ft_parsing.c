@@ -66,13 +66,16 @@ int ft_parse_cub(t_data *data, char *filename)
 	int		fd;
 
 	fd = open(filename, O_RDONLY);
+//	write(1, "a", 1);
 	if (parse_data(fd, data) < 0)
 		return (-1);
+//	write(1, "b", 1);
 	if (parse_map(fd, data) < 0)
 		return (-1);
 	close(fd);
 	ft_parsing_info(data);
 	ft_parsing_map(data);
+	printf("\n%s\n", data->parse.map_str);
 	return (0);
 
 }

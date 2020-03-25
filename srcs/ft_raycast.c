@@ -16,8 +16,8 @@
 //#define screenHeight 480
 
 
-#define mapWidth 24
-#define mapHeight 24
+//#define mapWidth 24
+//#define mapHeight 24
 /*
 int worldMap[mapWidth][mapHeight]=
 {
@@ -59,16 +59,16 @@ int		ft_keyboard(int keycode, t_data *data)
 		exit(1);
 	if (keycode == 126 || keycode == 13)
 	{
-//		if (worldMap[(int)(data->rec.posX + data->rec.dirX * speed)][(int)data->rec.posY] == '0')
+		if (data->parse.map[(int)(data->rec.posX + data->rec.dirX * speed)][(int)data->rec.posY] != '1')
 			data->rec.posX += data->rec.dirX * speed;
-//		if (worldMap[(int)data->rec.posX][(int)(data->rec.posY + data->rec.dirY * speed)] == '0')
+		if (data->parse.map[(int)data->rec.posX][(int)(data->rec.posY + data->rec.dirY * speed)] != '1')
 			data->rec.posY += data->rec.dirY * speed;
 	}
 	if (keycode == 125 || keycode == 1)
 	{
-//		if (worldMap[(int)(data->rec.posX - data->rec.dirX * speed)][(int)data->rec.posY] == '0')
+		if (data->parse.map[(int)(data->rec.posX - data->rec.dirX * speed)][(int)data->rec.posY] != '1')
 			data->rec.posX -= data->rec.dirX * speed;
-//		if (worldMap[(int)data->rec.posX][(int)(data->rec.posY - data->rec.dirY * speed)] == '0')
+		if (data->parse.map[(int)data->rec.posX][(int)(data->rec.posY - data->rec.dirY * speed)] != '1')
 			data->rec.posY -= data->rec.dirY * speed;
 	}
 	if (keycode == 124 || keycode == 2)
@@ -121,6 +121,8 @@ void	*ft_algo(t_data *data)
 	x = 0;
 	while (x < data->info.r1)
 	{
+//		write(1, "q", 1);
+
 		//caluclate ray position and direction
 		data->rec.cameraX = 2 * x / (double)data->info.r1 - 1;//x-coordinate in camera space
 		data->rec.raydirX = data->rec.dirX + data->rec.planeX * data->rec.cameraX;
@@ -166,8 +168,10 @@ void	*ft_algo(t_data *data)
 		
 ///////////////////////////////////////////////////////////////////////////////////////////
 		//jump to next map square, OR in x-direction, OR in y-direction
+//		write(1, "w", 1);
 		while (data->rec.hit == 0)
 		{
+//			write(1, "1", 1);
 			if (data->rec.sidedistX < data->rec.sidedistY)
 			{
 				data->rec.sidedistX += data->rec.deltadistX;
@@ -180,16 +184,18 @@ void	*ft_algo(t_data *data)
 				data->rec.mapY += data->rec.stepY;
 				data->rec.side = 1;
 			}
-			if (data->parse.map[data->rec.mapX][data->rec.mapY] == '1')
+//			write(1, "2", 1);
+			if (data->parse.map[data->rec.mapX][data->rec.mapY] != '0')
 				data->rec.hit = 1;
 //			if (worldMap[data->rec.mapX][data->rec.mapY] > 0)
 //				data->rec.hit = 1;
+//			write(1, "3", 1);
 		}
 		
 		
 		
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+//		write(1, "e", 1);
 		if (data->rec.side == 0)
 			data->rec.perpwalldist = (data->rec.mapX - data->rec.posX
 					+ (1 - data->rec.stepX) / 2) / data->rec.raydirX;
@@ -203,7 +209,7 @@ void	*ft_algo(t_data *data)
 		
 		
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-
+//		write(1, "r", 1);
 		if (data->rec.drawstart < 0)
 			data->rec.drawstart = 0;
 		data->rec.drawend = data->rec.lineheight / 2 + data->info.r2 / 2;

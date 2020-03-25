@@ -15,15 +15,18 @@ LIBFT_PATH 		= ./libft
 MINILIBX_PATH   = ./miniLibX
 #SRCS_LIST 		= main.c
 #SRCS			= $(addprefix ${FOLDER}/, ${SRCS_LIST})
-SRCS 			= main.c \
-					ft_init_struct.c \
-					ft_raycast.c \
+SRCS 			= ./srcs/main.c \
+					./srcs/ft_init_struct.c \
+					./srcs/ft_raycast.c \
+					./srcs/ft_parsing.c \
+					./srcs/ft_parsing_info.c \
+					./srcs/ft_parsing_map.c \
 OBJS			= ${SRCS:.c=.o}
 INCLUDE 		= cube3d.h
 #FOLDER			= srcs
 LIBFT 			= libft
 MINILIBX 		= miniLibX
-CC				= gcc -g -Wall -Wextra -Werror
+CC				= gcc -g -Wall -Wextra -Werror -fsanitize=adresse
 RM				= rm -f
 MLXFLAGS 		= -I ./miniLibX -L ./miniLibX -lmlx -framework OpenGl -framework Appkit
 LIBFLAGS 		= -I ./libft -L ./libft -L . ./libft/*.c 
@@ -32,7 +35,7 @@ LIBFLAGS 		= -I ./libft -L ./libft -L . ./libft/*.c
 
 all:			libft_all minilibx_all ${NAME}
 $(NAME):		${OBJS} 
-				@$(CC) $(MLXFLAGS) $(LIBFLAGS) libft.a libmlx.a -I./ $(OBJS) -o $@ 
+				@$(CC) $(MLXFLAGS) $(LIBFLAGS) libft.a libmlx.a -I./ $(OBJS) -o $@
 #				$(CC) -Lmlx/ -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 #%.o: %.c 		$(INCLUDE)
 #				$(CC) $(CCFLAGS) -Imlx -Iinc -Ilibft -c -o $@ $<

@@ -18,7 +18,7 @@ void	ft_size_map(t_data *data, char *str)
 			i++;
 			j++;
 		}
-		if (j >= size_w)
+		if (j > size_w)
 			size_w = j;
 		j = 0;
 		if (str[i] == '\n')
@@ -27,6 +27,7 @@ void	ft_size_map(t_data *data, char *str)
 	}
 	data->info.map_h = size_h;
 	data->info.map_w = size_w;
+//	printf("%i\n %i\n", data->info.map_h, data->info.map_h);
 }
 
 int		ft_get_position2(int i, int j, t_data *data)
@@ -63,9 +64,23 @@ int ft_get_position(t_data *data)
 	return (1);
 }
 
+void	ft_fill_the_blank(t_data *data)
+{
+	int		i;
+
+	i = 0;
+	while (data->parse.map_str[i] != 0)
+		{
+			if (data->parse.map_str[i] == ' ')
+				data->parse.map_str[i] = '9';
+			i++;
+		}
+}
+
 int		ft_parsing_map(t_data *data)
 {
 	ft_size_map(data, data->parse.map_str);
+	ft_fill_the_blank(data);
 	if (!(data->parse.map = ft_split(data->parse.map_str, '\n')))
 		return (-1);
 	if (ft_get_position(data) < 0)

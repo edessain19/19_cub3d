@@ -46,7 +46,6 @@ int		ft_get_texture(char *str, int i, t_data *data, char c)
 		data->info.ea = ft_strdup(tab);
 	if (c == 'w')
 		data->info.we = ft_strdup(tab);
-
 	if (tab == NULL)
 		return (-1);
 	free(tab);
@@ -97,6 +96,28 @@ int		ft_get_size(char *str, int i, t_data *data, char c)
 			i++;
 		}
 	}
+	if (c == 'C')
+	{
+		while (str[i] == ' ')
+			i++;
+		while (ft_isdigit(str[i]) == 1)
+		{
+			data->info.c1 = data->info.c1 * 10 + str[i] - 48;
+			i++;
+		}
+		i++;
+		while (ft_isdigit(str[i]) == 1)
+		{
+			data->info.c2 = data->info.c2 * 10 + str[i] - 48;
+			i++;
+		}
+		i++;
+		while (ft_isdigit(str[i]) == 1)
+		{
+			data->info.c3 = data->info.c3 * 10 + str[i] - 48;
+			i++;
+		}
+	}
 	return (0);
 }
 
@@ -104,7 +125,7 @@ int		ft_parsing_lettre(char *str, int i, t_data *data, char c)
 {
 	if (c == 'n' || c == 's' || c == 'e' || c == 'w' || c == 'S')
 		ft_get_texture(str, i + 2, data, c);
-	else if (c == 'r' || c == 'f')
+	else if (c == 'r' || c == 'f' || c == 'c')
 		ft_get_size(str, i + 1, data, c);
 	return (i + 1);
 }
@@ -132,6 +153,8 @@ int		ft_parsing_info(t_data *data)
 			i = ft_parsing_lettre(str, i, data, 'S');
 		else if (str[i] == 'F')
 			i = ft_parsing_lettre(str, i, data, 'f');
+		else if (str[i] == 'C')
+			i = ft_parsing_lettre(str, i, data, 'c');
 		else
 			i++;
 	}

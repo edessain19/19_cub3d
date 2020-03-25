@@ -21,11 +21,9 @@ int main(int argc, char **argv)
 
 	if (argc < 2)
 		return (-1);
-	write(1, "1", 1);
 	ft_init_struct(&data);
-	write(1, "2", 1);
 	ft_parse_cub(&data, argv[1]);
-	write(1, "3", 1);
+//	write(1, "1", 1);
 	if ((data.mlx.mlx_ptr = mlx_init()) == NULL)
 		return (EXIT_FAILURE);
 	if ((data.mlx.mlx_win = mlx_new_window(data.mlx.mlx_ptr, 640, 480, "Hello world")) == NULL)
@@ -33,8 +31,9 @@ int main(int argc, char **argv)
 	data.dis.img = mlx_new_image(data.mlx.mlx_ptr, screenWidth, screenHeight);
 	data.dis.addr = (int*)mlx_get_data_addr(data.dis.img, &data.dis.bits_per_pixel, &data.dis.line_length, &data.dis.endian);
 
+//	write(1, "2", 1);
 	ft_start_algo(&data);
-	write(1, "4", 1);
+//	write(1, "3", 1);
 	mlx_put_image_to_window(data.mlx.mlx_ptr, data.mlx.mlx_win, data.dis.img, 0, 0);
 	mlx_hook(data.mlx.mlx_win, 2, 1L<<0, ft_keyboard, &data);
 	
