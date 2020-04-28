@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing_info.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:26:23 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/11 15:17:09 by edessain         ###   ########.fr       */
+/*   Updated: 2020/04/28 16:05:55 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_get_texture(char *str, int i, t_data *data, char c)
 {
 	int		j;
 	char	*tab;
-	
+
 	j = 0;
 	while (str[i] == ' ')
 		i++;
@@ -55,8 +55,12 @@ int		ft_get_texture(char *str, int i, t_data *data, char c)
 int		ft_get_size(char *str, int i, t_data *data, char c)
 {
 	int		j;
+	int 	c1;
+	int 	f1;
 
 	j = 0;
+	c1 = 0;
+	f1 = 0;
 	if (c == 'r')
 	{
 		while (str[i] == ' ')
@@ -80,43 +84,54 @@ int		ft_get_size(char *str, int i, t_data *data, char c)
 			i++;
 		while (ft_isdigit(str[i]) == 1)
 		{
-			data->info.f1 = data->info.f1 * 10 + str[i] - 48;
+			f1 = f1 * 10 + str[i] - 48;
 			i++;
 		}
+		data->info.f = 65536 * f1;
+		f1 = 0;
 		i++;
 		while (ft_isdigit(str[i]) == 1)
 		{
-			data->info.f2 = data->info.f2 * 10 + str[i] - 48;
+			f1 = f1 * 10 + str[i] - 48;
 			i++;
 		}
+		data->info.f = data->info.f + 256 * f1;
+		f1 = 0;
 		i++;
 		while (ft_isdigit(str[i]) == 1)
 		{
-			data->info.f3 = data->info.f3 * 10 + str[i] - 48;
+			f1 = f1 * 10 + str[i] - 48;
 			i++;
 		}
+		data->info.f = data->info.f + f1;
 	}
-	if (c == 'C')
+
+	if (c == 'c')
 	{
 		while (str[i] == ' ')
 			i++;
 		while (ft_isdigit(str[i]) == 1)
 		{
-			data->info.c1 = data->info.c1 * 10 + str[i] - 48;
+			c1 = c1 * 10 + str[i] - 48;
 			i++;
 		}
+		data->info.c = 65536 * c1;
+		c1 = 0;
 		i++;
 		while (ft_isdigit(str[i]) == 1)
 		{
-			data->info.c2 = data->info.c2 * 10 + str[i] - 48;
+			c1 = c1 * 10 + str[i] - 48;
 			i++;
 		}
+		data->info.c = data->info.c + 256 * c1;
+		c1 = 0;
 		i++;
 		while (ft_isdigit(str[i]) == 1)
 		{
-			data->info.c3 = data->info.c3 * 10 + str[i] - 48;
+			c1 = c1 * 10 + str[i] - 48;
 			i++;
 		}
+		data->info.c = data->info.c + c1;
 	}
 	return (0);
 }
@@ -134,7 +149,7 @@ int		ft_parsing_info(t_data *data)
 {
 	char	*str;
 	int		i;
-	
+
 	str = data->parse.info;
 	i = 0;
 	while (str[i])
@@ -158,6 +173,6 @@ int		ft_parsing_info(t_data *data)
 		else
 			i++;
 	}
-//	printf(" %i\n %i\n %s\n %s\n %s\n %s\n %i\n %i\n %i\n", data->info.r1, data->info.r2, data->info.no, data->info.so, data->info.we, data->info.ea, data->info.f1, data->info.f2, data->info.f3);
+	printf(" %i\n %i\n %s\n %s\n %s\n %s\n %i\n %i\n", data->info.r1, data->info.r2, data->info.no, data->info.so, data->info.we, data->info.ea, data->info.f, data->info.c);
 	return (0);
 }

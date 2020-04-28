@@ -56,12 +56,8 @@ void		init_info_map(t_data *data)
 	data->info.we = 0;
 	data->info.ea = 0;
 	data->info.s = 0;
-	data->info.f1 = 0;
-	data->info.f2 = 0;
-	data->info.f3 = 0;
-	data->info.c1 = 0;
-	data->info.c2 = 0;
-	data->info.c3 = 0;
+	data->info.f = 0;
+	data->info.c = 0;
 	data->info.map_h = 0;
 	data->info.map_w = 0;
 }

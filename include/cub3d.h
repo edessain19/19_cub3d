@@ -44,12 +44,8 @@ typedef struct		s_info_map
 	char			*we;
 	char			*ea;
 	char			*s;
-	int				f1;
-	int				f2;
-	int				f3;
-	int				c1;
-	int				c2;
-	int				c3;
+	int				f;
+	int				c;
 	int				map_h;
 	int				map_w;
 }					t_info_map;

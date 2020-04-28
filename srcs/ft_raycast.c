@@ -3,58 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:07:36 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/09 15:32:01 by edessain         ###   ########.fr       */
+/*   Updated: 2020/04/28 16:29:00 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-//#define screenWidth 640
-//#define screenHeight 480
-
-
-//#define mapWidth 24
-//#define mapHeight 24
-/*
-int worldMap[mapWidth][mapHeight]=
-{
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-};
-*/
 int		ft_keyboard(int keycode, t_data *data)
 {
 	double		speed;
 	double		rotation;
-	
+
 	speed = 0.2;
 	rotation = 0.2;
-	
+
 	if (keycode == 53)
 		exit(1);
 	if (keycode == 126 || keycode == 13)
@@ -116,7 +81,7 @@ void	*ft_algo(t_data *data)
 	data->dis.color_wall_e = 65536 * 100 + 256 * 150 + 25;
 	data->dis.color_wall_w = 65536 * 50 + + 256 * 200 + 25;
 	data->dis.color_floor = 65536 * 200 + 256 * 175 + 150;
-	
+
 	int		x;
 	x = 0;
 	while (x < data->info.r1)
@@ -127,15 +92,15 @@ void	*ft_algo(t_data *data)
 		data->rec.cameraX = 2 * x / (double)data->info.r1 - 1;//x-coordinate in camera space
 		data->rec.raydirX = data->rec.dirX + data->rec.planeX * data->rec.cameraX;
 		data->rec.raydirY = data->rec.dirY + data->rec.planeY * data->rec.cameraX;
-		
+
 		//which box of the map we're in
 		data->rec.mapX = (int)data->rec.posX;
 		data->rec.mapY = (int)data->rec.posY;
-		
+
 		//length of ray from one x or y-side to next x or y-side
 		data->rec.deltadistX = fabs(1 / data->rec.raydirX);
 		data->rec.deltadistY = fabs(1 / data->rec.raydirY);
-		
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 		//sidedist = length of ray from current position to next x or y-side
@@ -165,7 +130,7 @@ void	*ft_algo(t_data *data)
 			data->rec.sidedistY = (data->rec.mapY + 1.0 - data->rec.posY) *
 				data->rec.deltadistY;
 		}
-		
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 		//jump to next map square, OR in x-direction, OR in y-direction
 //		write(1, "w", 1);
@@ -191,9 +156,9 @@ void	*ft_algo(t_data *data)
 //				data->rec.hit = 1;
 //			write(1, "3", 1);
 		}
-		
-		
-		
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //		write(1, "e", 1);
 		if (data->rec.side == 0)
@@ -205,9 +170,9 @@ void	*ft_algo(t_data *data)
 
 		data->rec.lineheight = (int)(data->info.r2 / data->rec.perpwalldist);
 		data->rec.drawstart = -data->rec.lineheight / 2 + data->info.r2 / 2;
-		
-		
-		
+
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //		write(1, "r", 1);
 		if (data->rec.drawstart < 0)
@@ -225,28 +190,28 @@ void	*ft_algo(t_data *data)
 void	ft_verline(int x, t_data *data)
 {
 	int y;
-	
+
 	y = 0;
 	while (y < data->rec.drawstart)
 	{
-		data->dis.addr[y * data->info.r1 + x] = data->dis.color_floor;
+		data->dis.addr[y * data->info.r1 + x] = data->info.f;
 		y++;
 	}
 	while (y < data->rec.drawend)
 	{
-//		if (data->rec.side == 0 && data->rec.raydirX <= 0)
-//			data->dis.addr[y * screenWidth + x] = data->dis.color_wall_w;
-//		if (data->rec.side == 0 && data->rec.raydirY > 0)
-			data->dis.addr[y * data->info.r1 + x] = data->dis.color_wall_e;
-//		if (data->rec.side == 1 && data->rec.raydirY > 0)
-//			data->dis.addr[y * screenWidth + x] = data->dis.color_wall_s;
-//		if (data->rec.side == 1 && data->rec.raydirY <= 0)
-//			data->dis.addr[y * screenWidth + x] = data->dis.color_wall_n;
+		if (data->rec.side == 0 && data->rec.raydirX <= 0)
+			data->dis.addr[y * data->info.r1 + x] = data->info.we;
+		if (data->rec.side == 0 && data->rec.raydirY > 0)
+			data->dis.addr[y * data->info.r1 + x] = data->info.ea;
+		if (data->rec.side == 1 && data->rec.raydirY > 0)
+			data->dis.addr[y * data->info.r1 + x] = data->info.so;
+		if (data->rec.side == 1 && data->rec.raydirY <= 0)
+			data->dis.addr[y * data->info.r1 + x] = data->info.no;
 		y++;
 	}
 	while (y < data->info.r2)
 	{
-		data->dis.addr[y * data->info.r1 + x] = data->dis.color_sky;
+		data->dis.addr[y * data->info.r1 + x] = data->info.c;
 		y++;
 	}
 }
