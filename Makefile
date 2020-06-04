@@ -3,43 +3,41 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hbuisser <hbuisser@student.42.fr>          +#+  +:+       +#+         #
+#    By: edessain <edessain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/01/25 12:47:05 by hbuisser          #+#    #+#              #
-#    Updated: 2020/03/10 09:02:23 by edessain         ###   ########.fr        #
+#    Created: 2020/02/20 13:33:12 by edessain          #+#    #+#              #
+#    Updated: 2020/06/03 13:49:14 by evrard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 			= cub3D
 LIBFT_PATH 		= ./libft
-MINILIBX_PATH   = ./miniLibX
+MINILIBX_PATH   = ./minilibx
 #SRCS_LIST 		= main.c
 #SRCS			= $(addprefix ${FOLDER}/, ${SRCS_LIST})
 SRCS 			= ./srcs/main.c \
 					./srcs/ft_init_struct.c \
-					./srcs/ft_raycast.c \
-					./srcs/ft_parsing.c \
-					./srcs/ft_parsing_info.c \
-					./srcs/ft_parsing_map.c \
+				 	./srcs/ft_parsing.c \
+				 	./srcs/ft_parsing_info.c \
+				 	./srcs/ft_parsing_map.c \
+				 	./srcs/ft_raycast.c \
+				 	./srcs/main.c \
+
 OBJS			= ${SRCS:.c=.o}
 INCLUDE 		= cube3d.h
 #FOLDER			= srcs
 LIBFT 			= libft
-MINILIBX 		= miniLibX
-CC				= gcc -g -Wall -Wextra -Werror -fsanitize=adresse
+MINILIBX 		= minilibx
+CC				= gcc -g -Wall -Wextra -Werror # -fsanitize=address
 RM				= rm -f
-MLXFLAGS 		= -I ./miniLibX -L ./miniLibX -lmlx -framework OpenGl -framework Appkit
-LIBFLAGS 		= -I ./libft -L ./libft -L . ./libft/*.c 
+MLXFLAGS 		= -I ./minilibx -L ./minilibx -lmlx -framework OpenGl -framework Appkit
+LIBFLAGS 		= -I ./libft -L ./libft -L . ./libft/*.c
 # -I Add the directory dir to the list of directories to be searched for header files
 # -L Searches the library when linking
 
 all:			libft_all minilibx_all ${NAME}
-$(NAME):		${OBJS} 
+$(NAME):		${OBJS}
 				@$(CC) $(MLXFLAGS) $(LIBFLAGS) libft.a libmlx.a -I./ $(OBJS) -o $@
-#				$(CC) -Lmlx/ -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-#%.o: %.c 		$(INCLUDE)
-#				$(CC) $(CCFLAGS) -Imlx -Iinc -Ilibft -c -o $@ $<
-#				$@gcc -Wall -Wextra -Werror -Imlx -Iinc -Ilibft -c $< -o $@
 clean:			libft_clean minilibx_clean
 				@${RM} ${OBJS}
 fclean:			libft_fclean clean
@@ -66,5 +64,5 @@ minilibx_all:
 minilibx_clean:
 	make -C $(MINILIBX_PATH) clean
 	$(RM) libmlx.a
-				
+
 .PHONY: all fclean clean re

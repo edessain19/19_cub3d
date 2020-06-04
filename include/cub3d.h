@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/11 13:11:58 by edessain         ###   ########.fr       */
+/*   Updated: 2020/06/04 11:30:43 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,19 @@ typedef struct		s_parse
 	char			**map;
 	char			dir;
 	int				nb_sprites;
-	
-	}					t_parse;
-
-typedef struct		s_info_map
-{
 	int				r1;
 	int				r2;
-	char			*no;
-	char			*so;
-	char			*we;
-	char			*ea;
-	char			*s;
+	char			*n_path;
+	char			*s_path;
+	char			*w_path;
+	char			*e_path;
+	int				s;
 	int				f;
 	int				c;
 	int				map_h;
 	int				map_w;
-}					t_info_map;
+	int				color;
+	}					t_parse;
 
 typedef struct		s_display
 {
@@ -57,12 +53,16 @@ typedef struct		s_display
 	int				line_length;
 	int				endian;
 	int				bits_per_pixel;
-	int				color_wall_n;
-	int				color_wall_s;
-	int				color_wall_e;
-	int				color_wall_w;
-	int				color_sky;
-	int				color_floor;
+	void			*color_n;
+	void			*color_s;
+	void			*color_e;
+	void			*color_w;
+	int 			texx;
+	int 			texy;
+	int 			texwidth;
+	int 			texheight;
+	int				color_sky; // inutile, = info.c
+	int				color_floor; //inutile = info.f
 }					t_display;
 
 typedef struct		s_mlx
@@ -108,7 +108,6 @@ typedef struct		s_data
 	t_mlx			mlx;
 	t_display		dis;
 	t_parse			parse;
-	t_info_map		info;
 
 }					t_data;
 
@@ -121,6 +120,8 @@ void				ft_init_struct(t_data *data);
 /*
 ** parsing
 */
+
+int					main(int argc, char **argv);
 
 int					ft_parse_cub(t_data *data, char *filename);
 int					parse_map(int fd, t_data *data);
@@ -147,4 +148,3 @@ void	*ft_algo(t_data *data);
 void	ft_verline(int x, t_data *data);
 
 #endif
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_struct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edessain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/03/10 13:25:59 by edessain         ###   ########.fr       */
+/*   Updated: 2020/06/04 11:30:15 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,18 @@ void		init_parse(t_data *data)
 	data->parse.map = NULL;
 	data->parse.dir = 0;
 	data->parse.nb_sprites = 0;
-}
-
-void		init_info_map(t_data *data)
-{
-	data->info.r1 = 0;
-	data->info.r2 = 0;
-	data->info.no = 0;
-	data->info.so = 0;
-	data->info.we = 0;
-	data->info.ea = 0;
-	data->info.s = 0;
-	data->info.f = 0;
-	data->info.c = 0;
-	data->info.map_h = 0;
-	data->info.map_w = 0;
+	data->parse.r1 = 0;
+	data->parse.r2 = 0;
+	data->parse.n_path = 0;
+	data->parse.s_path = 0;
+	data->parse.w_path = 0;
+	data->parse.e_path = 0;
+	data->parse.s = 0;
+	data->parse.f = 0;
+	data->parse.c = 0;
+	data->parse.map_h = 0;
+	data->parse.map_w = 0;
+	data->parse.color = 0;
 }
 
 void		init_mlx(t_data *data)
@@ -77,10 +74,14 @@ void		init_dis(t_data *data)
 	data->dis.bits_per_pixel = 0;
 	data->dis.color_sky = 0;
 	data->dis.color_floor = 0;
-	data->dis.color_wall_n = 0;
-	data->dis.color_wall_s = 0;
-	data->dis.color_wall_w = 0;
-	data->dis.color_wall_e = 0;
+	data->dis.color_n = 0;
+	data->dis.color_s = 0;
+	data->dis.color_w = 0;
+	data->dis.color_e = 0;
+	data->dis.texx = 0;
+	data->dis.texy = 0;
+	data->dis.texwidth = 0;
+	data->dis.texheight = 0;
 }
 
 void		ft_init_struct(t_data *data)
@@ -89,5 +90,4 @@ void		ft_init_struct(t_data *data)
 	init_dis(data);
 	init_mlx(data);
 	init_parse(data);
-	init_info_map(data);
 }

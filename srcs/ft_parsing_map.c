@@ -25,8 +25,8 @@ void	ft_size_map(t_data *data, char *str)
 			size_h++;
 		i++;
 	}
-	data->info.map_h = size_h;
-	data->info.map_w = size_w;
+	data->parse.map_h = size_h;
+	data->parse.map_w = size_w;
 //	printf("%i\n %i\n", data->info.map_h, data->info.map_h);
 }
 

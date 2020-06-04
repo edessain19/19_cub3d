@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:07:36 by edessain          #+#    #+#             */
-/*   Updated: 2020/04/28 16:29:00 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/04 11:34:10 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,20 @@ void	ft_start_algo(t_data *data)
 void	*ft_algo(t_data *data)
 {
 	data->dis.color_sky = 65536 * 200 + 256 * 200 + 25;
-	data->dis.color_wall_n = 65536 * 200 + 256 * 50 + 25;
-	data->dis.color_wall_s = 65536 * 150 + 256 * 100 + 25;
-	data->dis.color_wall_e = 65536 * 100 + 256 * 150 + 25;
-	data->dis.color_wall_w = 65536 * 50 + + 256 * 200 + 25;
+	data->dis.color_n = 65536 * 200 + 256 * 50 + 25;
+	data->dis.color_s = 65536 * 150 + 256 * 100 + 25;
+	data->dis.color_e = 65536 * 100 + 256 * 150 + 25;
+	data->dis.color_w = 65536 * 50 + + 256 * 200 + 25;
 	data->dis.color_floor = 65536 * 200 + 256 * 175 + 150;
 
 	int		x;
 	x = 0;
-	while (x < data->info.r1)
+	while (x < data->parse.r1)
 	{
 //		write(1, "q", 1);
 
 		//caluclate ray position and direction
-		data->rec.cameraX = 2 * x / (double)data->info.r1 - 1;//x-coordinate in camera space
+		data->rec.cameraX = 2 * x / (double)data->parse.r1 - 1;//x-coordinate in camera space
 		data->rec.raydirX = data->rec.dirX + data->rec.planeX * data->rec.cameraX;
 		data->rec.raydirY = data->rec.dirY + data->rec.planeY * data->rec.cameraX;
 
@@ -134,6 +134,9 @@ void	*ft_algo(t_data *data)
 ///////////////////////////////////////////////////////////////////////////////////////////
 		//jump to next map square, OR in x-direction, OR in y-direction
 //		write(1, "w", 1);
+
+
+		//		DDA
 		while (data->rec.hit == 0)
 		{
 //			write(1, "1", 1);
@@ -150,7 +153,7 @@ void	*ft_algo(t_data *data)
 				data->rec.side = 1;
 			}
 //			write(1, "2", 1);
-			if (data->parse.map[data->rec.mapX][data->rec.mapY] != '0')
+			if (data->parse.map[data->rec.mapX][data->rec.mapY] == '1')
 				data->rec.hit = 1;
 //			if (worldMap[data->rec.mapX][data->rec.mapY] > 0)
 //				data->rec.hit = 1;
@@ -167,9 +170,11 @@ void	*ft_algo(t_data *data)
 		else
 			data->rec.perpwalldist = (data->rec.mapY - data->rec.posY
 					+ (1 - data->rec.stepY) / 2) / data->rec.raydirY;
+		if (data->rec.perpwalldist == 0)
+			data->rec.perpwalldist = 0.1;
 
-		data->rec.lineheight = (int)(data->info.r2 / data->rec.perpwalldist);
-		data->rec.drawstart = -data->rec.lineheight / 2 + data->info.r2 / 2;
+		data->rec.lineheight = (int)(data->parse.r2 / data->rec.perpwalldist);
+		data->rec.drawstart = -data->rec.lineheight / 2 + data->parse.r2 / 2;
 
 
 
@@ -177,9 +182,9 @@ void	*ft_algo(t_data *data)
 //		write(1, "r", 1);
 		if (data->rec.drawstart < 0)
 			data->rec.drawstart = 0;
-		data->rec.drawend = data->rec.lineheight / 2 + data->info.r2 / 2;
-		if (data->rec.drawend >= data->info.r2)
-			data->rec.drawend = data->info.r2 - 1;
+		data->rec.drawend = data->rec.lineheight / 2 + data->parse.r2 / 2;
+		if (data->rec.drawend >= data->parse.r2)
+			data->rec.drawend = data->parse.r2 - 1;
 		ft_verline(x, data);
 		x++;
 	}
@@ -194,24 +199,24 @@ void	ft_verline(int x, t_data *data)
 	y = 0;
 	while (y < data->rec.drawstart)
 	{
-		data->dis.addr[y * data->info.r1 + x] = data->info.f;
+		data->dis.addr[y * data->parse.r1 + x] = data->parse.f;
 		y++;
 	}
 	while (y < data->rec.drawend)
 	{
 		if (data->rec.side == 0 && data->rec.raydirX <= 0)
-			data->dis.addr[y * data->info.r1 + x] = data->info.we;
+			data->dis.addr[y * data->parse.r1 + x] = data->dis.color_w;
 		if (data->rec.side == 0 && data->rec.raydirY > 0)
-			data->dis.addr[y * data->info.r1 + x] = data->info.ea;
+			data->dis.addr[y * data->parse.r1 + x] = data->dis.color_e;
 		if (data->rec.side == 1 && data->rec.raydirY > 0)
-			data->dis.addr[y * data->info.r1 + x] = data->info.so;
+			data->dis.addr[y * data->parse.r1 + x] = data->dis.color_s;
 		if (data->rec.side == 1 && data->rec.raydirY <= 0)
-			data->dis.addr[y * data->info.r1 + x] = data->info.no;
+			data->dis.addr[y * data->parse.r1 + x] = data->dis.color_n;
 		y++;
 	}
-	while (y < data->info.r2)
+	while (y < data->parse.r2)
 	{
-		data->dis.addr[y * data->info.r1 + x] = data->info.c;
+		data->dis.addr[y * data->parse.r1 + x] = data->parse.c;
 		y++;
 	}
 }

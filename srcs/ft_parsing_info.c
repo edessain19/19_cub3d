@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:26:23 by edessain          #+#    #+#             */
-/*   Updated: 2020/04/28 16:05:55 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/04 09:33:01 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,12 @@ int		ft_strlen_parsing(char *str, int i, char c)
 int		ft_get_texture(char *str, int i, t_data *data, char c)
 {
 	int		j;
+	int 	h;
+	int 	w;
 	char	*tab;
 
+	h = 0;
+	w = 0;
 	j = 0;
 	while (str[i] == ' ')
 		i++;
@@ -39,13 +43,17 @@ int		ft_get_texture(char *str, int i, t_data *data, char c)
 		tab[j++] = str[i++];
 	tab[j] = 0;
 	if (c == 'n')
-		data->info.no = ft_strdup(tab);
+//		data->info.no = mlx_xpm_file_to_image(data->mlx.mlx_ptr, tab, &h, &w);
+		data->parse.n_path = ft_strdup(tab);
 	if (c == 's')
-		data->info.so = ft_strdup(tab);
+		data->parse.s_path = ft_strdup(tab);
+		//data->info.so = mlx_xpm_file_to_image(data->mlx.mlx_ptr, tab, &h, &w);;
 	if (c == 'e')
-		data->info.ea = ft_strdup(tab);
+		data->parse.e_path = ft_strdup(tab);
+		//data->info.ea = mlx_xpm_file_to_image(data->mlx.mlx_ptr, tab, &h, &w);
 	if (c == 'w')
-		data->info.we = ft_strdup(tab);
+		data->parse.w_path = ft_strdup(tab);
+		//data->info.we = mlx_xpm_file_to_image(data->mlx.mlx_ptr, tab, &h, &w);
 	if (tab == NULL)
 		return (-1);
 	free(tab);
@@ -67,14 +75,14 @@ int		ft_get_size(char *str, int i, t_data *data, char c)
 			i++;
 		while (ft_isdigit(str[i]) == 1)
 		{
-			data->info.r1 = data->info.r1 * 10 + str[i] - 48;
+			data->parse.r1 = data->parse.r1 * 10 + str[i] - 48;
 			i++;
 		}
 		while (str[i] == ' ')
 			i++;
 		while (ft_isdigit(str[i]) == 1)
 		{
-			data->info.r2 = data->info.r2 * 10 + str[i] - 48;
+			data->parse.r2 = data->parse.r2 * 10 + str[i] - 48;
 			i++;
 		}
 	}
@@ -87,7 +95,7 @@ int		ft_get_size(char *str, int i, t_data *data, char c)
 			f1 = f1 * 10 + str[i] - 48;
 			i++;
 		}
-		data->info.f = 65536 * f1;
+		data->parse.f = 65536 * f1;
 		f1 = 0;
 		i++;
 		while (ft_isdigit(str[i]) == 1)
@@ -95,7 +103,7 @@ int		ft_get_size(char *str, int i, t_data *data, char c)
 			f1 = f1 * 10 + str[i] - 48;
 			i++;
 		}
-		data->info.f = data->info.f + 256 * f1;
+		data->parse.f = data->parse.f + 256 * f1;
 		f1 = 0;
 		i++;
 		while (ft_isdigit(str[i]) == 1)
@@ -103,7 +111,7 @@ int		ft_get_size(char *str, int i, t_data *data, char c)
 			f1 = f1 * 10 + str[i] - 48;
 			i++;
 		}
-		data->info.f = data->info.f + f1;
+		data->parse.f = data->parse.f + f1;
 	}
 
 	if (c == 'c')
@@ -115,7 +123,7 @@ int		ft_get_size(char *str, int i, t_data *data, char c)
 			c1 = c1 * 10 + str[i] - 48;
 			i++;
 		}
-		data->info.c = 65536 * c1;
+		data->parse.c = 65536 * c1;
 		c1 = 0;
 		i++;
 		while (ft_isdigit(str[i]) == 1)
@@ -123,7 +131,7 @@ int		ft_get_size(char *str, int i, t_data *data, char c)
 			c1 = c1 * 10 + str[i] - 48;
 			i++;
 		}
-		data->info.c = data->info.c + 256 * c1;
+		data->parse.c = data->parse.c + 256 * c1;
 		c1 = 0;
 		i++;
 		while (ft_isdigit(str[i]) == 1)
@@ -131,7 +139,7 @@ int		ft_get_size(char *str, int i, t_data *data, char c)
 			c1 = c1 * 10 + str[i] - 48;
 			i++;
 		}
-		data->info.c = data->info.c + c1;
+		data->parse.c = data->parse.c + c1;
 	}
 	return (0);
 }
@@ -173,6 +181,6 @@ int		ft_parsing_info(t_data *data)
 		else
 			i++;
 	}
-	printf(" %i\n %i\n %s\n %s\n %s\n %s\n %i\n %i\n", data->info.r1, data->info.r2, data->info.no, data->info.so, data->info.we, data->info.ea, data->info.f, data->info.c);
+	//printf(" %i\n %i\n %d\n %d\n %d\n %d\n %i\n %i\n", data->info.r1, data->info.r2, data->info.no, data->info.so, data->info.we, data->info.ea, data->info.f, data->info.c);
 	return (0);
 }
