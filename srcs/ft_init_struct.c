@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/04 11:30:15 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/04 17:26:46 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void		init_raycasting(t_data *data)
 	data->rec.lineheight = 0;
 	data->rec.drawstart = 0;
 	data->rec.drawend = 0;
+	data->rec.wallheight = 0;
 }
 
 void		init_parse(t_data *data)
@@ -56,7 +57,6 @@ void		init_parse(t_data *data)
 	data->parse.c = 0;
 	data->parse.map_h = 0;
 	data->parse.map_w = 0;
-	data->parse.color = 0;
 }
 
 void		init_mlx(t_data *data)
@@ -82,6 +82,9 @@ void		init_dis(t_data *data)
 	data->dis.texy = 0;
 	data->dis.texwidth = 0;
 	data->dis.texheight = 0;
+	data->dis.texpos = 0;
+	data->dis.color = 0;
+	data->dis.step = 0;
 }
 
 void		ft_init_struct(t_data *data)

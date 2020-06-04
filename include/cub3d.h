@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/04 11:30:43 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/04 17:26:30 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct		s_parse
 	int				c;
 	int				map_h;
 	int				map_w;
-	int				color;
+
 	}					t_parse;
 
 typedef struct		s_display
@@ -61,6 +61,9 @@ typedef struct		s_display
 	int 			texy;
 	int 			texwidth;
 	int 			texheight;
+	int 			texpos;
+	int 			*color;
+	float 			step;
 	int				color_sky; // inutile, = info.c
 	int				color_floor; //inutile = info.f
 }					t_display;
@@ -100,6 +103,7 @@ typedef struct		s_rec
 	int				lineheight;
 	int				drawstart;
 	int				drawend;
+	int 			wallheight;
 }					t_rec;
 
 typedef struct		s_data
@@ -111,17 +115,35 @@ typedef struct		s_data
 
 }					t_data;
 
+
 /*
-** init_struct
+** launching algo
 */
 
+int					main(int argc, char **argv);
 void				ft_init_struct(t_data *data);
+
+
+/*
+** raycasting
+*/
+
+int		ft_keyboard(int keycode, t_data *data);
+void	ft_start_algo(t_data *data);
+void	*start_raycasting(t_data *data);
+void    calculate_height(t_data *data);
+void    calculate_dist(t_data *data);
+void    perform_dda(t_data *data);
+void    step_and_sidedist(t_data *data);
+void    ray_and_deltadist(int x, t_data *data);
+void	ft_verline(int x, t_data *data);
+
+
 
 /*
 ** parsing
 */
 
-int					main(int argc, char **argv);
 
 int					ft_parse_cub(t_data *data, char *filename);
 int					parse_map(int fd, t_data *data);
@@ -136,6 +158,12 @@ int					ft_parsing_info(t_data *data);
 void				ft_size_map(t_data *data, char *str);
 
 int					ft_parsing_map(t_data *data);
+
+void 				calculate_colors(t_data *data);
+void				calculate_textures(t_data *data);
+int					create_images2(t_data *data);
+int					create_images1(t_data *data);
+int					generate_textures(t_data *data);
 
 
 /*
