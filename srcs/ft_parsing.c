@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 13:38:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/04/28 16:05:10 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/08 11:53:11 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int ft_parse_cub(t_data *data, char *filename)
 	close(fd);
 	ft_parsing_info(data);
 	ft_parsing_map(data);
+	check_errors(data);
 	printf("\n%s\n", data->parse.map_str);
 	return (0);
 }

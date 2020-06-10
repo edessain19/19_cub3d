@@ -6,7 +6,7 @@
 #    By: edessain <edessain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/20 13:33:12 by edessain          #+#    #+#              #
-#    Updated: 2020/06/04 14:22:58 by evrard           ###   ########.fr        #
+#    Updated: 2020/06/08 11:59:44 by evrard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,12 @@ SRCS 			= ./srcs/main.c \
 				 	./srcs/ft_parsing.c \
 				 	./srcs/ft_parsing_info.c \
 				 	./srcs/ft_parsing_map.c \
+					./srcs/ft_parsing_dir.c \
 				 	./srcs/ft_raycast.c \
 				 	./srcs/ft_raycast_2.c \
 					./srcs/textures.c \
+					./srcs/check_error.c \
+
 
 OBJS			= ${SRCS:.c=.o}
 INCLUDE 		= cube3d.h

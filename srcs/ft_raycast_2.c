@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 11:33:37 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/04 17:30:45 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/05 08:44:30 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void    step_and_sidedist(t_data *data)
 
 void    ray_and_deltadist(int x, t_data *data)
 {
-    data->rec.cameraX = 2 * x / (double)data->parse.r1 - 1;//x-coordinate in camera space
+    data->rec.cameraX = 2 * x / (float)data->parse.r1 - 1;//x-coordinate in camera space
     data->rec.raydirX = data->rec.dirX + data->rec.planeX * data->rec.cameraX;
     data->rec.raydirY = data->rec.dirY + data->rec.planeY * data->rec.cameraX;
 

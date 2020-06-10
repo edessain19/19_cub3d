@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:26:23 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/04 09:33:01 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/10 14:45:30 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int		ft_get_texture(char *str, int i, t_data *data, char c)
 	if (c == 'w')
 		data->parse.w_path = ft_strdup(tab);
 		//data->info.we = mlx_xpm_file_to_image(data->mlx.mlx_ptr, tab, &h, &w);
+	if (c == 'S')
+		data->parse.sp_path = ft_strdup(tab);
 	if (tab == NULL)
 		return (-1);
 	free(tab);
@@ -172,7 +174,7 @@ int		ft_parsing_info(t_data *data)
 			i = ft_parsing_lettre(str, i, data, 'w');
 		else if (str[i] == 'E' && str[i + 1] == 'A')
 			i = ft_parsing_lettre(str, i, data, 'e');
-		else if (str[i] == 'S' && str[i + 1] != 'O')
+		else if (str[i] == 'S')
 			i = ft_parsing_lettre(str, i, data, 'S');
 		else if (str[i] == 'F')
 			i = ft_parsing_lettre(str, i, data, 'f');

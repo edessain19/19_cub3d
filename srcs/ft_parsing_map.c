@@ -27,12 +27,12 @@ void	ft_size_map(t_data *data, char *str)
 	}
 	data->parse.map_h = size_h;
 	data->parse.map_w = size_w;
-//	printf("%i\n %i\n", data->info.map_h, data->info.map_h);
+//	printf("%i\n %i\n", data->parse.map_h, data->parse.map_w);
 }
 
 int		ft_get_position2(int i, int j, t_data *data)
 {
-	if (ft_isalpha(data->parse.map[i][j]))
+	if (ft_isalpha(data->parse.map[i][j]) == 1)
 	{
 		data->rec.posX = j + 0.5;
 		data->rec.posY = i + 0.5;
@@ -42,6 +42,7 @@ int		ft_get_position2(int i, int j, t_data *data)
 	}
 	if (data->parse.map[i][j] == '2')
 		data->parse.nb_sprites += 1;
+//	printf("\n%c\n", data->parse.orientation);
 	return (1);
 }
 
@@ -85,5 +86,6 @@ int		ft_parsing_map(t_data *data)
 		return (-1);
 	if (ft_get_position(data) < 0)
 		return (-1);
+	init_dir(data);
 	return (0);
 }

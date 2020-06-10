@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/04 17:26:46 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/09 11:54:51 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void		init_raycasting(t_data *data)
 {
+	data->rec.speed = 0.2;
+	data->rec.rotation = 0.2;
 	data->rec.posX = 0.0;
 	data->rec.posY = 0;
 	data->rec.dirX = 0;
@@ -52,11 +54,13 @@ void		init_parse(t_data *data)
 	data->parse.s_path = 0;
 	data->parse.w_path = 0;
 	data->parse.e_path = 0;
+	data->parse.sp_path = 0;
 	data->parse.s = 0;
-	data->parse.f = 0;
-	data->parse.c = 0;
+	data->parse.f = -1;
+	data->parse.c = -1;
 	data->parse.map_h = 0;
 	data->parse.map_w = 0;
+//	data->parse.orientation = 0;
 }
 
 void		init_mlx(t_data *data)

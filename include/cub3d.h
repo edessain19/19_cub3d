@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/04 17:26:30 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/10 11:34:22 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ typedef struct		s_parse
 	char			*s_path;
 	char			*w_path;
 	char			*e_path;
+	char 			*sp_path;
 	int				s;
 	int				f;
 	int				c;
 	int				map_h;
 	int				map_w;
-
 	}					t_parse;
 
 typedef struct		s_display
@@ -77,6 +77,8 @@ typedef struct		s_mlx
 
 typedef struct		s_rec
 {
+	float			speed;
+	float			rotation;
 	double			posX;//position initiale
 	double			posY;//position initiale
 	double			dirX;//direction initiale
@@ -128,15 +130,15 @@ void				ft_init_struct(t_data *data);
 ** raycasting
 */
 
-int		ft_keyboard(int keycode, t_data *data);
-void	ft_start_algo(t_data *data);
-void	*start_raycasting(t_data *data);
-void    calculate_height(t_data *data);
-void    calculate_dist(t_data *data);
-void    perform_dda(t_data *data);
-void    step_and_sidedist(t_data *data);
-void    ray_and_deltadist(int x, t_data *data);
-void	ft_verline(int x, t_data *data);
+int					ft_keyboard(int keycode, t_data *data);
+void				ft_start_algo(t_data *data);
+void				*start_raycasting(t_data *data);
+void    			calculate_height(t_data *data);
+void    			calculate_dist(t_data *data);
+void    			perform_dda(t_data *data);
+void    			step_and_sidedist(t_data *data);
+void    			ray_and_deltadist(int x, t_data *data);
+void				ft_verline(int x, t_data *data);
 
 
 
@@ -165,14 +167,38 @@ int					create_images2(t_data *data);
 int					create_images1(t_data *data);
 int					generate_textures(t_data *data);
 
+int					init_dir(t_data *data);
+void				init_n_s(t_data *data);
+void				init_e_w(t_data *data);
 
 /*
 ** ft_position_direction
 */
 
-int		ft_keyboard(int keycode, t_data *data);
-void	ft_start_algo(t_data *data);
-void	*ft_algo(t_data *data);
-void	ft_verline(int x, t_data *data);
+int					ft_keyboard(int keycode, t_data *data);
+void				ft_start_algo(t_data *data);
+void				*ft_algo(t_data *data);
+void				ft_verline(int x, t_data *data);
+
+/*
+** check errors
+*/
+
+int     			check_errors(t_data *data);
+int     			check_walls(t_data *data);
+int					check_around(int i, int j, t_data *data);
+int					check_map_characters(t_data *data);
+int					return_error_exit(t_data *data);
+
+int					check_borders_lines(t_data *data);
+int					check_borders_columns(t_data *data);
+int 				check_pos_init(t_data *data);
+
+int 				check_textures(t_data *data);
+int	    			check_path(t_data *data, char *str);
+int					check_others(t_data *data);
+
+
+int     			exit_all(t_data *data);
 
 #endif

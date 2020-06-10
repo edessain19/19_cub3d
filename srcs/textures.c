@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 09:49:35 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/04 17:37:27 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/10 11:34:31 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void    calculate_colors(t_data *data)
         data->dis.color = (int *)data->dis.color_s;
     else if (data->rec.side == 1 && (data->rec.mapY < data->rec.posY))
         data->dis.color = (int *)data->dis.color_n;
-    else if (data->rec.side == 1 && (data->rec.mapX > data->rec.posX))
+    else if (data->rec.side == 0 && (data->rec.mapX > data->rec.posX))
         data->dis.color = (int *)data->dis.color_e;
     else
         data->dis.color = (int *)data->dis.color_w;
