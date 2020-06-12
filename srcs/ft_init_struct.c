@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/09 11:54:51 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/12 11:49:19 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void		init_dis(t_data *data)
 	data->dis.texwidth = 0;
 	data->dis.texheight = 0;
 	data->dis.texpos = 0;
+	data->dis.texnum = 0;
 	data->dis.color = 0;
 	data->dis.step = 0;
 }

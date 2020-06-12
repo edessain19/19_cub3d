@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/10 11:34:22 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/12 11:46:19 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct		s_display
 	int 			texheight;
 	int 			texpos;
 	int 			*color;
+	int 			texnum;
 	float 			step;
 	int				color_sky; // inutile, = info.c
 	int				color_floor; //inutile = info.f

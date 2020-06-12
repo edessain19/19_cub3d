@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 11:33:37 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/05 08:44:30 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/12 09:46:31 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,22 @@ void    step_and_sidedist(t_data *data)
     if (data->rec.raydirX < 0)
     {
         data->rec.stepX = -1;
-        data->rec.sidedistX = (data->rec.posX - data->rec.mapX)
-            * data->rec.deltadistX;
+        data->rec.sidedistX = (data->rec.posX - data->rec.mapX) * data->rec.deltadistX;
     }
     else
     {
         data->rec.stepX = 1;
-        data->rec.sidedistX = (data->rec.mapX + 1.0 - data->rec.posX) *
-            data->rec.deltadistX;
+        data->rec.sidedistX = (data->rec.mapX + 1.0 - data->rec.posX) * data->rec.deltadistX;
     }
     if (data->rec.raydirY < 0)
     {
         data->rec.stepY = -1;
-        data->rec.sidedistY = (data->rec.posY - data->rec.mapY) *
-            data->rec.deltadistY;
+        data->rec.sidedistY = (data->rec.posY - data->rec.mapY) * data->rec.deltadistY;
     }
     else
     {
         data->rec.stepY = 1;
-        data->rec.sidedistY = (data->rec.mapY + 1.0 - data->rec.posY) *
-            data->rec.deltadistY;
+        data->rec.sidedistY = (data->rec.mapY + 1.0 - data->rec.posY) * data->rec.deltadistY;
     }
 }
 

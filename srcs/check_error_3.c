@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 11:00:33 by evrard            #+#    #+#             */
-/*   Updated: 2020/06/10 17:04:57 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/10 18:05:03 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int 	check_textures(t_data *data)
 {
-	printf("%s\n", data->parse.sp_path);
 	if (check_path(data, data->parse.n_path) < 0)
 		return (-1);
 	if (check_path(data, data->parse.s_path) < 0)
@@ -42,10 +41,12 @@ int	    check_path(t_data *data, char *str)
 	}
 	while (str[i] != 0)
 	{
-		write(1, "a", 1);
-		if (ft_isspace(str[i]) != 1)
+		//write(1, "a", 1);
+		//printf("%i\n", i);
+	//	printf("%c", str[i]);
+		if (str[i] == ' ' || str[i] == '\t')
 		{
-			write(1, "A", 1);
+//			write(1, "A", 1);
 			write(1, "Error\n", 6);
 			write(1, "Wrong texture path\n", 19);
 			return (exit_all(data));
@@ -57,7 +58,6 @@ int	    check_path(t_data *data, char *str)
 
 int	    check_others(t_data *data)
 {
-	write(1, "A", 1);
 	if (data->parse.r1 <= 0 || data->parse.r2 <= 0)
 	{
 		write(1, "Error\n", 6);
@@ -68,7 +68,7 @@ int	    check_others(t_data *data)
 		data->parse.r1 = 2560;
 	if (data->parse.r2 > 1440)
 		data->parse.r2 = 1440;
-    if (data->parse.f > 0 || data->parse.c > 0)
+    if (data->parse.f < 0 || data->parse.c < 0)
         return (exit_all(data));
     return (1);
 }

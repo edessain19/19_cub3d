@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 09:49:35 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/10 11:34:31 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/12 11:51:06 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,19 @@ void	calculate_textures(t_data *data)
 {
 	float	wallx;
 
+    data->dis.texnum = data->parse.map[data->rec.mapX][data->rec.mapY] - 1;
 	if (data->rec.side == 0)
 		wallx = data->rec.posY + data->rec.perpwalldist * data->rec.raydirY;
 	else
 		wallx = data->rec.posX + data->rec.perpwalldist * data->rec.raydirX;
 	wallx -= floor((wallx));
-	data->dis.texx = (int)(wallx * data->dis.texheight);
+	data->dis.texx = (int)(wallx * data->dis.texwidth);
 	if (data->rec.side == 0 && data->rec.raydirX > 0)
 		data->dis.texx = data->dis.texwidth - data->dis.texx - 1;
 	if (data->rec.side == 1 && data->rec.raydirY < 0)
 		data->dis.texx = data->dis.texwidth - data->dis.texx - 1;
-	data->dis.step = 1.0 * data->dis.texheight / data->rec.lineheight;
+
+    data->dis.step = 1.0 * data->dis.texheight / data->rec.lineheight;
 	data->dis.texpos = (data->rec.drawstart - data->parse.r2 / 2 + data->rec.lineheight / 2)
 		* data->dis.step;
 }
@@ -94,7 +96,7 @@ int		generate_textures(t_data *data)
 		return (-1);
 	if (create_images2(data) < 0)
 		return (-1);
-	data->dis.color_n = mlx_get_data_addr(data->dis.color_n,
+    data->dis.color_n = mlx_get_data_addr(data->dis.color_n,
 		&data->dis.bits_per_pixel, &data->dis.line_length, &data->dis.endian);
 	data->dis.color_s = mlx_get_data_addr(data->dis.color_s,
 		&data->dis.bits_per_pixel, &data->dis.line_length, &data->dis.endian);
