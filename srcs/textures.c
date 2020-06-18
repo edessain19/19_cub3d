@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 09:49:35 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/12 11:51:06 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/15 18:03:17 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,39 @@
 void    calculate_colors(t_data *data)
 {
     if (data->rec.side == 1 && (data->rec.mapY > data->rec.posY))
-        data->dis.color = (int *)data->dis.color_s;
+        data->tex.color = (int *)data->tex.color_s;
     else if (data->rec.side == 1 && (data->rec.mapY < data->rec.posY))
-        data->dis.color = (int *)data->dis.color_n;
+        data->tex.color = (int *)data->tex.color_n;
     else if (data->rec.side == 0 && (data->rec.mapX > data->rec.posX))
-        data->dis.color = (int *)data->dis.color_e;
+        data->tex.color = (int *)data->tex.color_e;
     else
-        data->dis.color = (int *)data->dis.color_w;
+        data->tex.color = (int *)data->tex.color_w;
 }
 
 void	calculate_textures(t_data *data)
 {
 	float	wallx;
 
-    data->dis.texnum = data->parse.map[data->rec.mapX][data->rec.mapY] - 1;
+    data->tex.texnum = data->parse.map[data->rec.mapX][data->rec.mapY] - 1;
 	if (data->rec.side == 0)
 		wallx = data->rec.posY + data->rec.perpwalldist * data->rec.raydirY;
 	else
 		wallx = data->rec.posX + data->rec.perpwalldist * data->rec.raydirX;
 	wallx -= floor((wallx));
-	data->dis.texx = (int)(wallx * data->dis.texwidth);
+	data->tex.texx = (int)(wallx * data->tex.texwidth);
 	if (data->rec.side == 0 && data->rec.raydirX > 0)
-		data->dis.texx = data->dis.texwidth - data->dis.texx - 1;
+		data->tex.texx = data->tex.texwidth - data->tex.texx - 1;
 	if (data->rec.side == 1 && data->rec.raydirY < 0)
-		data->dis.texx = data->dis.texwidth - data->dis.texx - 1;
-
-    data->dis.step = 1.0 * data->dis.texheight / data->rec.lineheight;
-	data->dis.texpos = (data->rec.drawstart - data->parse.r2 / 2 + data->rec.lineheight / 2)
-		* data->dis.step;
+		data->tex.texx = data->tex.texwidth - data->tex.texx - 1;
+    data->tex.step = 1.0 * data->tex.texheight / data->rec.lineheight;
+	data->tex.texpos = (data->rec.drawstart - data->parse.r2 / 2 + data->rec.lineheight / 2)
+		* data->tex.step;
 }
 
 int		create_images2(t_data *data)
 {
-	if (!(data->dis.color_e = mlx_xpm_file_to_image(data->mlx.mlx_ptr, data->parse.e_path,
-		&data->dis.texwidth, &data->dis.texheight)))
+	if (!(data->tex.color_e = mlx_xpm_file_to_image(data->mlx.mlx_ptr, data->parse.e_path,
+		&data->tex.texwidth, &data->tex.texheight)))
 	{
 		write(1, "Error\n", 6);
 		write(1, "e wrong path texture", 20);
@@ -66,22 +65,22 @@ int		create_images2(t_data *data)
 
 int		create_images1(t_data *data)
 {
-	if (!(data->dis.color_n = mlx_xpm_file_to_image(data->mlx.mlx_ptr, data->parse.n_path,
-		&data->dis.texwidth, &data->dis.texheight)))
+	if (!(data->tex.color_n = mlx_xpm_file_to_image(data->mlx.mlx_ptr, data->parse.n_path,
+		&data->tex.texwidth, &data->tex.texheight)))
 	{
 		write(1, "Error\n", 6);
 		write(1, "n wrong path texture\n", 20);
 		return (-1);
 	}
-	if (!(data->dis.color_s = mlx_xpm_file_to_image(data->mlx.mlx_ptr, data->parse.s_path,
-		&data->dis.texwidth, &data->dis.texheight)))
+	if (!(data->tex.color_s = mlx_xpm_file_to_image(data->mlx.mlx_ptr, data->parse.s_path,
+		&data->tex.texwidth, &data->tex.texheight)))
 	{
 		write(1, "Error\n", 6);
 		write(1, "s wrong path texture", 20);
 		return (-1);
 	}
-	if (!(data->dis.color_w = mlx_xpm_file_to_image(data->mlx.mlx_ptr, data->parse.w_path,
-		&data->dis.texwidth, &data->dis.texheight)))
+	if (!(data->tex.color_w = mlx_xpm_file_to_image(data->mlx.mlx_ptr, data->parse.w_path,
+		&data->tex.texwidth, &data->tex.texheight)))
 	{
 		write(1, "Error\n", 6);
 		write(1, "w wrong path texture", 20);
@@ -96,13 +95,13 @@ int		generate_textures(t_data *data)
 		return (-1);
 	if (create_images2(data) < 0)
 		return (-1);
-    data->dis.color_n = mlx_get_data_addr(data->dis.color_n,
+    data->tex.color_n = mlx_get_data_addr(data->tex.color_n,
 		&data->dis.bits_per_pixel, &data->dis.line_length, &data->dis.endian);
-	data->dis.color_s = mlx_get_data_addr(data->dis.color_s,
+	data->tex.color_s = mlx_get_data_addr(data->tex.color_s,
 		&data->dis.bits_per_pixel, &data->dis.line_length, &data->dis.endian);
-	data->dis.color_w = mlx_get_data_addr(data->dis.color_w,
+	data->tex.color_w = mlx_get_data_addr(data->tex.color_w,
 		&data->dis.bits_per_pixel, &data->dis.line_length, &data->dis.endian);
-	data->dis.color_e = mlx_get_data_addr(data->dis.color_e,
+	data->tex.color_e = mlx_get_data_addr(data->tex.color_e,
 		&data->dis.bits_per_pixel, &data->dis.line_length, &data->dis.endian);
 //	m->spr.spr_tex = mlx_get_data_addr(m->spr.spr_tex,
 //		&m->img.bits_per_pixel, &m->img.line_length, &m->img.endian);

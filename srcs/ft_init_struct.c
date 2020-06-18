@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/12 11:49:19 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/15 20:21:31 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void		init_parse(t_data *data)
 	data->parse.c = -1;
 	data->parse.map_h = 0;
 	data->parse.map_w = 0;
+	data->parse.pos_init_x = 0;
+	data->parse.pos_init_y = 0;
 //	data->parse.orientation = 0;
 }
 
@@ -76,26 +78,33 @@ void		init_dis(t_data *data)
 	data->dis.line_length = 0;
 	data->dis.endian = 0;
 	data->dis.bits_per_pixel = 0;
-	data->dis.color_sky = 0;
-	data->dis.color_floor = 0;
-	data->dis.color_n = 0;
-	data->dis.color_s = 0;
-	data->dis.color_w = 0;
-	data->dis.color_e = 0;
-	data->dis.texx = 0;
-	data->dis.texy = 0;
-	data->dis.texwidth = 0;
-	data->dis.texheight = 0;
-	data->dis.texpos = 0;
-	data->dis.texnum = 0;
-	data->dis.color = 0;
-	data->dis.step = 0;
+
+}
+
+void 		init_texture(t_data *data)
+{
+	data->tex.color_n = 0;
+	data->tex.color_s = 0;
+	data->tex.color_w = 0;
+	data->tex.color_e = 0;
+	data->tex.texx = 0;
+	data->tex.texy = 0;
+	data->tex.texwidth = 0;
+	data->tex.texheight = 0;
+	data->tex.texpos = 0;
+	data->tex.texnum = 0;
+	data->tex.color = 0;
+	data->tex.step = 0;
+	data->tex.color_sky = 0;
+	data->tex.color_floor = 0;
 }
 
 void		ft_init_struct(t_data *data)
 {
 	init_raycasting(data);
 	init_dis(data);
+	init_texture(data);
 	init_mlx(data);
 	init_parse(data);
+
 }

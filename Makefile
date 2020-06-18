@@ -6,7 +6,7 @@
 #    By: edessain <edessain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/20 13:33:12 by edessain          #+#    #+#              #
-#    Updated: 2020/06/08 11:59:44 by evrard           ###   ########.fr        #
+#    Updated: 2020/06/17 08:52:21 by evrard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,11 @@ SRCS 			= ./srcs/main.c \
 				 	./srcs/ft_raycast_2.c \
 					./srcs/textures.c \
 					./srcs/check_error.c \
+					./srcs/check_error_2.c \
+					./srcs/check_error_3.c \
+					./srcs/check_parsing_error.c \
+					./srcs/ft_exit.c \
+					
 
 
 OBJS			= ${SRCS:.c=.o}

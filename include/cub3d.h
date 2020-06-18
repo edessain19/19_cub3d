@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/12 11:46:19 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/16 15:46:31 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct		s_parse
 	int				c;
 	int				map_h;
 	int				map_w;
+	double 			pos_init_x;
+	double 			pos_init_y;
 	}					t_parse;
 
 typedef struct		s_display
@@ -53,6 +55,11 @@ typedef struct		s_display
 	int				line_length;
 	int				endian;
 	int				bits_per_pixel;
+
+}					t_display;
+
+typedef struct 		s_texture
+{
 	void			*color_n;
 	void			*color_s;
 	void			*color_e;
@@ -67,7 +74,8 @@ typedef struct		s_display
 	float 			step;
 	int				color_sky; // inutile, = info.c
 	int				color_floor; //inutile = info.f
-}					t_display;
+
+}					t_texture;
 
 typedef struct		s_mlx
 {
@@ -115,6 +123,7 @@ typedef struct		s_data
 	t_mlx			mlx;
 	t_display		dis;
 	t_parse			parse;
+	t_texture 		tex;
 
 }					t_data;
 
@@ -136,7 +145,7 @@ void				ft_start_algo(t_data *data);
 void				*start_raycasting(t_data *data);
 void    			calculate_height(t_data *data);
 void    			calculate_dist(t_data *data);
-void    			perform_dda(t_data *data);
+void    			perform_dda(int hit, t_data *data);
 void    			step_and_sidedist(t_data *data);
 void    			ray_and_deltadist(int x, t_data *data);
 void				ft_verline(int x, t_data *data);

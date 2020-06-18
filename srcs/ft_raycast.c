@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:07:36 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/12 12:00:24 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/17 08:58:43 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,28 @@ int		ft_keyboard(int keycode, t_data *data)
 		data->rec.planeY = data->rec.oldplaneX * sin(data->rec.rotation) + data->rec.planeY * cos(data->rec.rotation);
 	}
 	mlx_clear_window(data->mlx.mlx_ptr, data->mlx.mlx_win);
-	ft_start_algo(data);
+	start_raycasting(data);
 	mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.mlx_win, data->dis.img, 0, 0);
 	return (0);
 }
 
 void	ft_start_algo(t_data *data)
 {
+//	data->rec.posX = data->parse.pos_init_x;
+//	data->rec.posY = data->parse.pos_init_y;
+
+//	if (data->rec.posX == 1)
+//		data->rec.posX += 1;
+//	if (data->rec.posX == data->parse.map_w - 1)
+//		data->rec.posX -= 1;
+//	if (data->rec.posY == 1)
+//		data->rec.posY += 1.5;
+//	if (data->rec.posY == data->parse.map_h - 1)
+//		data->rec.posY -= 1.5;
+
+//	printf("%d\n%d\n", (int)data->rec.posX, (int)data->rec.posY);
+
+
 //	data->rec.dirX = -1;
 //	data->rec.dirY = 0;
 //	data->rec.planeX = 0;
@@ -65,22 +80,22 @@ void	ft_start_algo(t_data *data)
 
 void	*start_raycasting(t_data *data)
 {
-	//data->dis.color_sky = 65536 * 200 + 256 * 200 + 25;
-	//data->dis.color_n = 65536 * 200 + 256 * 50 + 25;
-	//data->dis.color_s = 65536 * 150 + 256 * 100 + 25;
-	//data->dis.color_e = 65536 * 100 + 256 * 150 + 25;
-	//data->dis.color_w = 65536 * 50 + + 256 * 200 + 25;
-	//data->dis.color_floor = 65536 * 200 + 256 * 175 + 150;
-
 	int		x;
+	int 	hit;
+
 	x = 0;
 	while (x < data->parse.r1)
 	{
-		data->rec.hit = 0;
+		hit = 0;
+//		write(1, "0", 1);
 		ray_and_deltadist(x, data);
+//		write(1, "1", 1);
 		step_and_sidedist(data);
-		perform_dda(data);
+//		write(1, "2", 1);
+		perform_dda(hit, data);
+//		write(1, "3", 1);
 		calculate_dist(data);
+//		write(1, "4", 1);
 		calculate_height(data);
 		calculate_textures(data);
 		calculate_colors(data);
@@ -102,10 +117,10 @@ void	ft_verline(int x, t_data *data)
 	}
 	while (y < data->rec.drawend)
 	{
-		data->dis.texy = (int)data->dis.texpos & (data->dis.texheight - 1);
-		data->dis.texpos += data->dis.step;
+		data->tex.texy = (int)data->tex.texpos & (data->tex.texheight - 1);
+		data->tex.texpos += data->tex.step;
 		data->dis.addr[y * data->parse.r1 + x] =
-			data->dis.color[data->dis.texy * data->dis.texheight + data->dis.texx];
+			data->tex.color[data->tex.texy * data->tex.texheight + data->tex.texx];
 		y++;
 	}
 	while (y < data->parse.r2)

@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 11:33:37 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/12 09:46:31 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/16 15:47:35 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void    calculate_dist(t_data *data)
 }
 
 //jump to next map square, OR in x-direction, OR in y-direction
-void    perform_dda(t_data *data)
+void    perform_dda(int hit, t_data *data)
 {
-    while (data->rec.hit == 0)
+    while (hit == 0)
     {
         if (data->rec.sidedistX < data->rec.sidedistY)
         {
@@ -54,7 +54,7 @@ void    perform_dda(t_data *data)
             data->rec.side = 1;
         }
         if (data->parse.map[data->rec.mapX][data->rec.mapY] == '1')
-            data->rec.hit = 1;
+            hit = 1;
     }
 }
 //sidedist = length of ray from current position to next x or y-side
@@ -92,6 +92,9 @@ void    ray_and_deltadist(int x, t_data *data)
     //which box of the map we're in
     data->rec.mapX = (int)data->rec.posX;
     data->rec.mapY = (int)data->rec.posY;
+
+//    printf("%i\n%i\n", data->rec.mapX, data->rec.mapY);
+
 
     //length of ray from one x or y-side to next x or y-side
     data->rec.deltadistX = fabs(1 / data->rec.raydirX);
