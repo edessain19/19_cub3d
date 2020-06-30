@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:07:36 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/17 08:58:43 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/26 10:08:24 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,7 @@ int		ft_keyboard(int keycode, t_data *data)
 
 void	ft_start_algo(t_data *data)
 {
-//	data->rec.posX = data->parse.pos_init_x;
-//	data->rec.posY = data->parse.pos_init_y;
-
-//	if (data->rec.posX == 1)
-//		data->rec.posX += 1;
-//	if (data->rec.posX == data->parse.map_w - 1)
-//		data->rec.posX -= 1;
-//	if (data->rec.posY == 1)
-//		data->rec.posY += 1.5;
-//	if (data->rec.posY == data->parse.map_h - 1)
-//		data->rec.posY -= 1.5;
-
-//	printf("%d\n%d\n", (int)data->rec.posX, (int)data->rec.posY);
-
-
-//	data->rec.dirX = -1;
-//	data->rec.dirY = 0;
-//	data->rec.planeX = 0;
-//	data->rec.planeY = 0.66;
+	printf("%d\n%d\n", (int)data->rec.posX, (int)data->rec.posY);
 	start_raycasting(data);
 }
 

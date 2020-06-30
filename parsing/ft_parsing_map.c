@@ -1,40 +1,65 @@
 #include "../include/cub3d.h"
 
-void	ft_size_map(t_data *data, char *str)
+char	*create_new_line(char *str, int diff)
 {
 	int		i;
-	int		j;
-	int		size_h;
-	int		size_w;
+	char	*new;
 
 	i = 0;
-	j = 0;
-	size_w = 0;
-	size_h = 0;
-	while (str[i] != 0)
+	if (!(new = malloc(sizeof(char *) * (ft_strlen(str) + diff + 1))))
+		return (NULL);
+	while (str[i] != '\0')
 	{
-		while (str[i] && str[i] != '\n')
-		{
-			i++;
-			j++;
-		}
-		if (j > size_w)
-			size_w = j;
-		j = 0;
-		if (str[i] == '\n')
-			size_h++;
+		if (str[i] == ' ')
+			str[i] = '1';
+		new[i] = str[i];
 		i++;
 	}
-	data->parse.map_h = size_h;
-	data->parse.map_w = size_w;
-//	printf("%i\n %i\n", data->parse.map_h, data->parse.map_w);
+	while (diff > 0)
+	{
+		new[i] = '1';
+		i++;
+		diff--;
+	}
+	new[i] = '\0';
+	return (new);
+}
+
+int		ft_size_map(t_data *data)
+{
+	int i;
+	size_t len;
+	int diff;
+
+	i = 0;
+	diff = 0;
+	len = ft_strlen(data->parse.map[i]);
+	while (data->parse.map[i] != NULL)
+	{
+		if (ft_strlen(data->parse.map[i]) > len)
+			len = ft_strlen(data->parse.map[i]);
+		i++;
+	}
+	data->parse.map_h = i;
+	data->parse.map_w = len;
+	i = 0;
+	while (data->parse.map[i] != NULL)
+	{
+		if (ft_strlen(data->parse.map[i]) < len)
+		{
+			diff = len - ft_strlen(data->parse.map[i]);
+			if (!(data->parse.map[i] = create_new_line(data->parse.map[i], diff)))
+				return (-1);
+		}
+		i++;
+	}
+	return (1);
 }
 
 int		ft_get_position2(int i, int j, t_data *data)
 {
 	if (ft_isalpha(data->parse.map[i][j]) == 1)
 	{
-//		printf("%c\n",data->parse.map[i][j]);
 		data->parse.pos_init_x = j + 0.5;
 		data->parse.pos_init_y = i + 0.5;
 		printf("%f\n%f\n", data->parse.pos_init_x, data->parse.pos_init_y);
@@ -81,10 +106,11 @@ void	ft_fill_the_blank(t_data *data)
 
 int		ft_parsing_map(t_data *data)
 {
-	ft_size_map(data, data->parse.map_str);
-	ft_fill_the_blank(data);
+
+//	ft_fill_the_blank(data);
 	if (!(data->parse.map = ft_split(data->parse.map_str, '\n')))
 		return (-1);
+	ft_size_map(data);
 	if (ft_get_position(data) < 0)
 		return (-1);
 //	init_dir(data);

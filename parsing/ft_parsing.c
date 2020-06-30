@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 13:38:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/16 15:09:10 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/19 09:53:40 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,8 @@ int ft_parse_cub(t_data *data, char *filename)
 	int		fd;
 
 	fd = open(filename, O_RDONLY);
-//	write(1, "a", 1);
 	if (parse_data(fd, data) < 0)
 		return (-1);
-//	write(1, "b", 1);
 	if (parse_map(fd, data) < 0)
 		return (-1);
 	close(fd);

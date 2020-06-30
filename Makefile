@@ -6,7 +6,7 @@
 #    By: edessain <edessain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/20 13:33:12 by edessain          #+#    #+#              #
-#    Updated: 2020/06/17 08:52:21 by evrard           ###   ########.fr        #
+#    Updated: 2020/06/30 09:20:00 by evrard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,20 +16,19 @@ MINILIBX_PATH   = ./minilibx
 #SRCS_LIST 		= main.c
 #SRCS			= $(addprefix ${FOLDER}/, ${SRCS_LIST})
 SRCS 			= ./srcs/main.c \
-					./srcs/ft_init_struct.c \
-				 	./srcs/ft_parsing.c \
-				 	./srcs/ft_parsing_info.c \
-				 	./srcs/ft_parsing_map.c \
-					./srcs/ft_parsing_dir.c \
-				 	./srcs/ft_raycast.c \
-				 	./srcs/ft_raycast_2.c \
+					./srcs/ft_raycast.c \
+					./srcs/ft_raycast_2.c \
 					./srcs/textures.c \
-					./srcs/check_error.c \
-					./srcs/check_error_2.c \
-					./srcs/check_error_3.c \
-					./srcs/check_parsing_error.c \
-					./srcs/ft_exit.c \
-					
+					./srcs/ft_init_struct.c \
+				 	./parsing/ft_parsing.c \
+				 	./parsing/ft_parsing_info.c \
+				 	./parsing/ft_parsing_map.c \
+					./parsing/ft_parsing_dir.c \
+					./parsing/check_error.c \
+					./parsing/check_error_2.c \
+					./parsing/check_error_3.c \
+					./parsing/check_parsing_error.c \
+					./parsing/ft_exit.c \
 
 
 OBJS			= ${SRCS:.c=.o}

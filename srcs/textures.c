@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 09:49:35 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/15 18:03:17 by evrard           ###   ########.fr       */
+/*   Updated: 2020/06/23 16:10:57 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	calculate_textures(t_data *data)
 	else
 		wallx = data->rec.posX + data->rec.perpwalldist * data->rec.raydirX;
 	wallx -= floor((wallx));
-	data->tex.texx = (int)(wallx * data->tex.texwidth);
+	data->tex.texx = (int)(wallx * data->tex.texheight);
 	if (data->rec.side == 0 && data->rec.raydirX > 0)
 		data->tex.texx = data->tex.texwidth - data->tex.texx - 1;
 	if (data->rec.side == 1 && data->rec.raydirY < 0)
@@ -95,9 +95,11 @@ int		generate_textures(t_data *data)
 		return (-1);
 	if (create_images2(data) < 0)
 		return (-1);
+    printf("%s\n", data->tex.color_n);
     data->tex.color_n = mlx_get_data_addr(data->tex.color_n,
 		&data->dis.bits_per_pixel, &data->dis.line_length, &data->dis.endian);
-	data->tex.color_s = mlx_get_data_addr(data->tex.color_s,
+    printf("%s\n", data->tex.color_n);
+    data->tex.color_s = mlx_get_data_addr(data->tex.color_s,
 		&data->dis.bits_per_pixel, &data->dis.line_length, &data->dis.endian);
 	data->tex.color_w = mlx_get_data_addr(data->tex.color_w,
 		&data->dis.bits_per_pixel, &data->dis.line_length, &data->dis.endian);
