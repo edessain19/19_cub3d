@@ -6,7 +6,7 @@
 #    By: edessain <edessain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/20 13:33:12 by edessain          #+#    #+#              #
-#    Updated: 2020/06/30 09:20:00 by evrard           ###   ########.fr        #
+#    Updated: 2020/06/30 18:40:40 by evrard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ MINILIBX_PATH   = ./minilibx
 #SRCS_LIST 		= main.c
 #SRCS			= $(addprefix ${FOLDER}/, ${SRCS_LIST})
 SRCS 			= ./srcs/main.c \
+					./srcs/keycode.c \
 					./srcs/ft_raycast.c \
 					./srcs/ft_raycast_2.c \
 					./srcs/textures.c \
@@ -29,14 +30,14 @@ SRCS 			= ./srcs/main.c \
 					./parsing/check_error_3.c \
 					./parsing/check_parsing_error.c \
 					./parsing/ft_exit.c \
+#					./parsing/ft_parsing_sprt \
 
 
 OBJS			= ${SRCS:.c=.o}
 INCLUDE 		= cube3d.h
-#FOLDER			= srcs
 LIBFT 			= libft
 MINILIBX 		= minilibx
-CC				= gcc -g -Wall -Wextra -Werror # -fsanitize=address
+CC				= gcc -g -Wall -Wextra -Werror #-fsanitize=address
 RM				= rm -f
 MLXFLAGS 		= -I ./minilibx -L ./minilibx -lmlx -framework OpenGl -framework Appkit
 LIBFLAGS 		= -I ./libft -L ./libft -L . ./libft/*.c

@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/23 13:45:08 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/01 09:05:28 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,10 @@ typedef struct 		s_texture
 	int 			texy;
 	int 			texwidth;
 	int 			texheight;
-	int 			texpos;
+	float 			texpos;
 	int 			*color;
 	int 			texnum;
 	float 			step;
-	int				color_sky; // inutile, = info.c
-	int				color_floor; //inutile = info.f
 
 }					t_texture;
 
@@ -88,25 +86,25 @@ typedef struct		s_rec
 {
 	float			speed;
 	float			rotation;
-	double			posX;//position initiale
-	double			posY;//position initiale
-	double			dirX;//direction initiale
-	double			dirY;//direction initiale
-	double			olddirX;
-	double			olddirY;
-	double			planeX;//plan de la camera
-	double			planeY;//plan de la camera
-	double			oldplaneX;
-	double			cameraX;//coordonee x sur le plan de la camera
-	double			raydirX;//direction du mouvement
-	double			raydirY;//diection du mouvement
-	int				mapX;
-	int				mapY;
-	double			sidedistX;
-	double			sidedistY;
-	double			deltadistX;//distance sur l'axe des x
-	double			deltadistY;//distance sur l'ace des y
-	double			perpwalldist;
+	float			posX;//position initiale
+	float			posY;//position initiale
+	float			dirX;//direction initiale
+	float			dirY;//direction initiale
+	float			olddirX;
+	float			olddirY;
+	float			planeX;//plan de la camera
+	float			planeY;//plan de la camera
+	float			oldplaneX;
+	float			cameraX;//coordonee x sur le plan de la camera
+	float			raydirX;//direction du mouvement
+	float			raydirY;//diection du mouvement
+	unsigned int	mapX;
+	unsigned int	mapY;
+	float			sidedistX;
+	float			sidedistY;
+	float			deltadistX;//distance sur l'axe des x
+	float			deltadistY;//distance sur l'ace des y
+	float			perpwalldist;
 	int				stepX;//what direction to step in x or y-direction (+1 or -1)
 	int				stepY;
 	int				hit;
@@ -117,6 +115,34 @@ typedef struct		s_rec
 	int 			wallheight;
 }					t_rec;
 
+typedef struct		s_spr
+{
+	int				numsprites;
+	void			*spr_tex;
+	int				*color;
+	int				sprwidth;
+	int				sprheight;
+	float			spritex;
+	float			spritey;
+	float			invdet;
+	float			transformx;
+	float			transformy;
+	int				spritescreenx;
+	int				drawstarty;
+	int				drawendy;
+	int				drawstartx;
+	int				drawendx;
+	int				stripe;
+	int				texx;
+	int				texy;
+	float			*zbuffer;
+	float			*sprites_x;
+	float			*sprites_y;
+	float			spritedistance;
+	int				vmovescreen;
+}					t_spr;
+
+
 typedef struct		s_data
 {
 	t_rec			rec;
@@ -124,6 +150,7 @@ typedef struct		s_data
 	t_display		dis;
 	t_parse			parse;
 	t_texture 		tex;
+	t_spr 			spr;
 
 }					t_data;
 

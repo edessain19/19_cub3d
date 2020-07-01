@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycast_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbuisser <hbuisser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/04 11:33:37 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/30 15:22:36 by evrard           ###   ########.fr       */
+/*   Created: 2020/02/13 16:38:07 by hbuisser          #+#    #+#             */
+/*   Updated: 2020/07/01 09:35:42 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,32 +36,28 @@ void	calculate_dist(t_data *data)
 		data->rec.perpwalldist = 0.1;
 }
 
-
-
-//jump to next map square, OR in x-direction, OR in y-direction
-void    perform_dda(int hit, t_data *data)
+void	perform_dda(int hit, t_data *data)
 {
-    while (hit == 0)
-    {
-        if (data->rec.sidedistX < data->rec.sidedistY)
-        {
-            data->rec.sidedistX += data->rec.deltadistX;
-            data->rec.mapX += data->rec.stepX;
-            data->rec.side = 0;
-        }
-        else
-        {
-            data->rec.sidedistY += data->rec.deltadistY;
-            data->rec.mapY += data->rec.stepY;
-            data->rec.side = 1;
-        }
-        if (data->parse.map[data->rec.mapX][data->rec.mapY] == '1')
-            hit = 1;
-    }
+	while (hit == 0)
+	{
+		if (data->rec.sidedistX < data->rec.sidedistY)
+		{
+			data->rec.sidedistX += data->rec.deltadistX;
+			data->rec.mapX += data->rec.stepX;
+			data->rec.side = 0;
+		}
+		else
+		{
+			data->rec.sidedistY += data->rec.deltadistY;
+			data->rec.mapY += data->rec.stepY;
+			data->rec.side = 1;
+		}
+		if (data->parse.map[data->rec.mapY][data->rec.mapX] == '1')
+			hit = 1;
+	}
 }
-//sidedist = length of ray from current position to next x or y-side
-//calculate step and initial sideDist
-void    step_and_sidedist(t_data *data)
+
+void	step_and_sidedist(t_data *data)
 {
 	if (data->rec.raydirX < 0)
 	{
@@ -88,13 +84,13 @@ void    step_and_sidedist(t_data *data)
 	}
 }
 
-void    ray_and_deltadist(int x, t_data *data)
+void	ray_and_deltadist(int x, t_data *data)
 {
-    data->rec.cameraX = 2 * x / (float)data->parse.r1 - 1;//x-coordinate in camera space
-    data->rec.raydirX = data->rec.dirX + data->rec.planeX * data->rec.cameraX;
-    data->rec.raydirY = data->rec.dirY + data->rec.planeY * data->rec.cameraX;
-    data->rec.mapX = (int)data->rec.posX;
-    data->rec.mapY = (int)data->rec.posY;
-    data->rec.deltadistX = fabs(1 / data->rec.raydirX);
-    data->rec.deltadistY = fabs(1 / data->rec.raydirY);
+	data->rec.cameraX = 2 * x / (float)data->parse.r1 - 1;
+	data->rec.raydirX = data->rec.dirX + data->rec.planeX * data->rec.cameraX;
+	data->rec.raydirY = data->rec.dirY + data->rec.planeY * data->rec.cameraX;
+	data->rec.mapX = (int)data->rec.posX;
+	data->rec.mapY = (int)data->rec.posY;
+	data->rec.deltadistX = fabs(1 / data->rec.raydirX);
+	data->rec.deltadistY = fabs(1 / data->rec.raydirY);
 }

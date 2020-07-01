@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/15 20:21:31 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/01 10:23:52 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,7 @@ void 		init_texture(t_data *data)
 	data->tex.texnum = 0;
 	data->tex.color = 0;
 	data->tex.step = 0;
-	data->tex.color_sky = 0;
-	data->tex.color_floor = 0;
+
 }
 
 void		ft_init_struct(t_data *data)
