@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 11:33:37 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/14 11:39:13 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/14 11:42:26 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void    perform_dda(int hit, t_data *data)
             data->rec.mapy += data->rec.stepy;
             data->rec.side = 1;
         }
-        if (data->parse.map[data->rec.mapx][data->rec.mapy] == '1')
+        if (data->parse.map[data->rec.mapy][data->rec.mapx] == '1')
             hit = 1;
     }
 }
