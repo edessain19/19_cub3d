@@ -6,7 +6,7 @@
 /*   By: hbuisser <hbuisser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:35:19 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/07/02 11:05:38 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/14 10:56:52 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	calculate_colors(t_data *data)
 {
-	if (data->rec.side == 1 && (data->rec.mapY > data->rec.posY))
+	if (data->rec.side == 1 && (data->rec.mapy > data->rec.posy))
 		data->tex.color = (int *)data->tex.color_s;
-	else if (data->rec.side == 1 && (data->rec.mapY < data->rec.posY))
+	else if (data->rec.side == 1 && (data->rec.mapy < data->rec.posy))
 		data->tex.color = (int *)data->tex.color_n;
-	else if (data->rec.side == 0 && (data->rec.mapX > data->rec.posX))
+	else if (data->rec.side == 0 && (data->rec.mapx > data->rec.posx))
 		data->tex.color = (int *)data->tex.color_e;
 	else
 		data->tex.color = (int *)data->tex.color_w;
@@ -30,14 +30,14 @@ void	calculate_textures(t_data *data)
 	float	wallx;
 
 	if (data->rec.side == 0)
-		wallx = data->rec.posY + data->rec.perpwalldist * data->rec.raydirY;
+		wallx = data->rec.posy + data->rec.perpwalldist * data->rec.raydiry;
 	else
-		wallx = data->rec.posX + data->rec.perpwalldist * data->rec.raydirX;
+		wallx = data->rec.posx + data->rec.perpwalldist * data->rec.raydirx;
 	wallx -= floor((wallx));
 	data->tex.texx = (int)(wallx * data->tex.texheight);
-	if (data->rec.side == 0 && data->rec.raydirX > 0)
+	if (data->rec.side == 0 && data->rec.raydirx > 0)
 		data->tex.texx = data->tex.texwidth - data->tex.texx - 1;
-	if (data->rec.side == 1 && data->rec.raydirY < 0)
+	if (data->rec.side == 1 && data->rec.raydiry < 0)
 		data->tex.texx = data->tex.texwidth - data->tex.texx - 1;
 	data->tex.step = 1.0 * data->tex.texheight / data->rec.lineheight;
 	data->tex.texpos = (data->rec.drawstart - data->parse.r2 / 2 +

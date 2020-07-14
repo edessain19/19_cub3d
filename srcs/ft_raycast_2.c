@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 11:33:37 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/30 15:22:36 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/14 11:39:13 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	calculate_height(t_data *data)
 void	calculate_dist(t_data *data)
 {
 	if (data->rec.side == 0)
-		data->rec.perpwalldist = (data->rec.mapX - data->rec.posX +
-		(1 - data->rec.stepX) / 2) / data->rec.raydirX;
+		data->rec.perpwalldist = (data->rec.mapx - data->rec.posx +
+		(1 - data->rec.stepx) / 2) / data->rec.raydirx;
 	else
-		data->rec.perpwalldist = (data->rec.mapY - data->rec.posY +
-		(1 - data->rec.stepY) / 2) / data->rec.raydirY;
+		data->rec.perpwalldist = (data->rec.mapy - data->rec.posy +
+		(1 - data->rec.stepy) / 2) / data->rec.raydiry;
 	if (data->rec.perpwalldist == 0)
 		data->rec.perpwalldist = 0.1;
 }
@@ -43,19 +43,19 @@ void    perform_dda(int hit, t_data *data)
 {
     while (hit == 0)
     {
-        if (data->rec.sidedistX < data->rec.sidedistY)
+        if (data->rec.sidedistx < data->rec.sidedisty)
         {
-            data->rec.sidedistX += data->rec.deltadistX;
-            data->rec.mapX += data->rec.stepX;
+            data->rec.sidedistx += data->rec.deltadistx;
+            data->rec.mapx += data->rec.stepx;
             data->rec.side = 0;
         }
         else
         {
-            data->rec.sidedistY += data->rec.deltadistY;
-            data->rec.mapY += data->rec.stepY;
+            data->rec.sidedisty += data->rec.deltadisty;
+            data->rec.mapy += data->rec.stepy;
             data->rec.side = 1;
         }
-        if (data->parse.map[data->rec.mapX][data->rec.mapY] == '1')
+        if (data->parse.map[data->rec.mapx][data->rec.mapy] == '1')
             hit = 1;
     }
 }
@@ -63,38 +63,38 @@ void    perform_dda(int hit, t_data *data)
 //calculate step and initial sideDist
 void    step_and_sidedist(t_data *data)
 {
-	if (data->rec.raydirX < 0)
+	if (data->rec.raydirx < 0)
 	{
-		data->rec.stepX = -1;
-		data->rec.sidedistX = (data->rec.posX - data->rec.mapX) * data->rec.deltadistX;
+		data->rec.stepx = -1;
+		data->rec.sidedistx = (data->rec.posx - data->rec.mapx) * data->rec.deltadistx;
 	}
 	else
 	{
-		data->rec.stepX = 1;
-		data->rec.sidedistX = (data->rec.mapX + 1.0 - data->rec.posX)
-			* data->rec.deltadistX;
+		data->rec.stepx = 1;
+		data->rec.sidedistx = (data->rec.mapx + 1.0 - data->rec.posx)
+			* data->rec.deltadistx;
 	}
-	if (data->rec.raydirY < 0)
+	if (data->rec.raydiry < 0)
 	{
-		data->rec.stepY = -1;
-		data->rec.sidedistY = (data->rec.posY - data->rec.mapY)
-			* data->rec.deltadistY;
+		data->rec.stepy = -1;
+		data->rec.sidedisty = (data->rec.posy - data->rec.mapy)
+			* data->rec.deltadisty;
 	}
 	else
 	{
-		data->rec.stepY = 1;
-		data->rec.sidedistY = (data->rec.mapY + 1.0 - data->rec.posY)
-			* data->rec.deltadistY;
+		data->rec.stepy = 1;
+		data->rec.sidedisty = (data->rec.mapy + 1.0 - data->rec.posy)
+			* data->rec.deltadisty;
 	}
 }
 
 void    ray_and_deltadist(int x, t_data *data)
 {
-    data->rec.cameraX = 2 * x / (float)data->parse.r1 - 1;//x-coordinate in camera space
-    data->rec.raydirX = data->rec.dirX + data->rec.planeX * data->rec.cameraX;
-    data->rec.raydirY = data->rec.dirY + data->rec.planeY * data->rec.cameraX;
-    data->rec.mapX = (int)data->rec.posX;
-    data->rec.mapY = (int)data->rec.posY;
-    data->rec.deltadistX = fabs(1 / data->rec.raydirX);
-    data->rec.deltadistY = fabs(1 / data->rec.raydirY);
+    data->rec.camerax = 2 * x / (float)data->parse.r1 - 1;//x-coordinate in camera space
+    data->rec.raydirx = data->rec.dirx + data->rec.planex * data->rec.camerax;
+    data->rec.raydiry = data->rec.diry + data->rec.planey * data->rec.camerax;
+    data->rec.mapx = (int)data->rec.posx;
+    data->rec.mapy = (int)data->rec.posy;
+    data->rec.deltadistx = fabs(1 / data->rec.raydirx);
+    data->rec.deltadisty = fabs(1 / data->rec.raydiry);
 }

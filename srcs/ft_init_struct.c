@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/02 10:23:35 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/14 11:02:06 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@ void		init_raycasting(t_data *data)
 {
 	data->rec.speed = 0.2;
 	data->rec.rotation = 0.2;
-	data->rec.posX = 0.0;
-	data->rec.posY = 0;
-	data->rec.dirX = 0;
-	data->rec.dirY = 0;
-	data->rec.planeX = 0;
-	data->rec.planeY = 0;
-	data->rec.oldplaneX = 0;
-	data->rec.cameraX = 0;
-	data->rec.raydirX = 0;
-	data->rec.raydirY = 0;
-	data->rec.mapX = 0;
-	data->rec.mapY = 0;
-	data->rec.sidedistX = 0;
-	data->rec.sidedistY = 0;
+	data->rec.posx = 0.0;
+	data->rec.posy = 0;
+	data->rec.dirx = 0;
+	data->rec.diry = 0;
+	data->rec.planex = 0;
+	data->rec.planey = 0;
+	data->rec.oldplanex = 0;
+	data->rec.camerax = 0;
+	data->rec.raydirx = 0;
+	data->rec.raydiry = 0;
+	data->rec.mapx = 0;
+	data->rec.mapy = 0;
+	data->rec.sidedistx = 0;
+	data->rec.sidedisty = 0;
 	data->rec.perpwalldist = 0;
-	data->rec.stepX = 0;
-	data->rec.stepY = 0;
+	data->rec.stepx = 0;
+	data->rec.stepy = 0;
 	data->rec.hit = 0;
 	data->rec.side = 0;
 	data->rec.lineheight = 0;

@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/03 11:55:15 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/14 11:01:11 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,27 +85,27 @@ typedef struct		s_rec
 {
 	float			speed;
 	float			rotation;
-	float			posX;//position initiale
-	float			posY;//position initiale
-	float			dirX;//direction initiale
-	float			dirY;//direction initiale
-	float			olddirX;
-	float			olddirY;
-	float			planeX;//plan de la camera
-	float			planeY;//plan de la camera
-	float			oldplaneX;
-	float			cameraX;//coordonee x sur le plan de la camera
-	float			raydirX;//direction du mouvement
-	float			raydirY;//diection du mouvement
-	unsigned int	mapX;
-	unsigned int	mapY;
-	float			sidedistX;
-	float			sidedistY;
-	float			deltadistX;//distance sur l'axe des x
-	float			deltadistY;//distance sur l'ace des y
+	float			posx;//position initiale
+	float			posy;//position initiale
+	float			dirx;//direction initiale
+	float			diry;//direction initiale
+	float			olddirx;
+	float			olddiry;
+	float			planex;//plan de la camera
+	float			planey;//plan de la camera
+	float			oldplanex;
+	float			camerax;//coordonee x sur le plan de la camera
+	float			raydirx;//direction du mouvement
+	float			raydiry;//diection du mouvement
+	unsigned int	mapx;
+	unsigned int	mapy;
+	float			sidedistx;
+	float			sidedisty;
+	float			deltadistx;//distance sur l'axe des x
+	float			deltadisty;//distance sur l'ace des y
 	float			perpwalldist;
-	int				stepX;//what direction to step in x or y-direction (+1 or -1)
-	int				stepY;
+	int				stepx;//what direction to step in x or y-direction (+1 or -1)
+	int				stepy;
 	int				hit;
 	int				side;//was a NS or a EW wall hit?
 	int				lineheight;

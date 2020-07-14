@@ -96,6 +96,18 @@ int ft_get_position(t_data *data)
 	return (1);
 }
 
+void 	ft_print_map(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (data->parse.map[i] != NULL)
+	{
+		printf("%s\n", data->parse.map[i]);
+		i++;
+	}
+}
+
 int		ft_parsing_map(t_data *data)
 {
 
@@ -106,5 +118,6 @@ int		ft_parsing_map(t_data *data)
 		return (-1);
 	if (ft_get_sprt(data) < 0)
 		return (-1);
+	ft_print_map(data);
 	return (0);
 }

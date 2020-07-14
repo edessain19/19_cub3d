@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 09:47:22 by evrard            #+#    #+#             */
-/*   Updated: 2020/07/14 08:41:02 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/14 11:03:28 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	calculate_draw_start_end(t_data *data)
 
 void	calculate_transform(int i, t_data *data)
 {
-	data->spr.spritex = data->spr.sprites_x[i] - data->rec.posX;
-	data->spr.spritey = data->spr.sprites_y[i] - data->rec.posY;
-	data->spr.invdet = 1.0 / (data->rec.planeX * data->rec.dirY
-		- data->rec.dirX * data->rec.planeY);
-	data->spr.transformx = data->spr.invdet * (data->rec.dirY *
-		data->spr.spritex - data->rec.dirX * data->spr.spritey);
-	data->spr.transformy = data->spr.invdet * (-data->rec.planeY *
-		data->spr.spritex + data->rec.planeX * data->spr.spritey);
+	data->spr.spritex = data->spr.sprites_x[i] - data->rec.posx;
+	data->spr.spritey = data->spr.sprites_y[i] - data->rec.posy;
+	data->spr.invdet = 1.0 / (data->rec.planex * data->rec.diry
+		- data->rec.dirx * data->rec.planey);
+	data->spr.transformx = data->spr.invdet * (data->rec.diry *
+		data->spr.spritex - data->rec.dirx * data->spr.spritey);
+	data->spr.transformy = data->spr.invdet * (-data->rec.planey *
+		data->spr.spritex + data->rec.planex * data->spr.spritey);
 	data->spr.spritescreenx = (int)((data->parse.r1 / 2) *
 		(1 + data->spr.transformx / data->spr.transformy));
 }
@@ -53,10 +53,10 @@ void	ft_switch_sprites(t_data *data, int i, int j)
 	float	tmp_y;
 
 //	printf("%i\n%i\n", i, j);
-//	data->spr.spritedistance = ((data->rec.posX - data->spr.sprites_x[j]) *
-//		(data->rec.posX - data->spr.sprites_x[j]) +
-//		(data->rec.posY - data->spr.sprites_y[j]) *
-//		(data->rec.posY - data->spr.sprites_y[j]));
+//	data->spr.spritedistance = ((data->rec.posx - data->spr.sprites_x[j]) *
+//		(data->rec.posx - data->spr.sprites_x[j]) +
+//		(data->rec.posy - data->spr.sprites_y[j]) *
+//		(data->rec.posy - data->spr.sprites_y[j]));
 	tmp_x = data->spr.sprites_x[i];
 	tmp_y = data->spr.sprites_y[i];
 	data->spr.sprites_x[i] = data->spr.sprites_x[j];
@@ -73,16 +73,16 @@ void    ft_sort_sprite(t_data *data)
     i = 0;
     while (i < data->spr.nbsprites - 1)
     {
-        data->spr.spritedistance = ((data->rec.posX - data->spr.sprites_x[i]) *
-            (data->rec.posX - data->spr.sprites_x[i]) +
-            (data->rec.posY - data->spr.sprites_y[i]) *
-            (data->rec.posY - data->spr.sprites_y[i]));
+        data->spr.spritedistance = ((data->rec.posx - data->spr.sprites_x[i]) *
+            (data->rec.posx - data->spr.sprites_x[i]) +
+            (data->rec.posy - data->spr.sprites_y[i]) *
+            (data->rec.posy - data->spr.sprites_y[i]));
         j = i + 1;
         while (j < data->spr.nbsprites)
         {
-            if (((data->rec.posX - data->spr.sprites_x[j]) * (data->rec.posX -
-                data->spr.sprites_x[j]) + (data->rec.posY -
-                data->spr.sprites_y[j]) * (data->rec.posY -
+            if (((data->rec.posx - data->spr.sprites_x[j]) * (data->rec.posx -
+                data->spr.sprites_x[j]) + (data->rec.posy -
+                data->spr.sprites_y[j]) * (data->rec.posy -
                 data->spr.sprites_y[j])) > data->spr.spritedistance)
             {
                 ft_switch_sprites(data, i, j);
