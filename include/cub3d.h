@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/01 09:05:28 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/03 11:55:15 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct		s_parse
 	char			*map_str;
 	char			**map;
 	char			dir;
-	int				nb_sprites;
 	int				r1;
 	int				r2;
 	char			*n_path;
@@ -117,7 +116,7 @@ typedef struct		s_rec
 
 typedef struct		s_spr
 {
-	int				numsprites;
+	int				nbsprites;
 	void			*spr_tex;
 	int				*color;
 	int				sprwidth;
@@ -197,10 +196,10 @@ char				*create_new_line(char *str, int diff);
 int					ft_size_map(t_data *data);
 
 
-//void				ft_size_map(t_data *data, char *str);
-
-
 int					ft_parsing_map(t_data *data);
+
+char     			*ft_remove_tab(t_data *data, int i, int j);
+
 
 void 				calculate_colors(t_data *data);
 void				calculate_textures(t_data *data);
@@ -213,7 +212,22 @@ void				init_n_s(t_data *data);
 void				init_e_w(t_data *data);
 
 /*
-** ft_position_direction
+**		parsing sprites
+*/
+
+int 				ft_get_sprt(t_data *data);
+void 				ft_get_sprites(t_data *data);
+int 				ft_malloc_sprt(t_data *data);
+
+/*
+** 		raycast sprites
+*/
+
+void    			sprites_raycasting(t_data *data);
+void				verline_sprites(t_data *data);
+
+/*
+** 		ft_position_direction
 */
 
 int					ft_keyboard(int keycode, t_data *data);

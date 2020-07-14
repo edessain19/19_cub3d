@@ -6,7 +6,7 @@
 /*   By: hbuisser <hbuisser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:35:19 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/07/01 09:07:39 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/02 11:05:38 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	calculate_colors(t_data *data)
 		data->tex.color = (int *)data->tex.color_e;
 	else
 		data->tex.color = (int *)data->tex.color_w;
-//	data->spr.color = (int *)data->spr.spr_tex;
+	data->spr.color = (int *)data->spr.spr_tex;
 }
 
 void	calculate_textures(t_data *data)
@@ -53,13 +53,13 @@ int		create_images2(t_data *data)
 		write(1, "e wrong path texture", 20);
 		return (exit_all(data));
 	}
-//	if (!(m->spr.spr_tex = mlx_xpm_file_to_image(m->win.mlx_ptr, m->el.spr_path,
-//		&m->spr.sprwidth, &m->spr.sprheight)))
-//	{
-//		write(1, "Error\n", 6);
-//		write(1, "texture of the sprite is wrong", 30);
-//		return (exit_all(data));
-//	}
+	if (!(data->spr.spr_tex = mlx_xpm_file_to_image(data->mlx.mlx_ptr,
+			data->parse.sp_path, &data->spr.sprwidth, &data->spr.sprheight)))
+	{
+		write(1, "Error\n", 6);
+		write(1, "texture of the sprite is wrong", 30);
+		return (exit_all(data));
+	}
 	return (1);
 }
 
@@ -105,7 +105,7 @@ int		generate_textures(t_data *data)
 		&data->dis.bits_per_pixel, &data->dis.line_length, &data->dis.endian);
 	data->tex.color_e = mlx_get_data_addr(data->tex.color_e,
 		&data->dis.bits_per_pixel, &data->dis.line_length, &data->dis.endian);
-//	m->spr.spr_tex = mlx_get_data_addr(m->spr.spr_tex,
-//		&m->img.bits_per_pixel, &m->img.line_length, &m->img.endian);
+	data->spr.spr_tex = mlx_get_data_addr(data->spr.spr_tex,
+		&data->dis.bits_per_pixel, &data->dis.line_length, &data->dis.endian);
 	return (0);
 }

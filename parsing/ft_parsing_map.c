@@ -62,13 +62,18 @@ int		ft_get_position2(int i, int j, t_data *data)
 	{
 		data->parse.pos_init_x = j + 0.5;
 		data->parse.pos_init_y = i + 0.5;
-		printf("%f\n%f\n", data->parse.pos_init_x, data->parse.pos_init_y);
 		if (data->parse.dir == 0)
 			data->parse.dir = data->parse.map[i][j];
 		data->parse.map[i][j] = '0';
 	}
 	if (data->parse.map[i][j] == '2')
-		data->parse.nb_sprites += 1;
+	{
+		data->spr.nbsprites += 1;
+	}
+	if (data->parse.map[i][j] == 9)
+	{
+		ft_remove_tab(data, i, j);
+	}
 	return (1);
 }
 
@@ -91,28 +96,15 @@ int ft_get_position(t_data *data)
 	return (1);
 }
 
-void	ft_fill_the_blank(t_data *data)
-{
-	int		i;
-
-	i = 0;
-	while (data->parse.map_str[i] != 0)
-		{
-			if (data->parse.map_str[i] == ' ')
-				data->parse.map_str[i] = '9';
-			i++;
-		}
-}
-
 int		ft_parsing_map(t_data *data)
 {
 
-//	ft_fill_the_blank(data);
 	if (!(data->parse.map = ft_split(data->parse.map_str, '\n')))
 		return (-1);
 	ft_size_map(data);
 	if (ft_get_position(data) < 0)
 		return (-1);
-//	init_dir(data);
+	if (ft_get_sprt(data) < 0)
+		return (-1);
 	return (0);
 }

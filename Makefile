@@ -6,15 +6,13 @@
 #    By: edessain <edessain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/20 13:33:12 by edessain          #+#    #+#              #
-#    Updated: 2020/06/30 18:40:40 by evrard           ###   ########.fr        #
+#    Updated: 2020/07/03 11:52:41 by evrard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 			= cub3D
 LIBFT_PATH 		= ./libft
 MINILIBX_PATH   = ./minilibx
-#SRCS_LIST 		= main.c
-#SRCS			= $(addprefix ${FOLDER}/, ${SRCS_LIST})
 SRCS 			= ./srcs/main.c \
 					./srcs/keycode.c \
 					./srcs/ft_raycast.c \
@@ -24,13 +22,16 @@ SRCS 			= ./srcs/main.c \
 				 	./parsing/ft_parsing.c \
 				 	./parsing/ft_parsing_info.c \
 				 	./parsing/ft_parsing_map.c \
+					./parsing/ft_parsing_tab.c \
 					./parsing/ft_parsing_dir.c \
+					./parsing/ft_parsing_sprt.c \
 					./parsing/check_error.c \
 					./parsing/check_error_2.c \
 					./parsing/check_error_3.c \
 					./parsing/check_parsing_error.c \
 					./parsing/ft_exit.c \
-#					./parsing/ft_parsing_sprt \
+					./sprites/ray_sprites.c \
+					./sprites/ray_sprites_2.c \
 
 
 OBJS			= ${SRCS:.c=.o}

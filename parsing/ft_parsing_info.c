@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:26:23 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/30 18:41:21 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/01 16:14:19 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,13 @@ int		ft_get_texture(char *str, int i, t_data *data, char c)
 		tab[j++] = str[i++];
 	tab[j] = 0;
 	if (c == 'n')
-//		data->info.no = mlx_xpm_file_to_image(data->mlx.mlx_ptr, tab, &h, &w);
 		data->parse.n_path = ft_strdup(tab);
 	if (c == 's')
 		data->parse.s_path = ft_strdup(tab);
-		//data->info.so = mlx_xpm_file_to_image(data->mlx.mlx_ptr, tab, &h, &w);;
 	if (c == 'e')
 		data->parse.e_path = ft_strdup(tab);
-		//data->info.ea = mlx_xpm_file_to_image(data->mlx.mlx_ptr, tab, &h, &w);
 	if (c == 'w')
 		data->parse.w_path = ft_strdup(tab);
-		//data->info.we = mlx_xpm_file_to_image(data->mlx.mlx_ptr, tab, &h, &w);
 	if (c == 'S')
 		data->parse.sp_path = ft_strdup(tab);
 	if (tab == NULL)
@@ -183,6 +179,5 @@ int		ft_parsing_info(t_data *data)
 		else
 			i++;
 	}
-	//printf(" %i\n %i\n %d\n %d\n %d\n %d\n %i\n %i\n", data->info.r1, data->info.r2, data->info.no, data->info.so, data->info.we, data->info.ea, data->info.f, data->info.c);
 	return (0);
 }

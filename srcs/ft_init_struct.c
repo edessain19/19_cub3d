@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/01 10:23:52 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/02 10:23:35 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void		init_parse(t_data *data)
 	data->parse.map_str = NULL;
 	data->parse.map = NULL;
 	data->parse.dir = 0;
-	data->parse.nb_sprites = 0;
 	data->parse.r1 = 0;
 	data->parse.r2 = 0;
 	data->parse.n_path = 0;
@@ -95,7 +94,33 @@ void 		init_texture(t_data *data)
 	data->tex.texnum = 0;
 	data->tex.color = 0;
 	data->tex.step = 0;
+}
 
+void 		init_sprites(t_data *data)
+{
+	data->spr.nbsprites = 0;
+	data->spr.spr_tex = NULL;
+	data->spr.color = 0;
+	data->spr.sprwidth = 0;
+	data->spr.sprheight = 0;
+	data->spr.spritex = 0;
+	data->spr.spritey = 0;
+	data->spr.invdet = 0;
+	data->spr.transformx = 0;
+	data->spr.transformy = 0;
+	data->spr.spritescreenx = 0;
+	data->spr.drawstarty = 0;
+	data->spr.drawendy = 0;
+	data->spr.drawstartx = 0;
+	data->spr.drawendx = 0;
+	data->spr.stripe = 0;
+	data->spr.texx = 0;
+	data->spr.texy = 0;
+	data->spr.zbuffer = 0;
+	data->spr.sprites_x = 0;
+	data->spr.sprites_y = 0;
+	data->spr.spritedistance = 0;
+	data->spr.vmovescreen = 0;
 }
 
 void		ft_init_struct(t_data *data)
@@ -105,5 +130,5 @@ void		ft_init_struct(t_data *data)
 	init_texture(data);
 	init_mlx(data);
 	init_parse(data);
-
+	init_sprites(data);
 }

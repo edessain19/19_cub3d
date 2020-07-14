@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:07:36 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/01 09:01:54 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/03 12:04:44 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ void	*start_raycasting(t_data *data)
 		calculate_textures(data);
 		calculate_colors(data);
 		ft_verline(x, data);
+		data->spr.zbuffer[x] = data->rec.perpwalldist;
 		x++;
 	}
+	sprites_raycasting(data);
 	mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.mlx_win, data->dis.img, 0, 0);
 	return (NULL);
 }
