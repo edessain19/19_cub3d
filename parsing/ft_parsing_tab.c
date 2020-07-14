@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 09:03:04 by evrard            #+#    #+#             */
-/*   Updated: 2020/07/03 10:02:15 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/14 13:41:00 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ char     *ft_remove_tab(t_data *data, int i, int j)
     tmp[j] = 0;
     tmp_line = ft_split(data->parse.map[i], 9);
     new_line = ft_strjoin_2(ft_strjoin_2(tmp_line[0], tmp), tmp_line[1]);
-    //free(tmp_line[0]);
-    //free(tmp_line[1]);
+    if (tmp_line[0] != NULL)
+        free(tmp_line[0]);
+    if (tmp_line[1] != NULL)
+        free(tmp_line[1]);
     return (new_line);
 }

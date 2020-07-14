@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 11:06:39 by edessain          #+#    #+#             */
-/*   Updated: 2020/06/30 11:48:14 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/14 13:46:04 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int		ft_errors(int ac, char **av)
 	}
 	else if ((fd = open(av[1], O_RDONLY)) <= 0)
 	{
-		write(1, "Error\nNo such file or directory\n", 32);
+		write(1, "Error\nNo map include\n", 21);
 		return (-1);
 	}
-	return (1);
+	return (0);
 }
 
 int		launch_program(t_data *data, char *av)
