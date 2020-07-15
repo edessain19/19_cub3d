@@ -6,7 +6,7 @@
 /*   By: hbuisser <hbuisser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:35:19 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/07/14 10:56:52 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/14 14:32:55 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,8 @@ int		generate_textures(t_data *data)
 		return (exit_all(data));
 	if (create_images2(data) < 0)
 		return (exit_all(data));
-//	printf("%s\n", data->tex.color_n);
 	data->tex.color_n = mlx_get_data_addr(data->tex.color_n,
 		&data->dis.bits_per_pixel, &data->dis.line_length, &data->dis.endian);
-//	printf("%s\n", m->tex.color_n);
 	data->tex.color_s = mlx_get_data_addr(data->tex.color_s,
 		&data->dis.bits_per_pixel, &data->dis.line_length, &data->dis.endian);
 	data->tex.color_w = mlx_get_data_addr(data->tex.color_w,
