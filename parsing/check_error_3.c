@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 11:00:33 by evrard            #+#    #+#             */
-/*   Updated: 2020/06/10 18:05:03 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/16 15:03:35 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,8 @@ int	    check_path(t_data *data, char *str)
 	}
 	while (str[i] != 0)
 	{
-		//write(1, "a", 1);
-		//printf("%i\n", i);
-	//	printf("%c", str[i]);
 		if (str[i] == ' ' || str[i] == '\t')
 		{
-//			write(1, "A", 1);
 			write(1, "Error\n", 6);
 			write(1, "Wrong texture path\n", 19);
 			return (exit_all(data));

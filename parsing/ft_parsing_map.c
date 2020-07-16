@@ -58,13 +58,20 @@ int		ft_size_map(t_data *data)
 
 int		ft_get_position2(int i, int j, t_data *data)
 {
+	if (ft_isalpha(data->parse.map[i][j]) == 1 && data->parse.dir != 0)
+	{
+		printf("%i\n%i\n", i, j);
+		write(1, "C", 1);
+		return (error_pos_init(data));
+	}
 	if (ft_isalpha(data->parse.map[i][j]) == 1)
 	{
-		data->parse.pos_init_x = j + 0.5;
-		data->parse.pos_init_y = i + 0.5;
-		if (data->parse.dir == 0)
-			data->parse.dir = data->parse.map[i][j];
+		data->rec.posx = j;
+		data->rec.posy = i;
+		data->parse.dir = data->parse.map[i][j];
 		data->parse.map[i][j] = '0';
+		if (check_pos_init(data) < 0)
+			return (-1);
 	}
 	if (data->parse.map[i][j] == '2')
 	{
@@ -88,7 +95,8 @@ int ft_get_position(t_data *data)
 		j = 0;
 		while(data->parse.map[i][j] != 0)
 		{
-			ft_get_position2(i, j, data);
+			if (ft_get_position2(i, j, data) < 0)
+				return (-1);
 			j++;
 		}
 		i++;
@@ -113,8 +121,9 @@ int		ft_parsing_map(t_data *data)
 
 	if (!(data->parse.map = ft_split(data->parse.map_str, '\n')))
 		return (-1);
-	ft_size_map(data);
 	if (ft_get_position(data) < 0)
+		return (-1);
+	if (ft_size_map(data) < 0)
 		return (-1);
 	if (ft_get_sprt(data) < 0)
 		return (-1);

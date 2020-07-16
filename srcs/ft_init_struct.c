@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/14 11:02:06 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/16 15:46:36 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,17 @@ void		init_parse(t_data *data)
 	data->parse.sp_path = 0;
 	data->parse.s = 0;
 	data->parse.f = -1;
+	data->parse.f1 = 0;
+	data->parse.f2 = 0;
+	data->parse.f3 = 0;
 	data->parse.c = -1;
+	data->parse.c1 = 0;
+	data->parse.c2 = 0;
+	data->parse.c3 = 0;
 	data->parse.map_h = 0;
 	data->parse.map_w = 0;
-	data->parse.pos_init_x = 0;
-	data->parse.pos_init_y = 0;
-//	data->parse.orientation = 0;
+	data->parse.pos_ix = 0;
+	data->parse.pos_iy = 0;
 }
 
 void		init_mlx(t_data *data)

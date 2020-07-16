@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/14 11:01:11 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/16 15:46:28 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,17 @@ typedef struct		s_parse
 	char 			*sp_path;
 	int				s;
 	int				f;
+	int  			f1;
+	int 			f2;
+	int 			f3;
 	int				c;
+	int 			c1;
+	int 			c2;
+	int 			c3;
 	int				map_h;
 	int				map_w;
-	double 			pos_init_x;
-	double 			pos_init_y;
+	double 			pos_ix;
+	double 			pos_iy;
 	}					t_parse;
 
 typedef struct		s_display
@@ -188,9 +194,14 @@ int					parse_info(int fd, t_data *data);
 
 int					ft_strlen_parsing(char *str, int i, char c);
 int					ft_get_texture(char *str, int i, t_data *data, char c);
-int					ft_get_size(char *str, int i, t_data *data, char c);
+int					ft_get_texture_2(char *tab, t_data *data, char c);
+void				ft_get_size(char *str, int i, t_data *data);
+void     			ft_get_ceiling(char *str, int i, t_data *data);
+void        		ft_get_floor(char *str, int i, t_data *data);
 int					ft_parsing_lettre(char *str, int i, t_data *data, char c);
 int					ft_parsing_info(t_data *data);
+int 				ft_get_rgb(int i, int j, int k);
+
 
 char				*create_new_line(char *str, int diff);
 int					ft_size_map(t_data *data);
@@ -244,6 +255,8 @@ int     			check_walls(t_data *data);
 int					check_around(int i, int j, t_data *data);
 int					check_map_characters(t_data *data);
 int					return_error_exit(t_data *data);
+int     			error_pos_init(t_data *data);
+
 
 int					check_borders_lines(t_data *data);
 int					check_borders_columns(t_data *data);
