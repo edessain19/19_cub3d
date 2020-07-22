@@ -59,11 +59,7 @@ int		ft_size_map(t_data *data)
 int		ft_get_position2(int i, int j, t_data *data)
 {
 	if (ft_isalpha(data->parse.map[i][j]) == 1 && data->parse.dir != 0)
-	{
-		printf("%i\n%i\n", i, j);
-		write(1, "C", 1);
 		return (error_pos_init(data));
-	}
 	if (ft_isalpha(data->parse.map[i][j]) == 1)
 	{
 		data->rec.posx = j;

@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/16 15:46:36 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/20 09:31:46 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,18 @@ void		init_parse(t_data *data)
 	data->parse.map_w = 0;
 	data->parse.pos_ix = 0;
 	data->parse.pos_iy = 0;
+}
+
+void 		init_check(t_data *data)
+{
+	data->check.v_r = -1;
+	data->check.v_path_n = -1;
+	data->check.v_path_s = -1;
+	data->check.v_path_e = -1;
+	data->check.v_path_w = -1;
+	data->check.v_path_sp = -1;
+	data->check.v_c = -1;
+	data->check.v_f = -1;
 }
 
 void		init_mlx(t_data *data)
@@ -136,4 +148,5 @@ void		ft_init_struct(t_data *data)
 	init_mlx(data);
 	init_parse(data);
 	init_sprites(data);
+	init_check(data);
 }

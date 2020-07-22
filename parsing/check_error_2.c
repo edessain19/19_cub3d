@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 10:35:39 by evrard            #+#    #+#             */
-/*   Updated: 2020/07/16 15:57:05 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/20 09:41:05 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ int     check_pos_init(t_data *data)
         data->parse.map[(int)data->rec.posy][(int)data->rec.posx - 1] == ' ' ||
         data->parse.map[(int)data->rec.posy + 1][(int)data->rec.posx] == ' ' ||
         data->parse.map[(int)data->rec.posy - 1][(int)data->rec.posx] == ' ')
-    {
-        write(1, "A", 1);
         return (error_pos_init(data));
-    }
     return (0);
 }
 

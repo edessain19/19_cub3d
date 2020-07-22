@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 11:00:33 by evrard            #+#    #+#             */
-/*   Updated: 2020/07/16 15:03:35 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/20 09:39:26 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,21 @@ int	    check_others(t_data *data)
 		data->parse.r1 = 2560;
 	if (data->parse.r2 > 1440)
 		data->parse.r2 = 1440;
-    if (data->parse.f < 0 || data->parse.c < 0)
+	if (data->parse.f < 0 || data->parse.c < 0)
         return (exit_all(data));
-    return (1);
+	return (1);
+}
+
+int 	check_info(t_data *data)
+{
+	if (data->check.v_r != 0 || data->check.v_path_n != 0 ||
+		data->check.v_path_s != 0 || data->check.v_path_w != 0 ||
+		data->check.v_path_e != 0 || data->check.v_c != 0 ||
+		data->check.v_f != 0)
+	{
+		printf("%i\n%i\n%i\n%i\n%i\n%i\n%i\n%i\n", data->check.v_c, data->check.v_f, data->check.v_r, data->check.v_path_n, data->check.v_path_e, data->check.v_path_s, data->check.v_path_w, data->check.v_path_sp);
+		write(1, "Error\nProblem with the parsing of the informations\n", 51);
+		return (exit_all(data));
+	}
+	return (0);
 }

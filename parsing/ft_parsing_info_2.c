@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 14:19:55 by evrard            #+#    #+#             */
-/*   Updated: 2020/07/16 13:33:01 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/20 10:25:00 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void		ft_get_size(char *str, int i, t_data *data)
 {
+	data->check.v_r++;
 	while (str[i] == ' ')
 		i++;
 	while (ft_isdigit(str[i]) == 1)
@@ -32,6 +33,7 @@ void		ft_get_size(char *str, int i, t_data *data)
 
 void        ft_get_floor(char *str, int i, t_data *data)
 {
+	data->check.v_f++;
 	while (str[i] == ' ')
 		i++;
 	while (ft_isdigit(str[i]) == 1)
@@ -61,7 +63,8 @@ void        ft_get_floor(char *str, int i, t_data *data)
 
 void     ft_get_ceiling(char *str, int i, t_data *data)
 {
-    while (str[i] == ' ')
+	data->check.v_c += 1;
+	while (str[i] == ' ')
 		i++;
 	while (ft_isdigit(str[i]) == 1)
 	{
@@ -111,7 +114,8 @@ int		ft_get_texture(char *str, int i, t_data *data, char c)
 
 int		ft_get_texture_2(char *tab, t_data *data, char c)
 {
-    if (c == 'n')
+	ft_check_letters(data, c);
+	if (c == 'n')
 		if (!(data->parse.n_path = ft_strdup(tab)))
 			return (exit_all(data));
 	if (c == 's')

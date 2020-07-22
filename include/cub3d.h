@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/16 15:46:28 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/17 17:14:35 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,19 @@ typedef struct		s_parse
 	int				map_w;
 	double 			pos_ix;
 	double 			pos_iy;
-	}					t_parse;
+}					t_parse;
+
+typedef struct 		s_check
+{
+	int				v_r;
+	int				v_path_n;
+	int 			v_path_s;
+	int				v_path_w;
+	int 			v_path_e;
+	int				v_path_sp;
+	int 			v_c;
+	int				v_f;
+} 					t_check;
 
 typedef struct		s_display
 {
@@ -156,7 +168,7 @@ typedef struct		s_data
 	t_parse			parse;
 	t_texture 		tex;
 	t_spr 			spr;
-
+	t_check 		check;
 }					t_data;
 
 
@@ -195,6 +207,7 @@ int					parse_info(int fd, t_data *data);
 int					ft_strlen_parsing(char *str, int i, char c);
 int					ft_get_texture(char *str, int i, t_data *data, char c);
 int					ft_get_texture_2(char *tab, t_data *data, char c);
+void 				ft_check_letters(t_data *data, char c);
 void				ft_get_size(char *str, int i, t_data *data);
 void     			ft_get_ceiling(char *str, int i, t_data *data);
 void        		ft_get_floor(char *str, int i, t_data *data);
@@ -265,6 +278,8 @@ int 				check_pos_init(t_data *data);
 int 				check_textures(t_data *data);
 int	    			check_path(t_data *data, char *str);
 int					check_others(t_data *data);
+int 				check_info(t_data *data);
+
 
 
 int     			exit_all(t_data *data);

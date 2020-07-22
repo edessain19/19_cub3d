@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/30 17:14:21 by evrard            #+#    #+#             */
-/*   Updated: 2020/07/03 11:50:59 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/17 17:06:36 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int 	ft_get_sprt(t_data *data)
 	if (ft_malloc_sprt(data) == -1)
 		return (-1);
 	ft_get_sprites(data);
-//	printf("%f\n%f\n",data->spr.sprites_x[1], data->spr.sprites_y[1]);
 	return (0);
 
 }

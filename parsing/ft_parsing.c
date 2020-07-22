@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 13:38:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/14 13:42:22 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/20 14:25:09 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int		parse_data(int fd, t_data *data)
 	data->parse.info = "";
 	while (get_next_line(fd, &line) && i < 8)
 	{
-		if (line[0] == '\0')
+		if (line[0] == 0)
 			get_next_line(fd, &line);
-		if (ft_isdigit(line[0]) == 0)
+		if (!ft_isdigit(line[0]) && line[0] != 0)
 		{
 			data->parse.info = ft_strjoin_2(data->parse.info, line);
 			data->parse.info = ft_strjoin_2(data->parse.info, "\n");
@@ -71,9 +71,14 @@ int ft_parse_cub(t_data *data, char *filename)
 	if (parse_map(fd, data) < 0)
 		return (-1);
 	close(fd);
-	ft_parsing_info(data);
-	ft_parsing_map(data);
+	if (ft_parsing_info(data) < 0)
+		return (-1);
+	if (check_info(data) < 0)
+		return (-1);
+	if (ft_parsing_map(data) < 0)
+		return (-1);
 	init_dir(data);
-	check_errors(data);
+	if (check_errors(data) < 0)
+		return (-1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/02 09:47:22 by evrard            #+#    #+#             */
-/*   Updated: 2020/07/14 11:03:28 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/21 16:01:35 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	calculate_draw_start_end(t_data *data)
 	if (data->spr.drawstartx < 0)
 		data->spr.drawstartx = 0;
 	data->spr.drawendx = data->spr.sprwidth / 2 + data->spr.spritescreenx;
-	if (data->spr.drawendx >= data->parse.r2)
+	if (data->spr.drawendx >= data->parse.r1)
 		data->spr.drawendx = data->parse.r1 - 1;
 }
 
@@ -52,11 +52,6 @@ void	ft_switch_sprites(t_data *data, int i, int j)
 	float	tmp_x;
 	float	tmp_y;
 
-//	printf("%i\n%i\n", i, j);
-//	data->spr.spritedistance = ((data->rec.posx - data->spr.sprites_x[j]) *
-//		(data->rec.posx - data->spr.sprites_x[j]) +
-//		(data->rec.posy - data->spr.sprites_y[j]) *
-//		(data->rec.posy - data->spr.sprites_y[j]));
 	tmp_x = data->spr.sprites_x[i];
 	tmp_y = data->spr.sprites_y[i];
 	data->spr.sprites_x[i] = data->spr.sprites_x[j];

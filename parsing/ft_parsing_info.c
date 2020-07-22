@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:26:23 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/16 13:32:57 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/20 10:29:30 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,24 @@ int		ft_parsing_lettre(char *str, int i, t_data *data, char c)
 	return (i + 1);
 }
 
+void 	ft_check_letters(t_data *data, char c)
+{
+	if (c == 'n')
+		data->check.v_path_n++;
+	if (c == 's')
+		data->check.v_path_s++;
+	if (c == 'e')
+		data->check.v_path_e++;
+	if (c == 'w')
+		data->check.v_path_w++;
+	if (c == 'S')
+		data->check.v_path_sp++;
+}
+
 int		ft_parsing_info(t_data *data)
 {
-	char	*str;
 	int		i;
 
-	str = data->parse.info;
 	i = 0;
 	while (data->parse.info[i])
 	{
@@ -68,7 +80,7 @@ int		ft_parsing_info(t_data *data)
 			i = ft_parsing_lettre(data->parse.info, i, data, 'w');
 		else if (data->parse.info[i] == 'E' && data->parse.info[i + 1] == 'A')
 			i = ft_parsing_lettre(data->parse.info, i, data, 'e');
-		else if (data->parse.info[i] == 'S')
+		else if (data->parse.info[i] == 'S' && data->parse.info[i + 1] == ' ' )
 			i = ft_parsing_lettre(data->parse.info, i, data, 'S');
 		else if (data->parse.info[i] == 'F')
 			i = ft_parsing_lettre(data->parse.info, i, data, 'f');
@@ -79,6 +91,8 @@ int		ft_parsing_info(t_data *data)
 		if (i == 0)
 			return (-1);
 	}
+	printf("%s\n", data->parse.s_path);
+	printf("%s\n", data->parse.info);
 	data->parse.c = ft_get_rgb(data->parse.c1, data->parse.c2, data->parse.c3);
 	data->parse.f = ft_get_rgb(data->parse.f1, data->parse.f2, data->parse.f3);
 	return (0);
