@@ -6,7 +6,7 @@
 #    By: edessain <edessain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/20 13:33:12 by edessain          #+#    #+#              #
-#    Updated: 2020/07/15 17:11:56 by evrard           ###   ########.fr        #
+#    Updated: 2020/07/22 10:14:50 by evrard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ OBJS			= ${SRCS:.c=.o}
 INCLUDE 		= cube3d.h
 LIBFT 			= libft
 MINILIBX 		= minilibx
-CC				= gcc -g -Wall -Wextra -Werror #-fsanitize=address
+CC				= gcc -g -Wall -Wextra -Werror -fsanitize=address
 RM				= rm -f
 MLXFLAGS 		= -I ./minilibx -L ./minilibx -lmlx -framework OpenGl -framework Appkit
 LIBFLAGS 		= -I ./libft -L ./libft -L . ./libft/*.c

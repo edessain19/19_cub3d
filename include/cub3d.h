@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/17 17:14:35 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/22 14:43:43 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,8 @@ int 				ft_malloc_sprt(t_data *data);
 */
 
 void    			sprites_raycasting(t_data *data);
+void				calculate_transform(int i, t_data *data);
+void				calculate_draw_start_end(t_data *data);
 void				verline_sprites(t_data *data);
 
 /*

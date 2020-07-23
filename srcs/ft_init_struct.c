@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/20 09:31:46 by evrard           ###   ########.fr       */
+/*   Updated: 2020/07/22 10:45:37 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void 		init_sprites(t_data *data)
 	data->spr.sprheight = 0;
 	data->spr.spritex = 0;
 	data->spr.spritey = 0;
-	data->spr.invdet = 0;
+	data->spr.invdet = 1;
 	data->spr.transformx = 0;
 	data->spr.transformy = 0;
 	data->spr.spritescreenx = 0;
