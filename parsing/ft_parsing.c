@@ -6,11 +6,28 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 13:38:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/20 14:25:09 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/02 17:04:43 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int 	ft_check_space(int i, char *str)
+{
+	int j;
+
+	j = 0;
+	while (str[i] == ' ' || str[i] == ',')
+	{
+		if (str[i] == ',')
+			j++;
+		i++;
+	}
+	if (j == 1)
+		return (i);
+	else
+		return (-1);
+}
 
 int		parse_data(int fd, t_data *data)
 {

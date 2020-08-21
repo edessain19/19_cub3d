@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 11:52:48 by evrard            #+#    #+#             */
-/*   Updated: 2020/07/22 14:41:57 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/21 16:51:12 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	verline_sprites(t_data *data)
 void	calculate_draw_start_end(t_data *data)
 {
 	data->spr.vmovescreen = (int)(94.0 / data->spr.transformy);
-	data->spr.sprheight = (int)fabs((float)data->parse.r2 /
+	data->spr.sprheight = /*(int)*/fabs((float)data->parse.r2 /
 		data->spr.transformy);
 	data->spr.drawstarty = -data->spr.sprheight / 2 + data->parse.r2 / 2
 		+ data->spr.vmovescreen;

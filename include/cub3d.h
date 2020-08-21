@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/22 14:43:43 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/02 13:31:33 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,8 @@ void				ft_verline(int x, t_data *data);
 int					ft_parse_cub(t_data *data, char *filename);
 int					parse_map(int fd, t_data *data);
 int					parse_info(int fd, t_data *data);
+int 				ft_check_space(int i, char *str);
+
 
 int					ft_strlen_parsing(char *str, int i, char c);
 int					ft_get_texture(char *str, int i, t_data *data, char c);
