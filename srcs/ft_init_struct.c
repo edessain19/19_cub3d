@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/22 10:45:37 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/25 14:38:26 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void		init_parse(t_data *data)
 	data->parse.map_str = NULL;
 	data->parse.map = NULL;
 	data->parse.dir = 0;
-	data->parse.r1 = 0;
-	data->parse.r2 = 0;
+	data->parse.screen_x = 0;
+	data->parse.screen_y = 0;
 	data->parse.n_path = 0;
 	data->parse.s_path = 0;
 	data->parse.w_path = 0;

@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 11:00:33 by evrard            #+#    #+#             */
-/*   Updated: 2020/07/20 09:39:26 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/25 14:38:21 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,16 @@ int	    check_path(t_data *data, char *str)
 
 int	    check_others(t_data *data)
 {
-	if (data->parse.r1 <= 0 || data->parse.r2 <= 0)
+	if (data->parse.screen_x <= 0 || data->parse.screen_y <= 0)
 	{
 		write(1, "Error\n", 6);
 		write(1, "--> Wrong resolution details\n", 28);
 		return (exit_all(data));
 	}
-	if (data->parse.r1 > 2560)
-		data->parse.r1 = 2560;
-	if (data->parse.r2 > 1440)
-		data->parse.r2 = 1440;
+	if (data->parse.screen_x > 2560)
+		data->parse.screen_x = 2560;
+	if (data->parse.screen_y > 1440)
+		data->parse.screen_y = 1440;
 	if (data->parse.f < 0 || data->parse.c < 0)
         return (exit_all(data));
 	return (1);

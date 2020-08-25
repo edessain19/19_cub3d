@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/08/02 13:31:33 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/25 14:35:16 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct		s_parse
 	char			*map_str;
 	char			**map;
 	char			dir;
-	int				r1;
-	int				r2;
+	int				screen_x; /*r1*/
+	int				screen_y; /*screen_y*/
 	char			*n_path;
 	char			*s_path;
 	char			*w_path;

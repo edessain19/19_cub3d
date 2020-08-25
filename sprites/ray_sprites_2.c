@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 11:52:48 by evrard            #+#    #+#             */
-/*   Updated: 2020/08/25 12:03:26 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/25 14:38:25 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	write_sprites(t_data *data)
 	y = data->spr.drawstarty;
 	while (y < data->spr.drawendy)
 	{
-		d = (y - data->spr.vmovescreen) * 256 - data->parse.r2 * 128 +
+		d = (y - data->spr.vmovescreen) * 256 - data->parse.screen_y * 128 +
 			data->spr.sprheight * 128;
 		data->spr.texy = ((d * 64) / data->spr.sprheight) / 256;
 		if ((data->spr.color[64 * data->spr.texy + data->spr.texx] & 0x00FFFFFF) != 0)
-			data->dis.addr[y * data->parse.r1 + data->spr.stripe] =
+			data->dis.addr[y * data->parse.screen_x + data->spr.stripe] =
 				data->spr.color[64 * data->spr.texy + data->spr.texx];
 		y++;
 	}
@@ -39,7 +39,7 @@ void	verline_sprites(t_data *data)
 		data->spr.texx = (int)((data->spr.stripe - (-data->spr.sprwidth / 2
 		+ data->spr.spritescreenx)) * 64 / data->spr.sprwidth);
 		if (data->spr.transformy > 0 && data->spr.stripe > 0 && data->spr.stripe <
-			data->parse.r1 && data->spr.transformy < data->spr.zbuffer[data->spr.stripe]
+			data->parse.screen_x && data->spr.transformy < data->spr.zbuffer[data->spr.stripe]
 				&& data->spr.texx < 64)
 		{
 			write_sprites(data);
@@ -51,23 +51,23 @@ void	verline_sprites(t_data *data)
 void	calculate_draw_start_end(t_data *data)
 {
 	data->spr.vmovescreen = (int)(94.0 / data->spr.transformy);
-	data->spr.sprheight = /*(int)*/fabs((float)data->parse.r1 /
+	data->spr.sprheight = /*(int)*/fabs((float)data->parse.screen_x /
 		data->spr.transformy);
-	data->spr.drawstarty = -data->spr.sprheight / 2 + data->parse.r2 / 2
+	data->spr.drawstarty = -data->spr.sprheight / 2 + data->parse.screen_y / 2
 		+ data->spr.vmovescreen;
 	if (data->spr.drawstarty < 0)
 		data->spr.drawstarty = 0;
-	data->spr.drawendy = data->spr.sprheight / 2 + data->parse.r2 / 2
+	data->spr.drawendy = data->spr.sprheight / 2 + data->parse.screen_y / 2
 		+ data->spr.vmovescreen;
-	if (data->spr.drawendy >= data->parse.r2)
-		data->spr.drawendy = data->parse.r2 - 1;
-	data->spr.sprwidth = (int)fabs((float)data->parse.r2 / data->spr.transformy);
+	if (data->spr.drawendy >= data->parse.screen_y)
+		data->spr.drawendy = data->parse.screen_y - 1;
+	data->spr.sprwidth = (int)fabs((float)data->parse.screen_y / data->spr.transformy);
 	data->spr.drawstartx = -data->spr.sprwidth / 2 + data->spr.spritescreenx;
 	if (data->spr.drawstartx < 0)
 		data->spr.drawstartx = 0;
 	data->spr.drawendx = data->spr.sprwidth / 2 + data->spr.spritescreenx;
-	if (data->spr.drawendx >= data->parse.r1)
-		data->spr.drawendx = data->parse.r1 - 1;
+	if (data->spr.drawendx >= data->parse.screen_x)
+		data->spr.drawendx = data->parse.screen_x - 1;
 }
 
 void	calculate_transform(int i, t_data *data)
@@ -80,6 +80,6 @@ void	calculate_transform(int i, t_data *data)
 		data->spr.spritex - data->rec.dirx * data->spr.spritey);
 	data->spr.transformy = data->spr.invdet * (-data->rec.planey *
 		data->spr.spritex + data->rec.planex * data->spr.spritey);
-	data->spr.spritescreenx = (int)((data->parse.r1 / 2) *
+	data->spr.spritescreenx = (int)((data->parse.screen_x / 2) *
 		(1 + data->spr.transformx / data->spr.transformy));
 }

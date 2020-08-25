@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 11:06:39 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/15 09:23:29 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/25 14:38:20 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int		launch_program(t_data *data, char *av)
 	if (!(data->mlx.mlx_ptr = mlx_init()))
 		return (-1);
 	data->mlx.mlx_win = mlx_new_window(data->mlx.mlx_ptr,
-		data->parse.r1, data->parse.r2, "cub3D");
+		data->parse.screen_x, data->parse.screen_y, "cub3D");
 	if (generate_textures(data) < 0)
 		return (-1);
-	data->dis.img = mlx_new_image(data->mlx.mlx_ptr, data->parse.r1, data->parse.r2);
+	data->dis.img = mlx_new_image(data->mlx.mlx_ptr, data->parse.screen_x, data->parse.screen_y);
 	data->dis.addr = (int *)mlx_get_data_addr(data->dis.img, &data->dis.bits_per_pixel,
 		&data->dis.line_length, &data->dis.endian);
 	start_raycasting(data);

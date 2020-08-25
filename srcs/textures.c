@@ -6,7 +6,7 @@
 /*   By: hbuisser <hbuisser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:35:19 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/07/14 14:32:55 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/25 14:36:52 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	calculate_textures(t_data *data)
 	if (data->rec.side == 1 && data->rec.raydiry < 0)
 		data->tex.texx = data->tex.texwidth - data->tex.texx - 1;
 	data->tex.step = 1.0 * data->tex.texheight / data->rec.lineheight;
-	data->tex.texpos = (data->rec.drawstart - data->parse.r2 / 2 +
+	data->tex.texpos = (data->rec.drawstart - data->parse.screen_y / 2 +
 			data->rec.lineheight / 2) * data->tex.step;
 }
 

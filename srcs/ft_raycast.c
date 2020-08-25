@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:07:36 by edessain          #+#    #+#             */
-/*   Updated: 2020/08/25 11:00:24 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/25 14:43:41 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*start_raycasting(t_data *data)
 
 	x = 0;
 	hit = 0;
-	while (x < data->parse.r1)
+	while (x < data->parse.screen_x)
 	{
 		hit = 0;
 		ray_and_deltadist(x, data);
@@ -44,20 +44,20 @@ void	ft_verline(int x, t_data *data)
 	y = 0;
 	while (y < data->rec.drawstart)
 	{
-		data->dis.addr[y * data->parse.r1 + x] = data->parse.c;
+		data->dis.addr[y * data->parse.screen_x + x] = data->parse.c;
 		y++;
 	}
 	while (y <= data->rec.drawend)
 	{
 		data->tex.texy = (int)data->tex.texpos & (data->tex.texheight - 1);
 		data->tex.texpos += data->tex.step;
-		data->dis.addr[y * data->parse.r1 + x] =
+		data->dis.addr[y * data->parse.screen_x + x] =
 			data->tex.color[data->tex.texy * data->tex.texheight + data->tex.texx];
 		y++;
 	}
-	while (y < data->parse.r2)
+	while (y < data->parse.screen_y)
 	{
-		data->dis.addr[y * data->parse.r1 + x] = data->parse.f;
+		data->dis.addr[y * data->parse.screen_x + x] = data->parse.f;
 		y++;
 	}
 }
