@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 11:52:48 by evrard            #+#    #+#             */
-/*   Updated: 2020/08/25 14:38:25 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/25 17:03:42 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	write_sprites(t_data *data)
 	y = data->spr.drawstarty;
 	while (y < data->spr.drawendy)
 	{
-		d = (y - data->spr.vmovescreen) * 256 - data->parse.screen_y * 128 +
+		d = (y /*- data->spr.vmovescreen*/) * 256 - data->parse.screen_y * 128 +
 			data->spr.sprheight * 128;
 		data->spr.texy = ((d * 64) / data->spr.sprheight) / 256;
 		if ((data->spr.color[64 * data->spr.texy + data->spr.texx] & 0x00FFFFFF) != 0)
@@ -51,14 +51,14 @@ void	verline_sprites(t_data *data)
 void	calculate_draw_start_end(t_data *data)
 {
 	data->spr.vmovescreen = (int)(94.0 / data->spr.transformy);
-	data->spr.sprheight = /*(int)*/fabs((float)data->parse.screen_x /
+	data->spr.sprheight = /*(int)*/fabs((float)data->parse.screen_y /
 		data->spr.transformy);
 	data->spr.drawstarty = -data->spr.sprheight / 2 + data->parse.screen_y / 2
-		+ data->spr.vmovescreen;
+		/*+ data->spr.vmovescreen*/;
 	if (data->spr.drawstarty < 0)
 		data->spr.drawstarty = 0;
 	data->spr.drawendy = data->spr.sprheight / 2 + data->parse.screen_y / 2
-		+ data->spr.vmovescreen;
+		/*+ data->spr.vmovescreen*/;
 	if (data->spr.drawendy >= data->parse.screen_y)
 		data->spr.drawendy = data->parse.screen_y - 1;
 	data->spr.sprwidth = (int)fabs((float)data->parse.screen_y / data->spr.transformy);
