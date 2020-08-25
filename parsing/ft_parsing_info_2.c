@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 14:19:55 by evrard            #+#    #+#             */
-/*   Updated: 2020/08/02 17:04:35 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/25 10:09:45 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void		ft_get_size(char *str, int i, t_data *data)
 		data->parse.r2 = data->parse.r2 * 10 + str[i] - 48;
 		i++;
 	}
+	if (data->parse.r1 >= 1920)
+	 	data->parse.r1 = 1920;
+	if (data->parse.r2 >= 1080)
+		data->parse.r2 = 1080;
 }
 
 void        ft_get_floor(char *str, int i, t_data *data)

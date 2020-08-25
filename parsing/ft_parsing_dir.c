@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 14:30:40 by evrard            #+#    #+#             */
-/*   Updated: 2020/07/16 15:52:31 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/25 11:55:29 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,7 @@ int		init_dir(t_data *data)
 //	data->rec.posy = data->parse.pos_iy;
 	init_e_w(data);
 	init_n_s(data);
-//	data->rec.sprwidth = 0;
-//	data->rec.sprheight = 0;
-//	data->rec.movespeed = 0.2;
-//	data->rec.rotspeed = 0.06;
-	if (!(data->spr.zbuffer = malloc(sizeof(float *) * data->parse.r2 + 1)))
+	if (!(data->spr.zbuffer = malloc(sizeof(int *) * data->parse.r1 + 1)))
 		return (exit_all(data));
 	return (1);
 }

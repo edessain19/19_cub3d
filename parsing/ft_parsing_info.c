@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:26:23 by edessain          #+#    #+#             */
-/*   Updated: 2020/07/20 10:29:30 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/25 09:50:21 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ int		ft_parsing_info(t_data *data)
 		if (i == 0)
 			return (-1);
 	}
-	printf("%s\n", data->parse.s_path);
-	printf("%s\n", data->parse.info);
+//	printf("%s\n", data->parse.s_path);
+//	printf("%s\n", data->parse.info);
 	data->parse.c = ft_get_rgb(data->parse.c1, data->parse.c2, data->parse.c3);
 	data->parse.f = ft_get_rgb(data->parse.f1, data->parse.f2, data->parse.f3);
 	return (0);
