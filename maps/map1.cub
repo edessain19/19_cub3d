@@ -1,5 +1,5 @@
 
-R 6400 480
+R 640 480
 S ./textures/pillar.xpm
 WE ./textures/greystone.xpm
 EA ./textures/wood.xpm

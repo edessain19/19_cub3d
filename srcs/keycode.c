@@ -6,7 +6,7 @@
 /*   By: hbuisser <hbuisser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:50:53 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/07/23 10:47:41 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/28 09:52:18 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,19 +76,19 @@ int 	key_move_right_left(t_data *data, int keycode)
 	if (keycode == 0)
 	{
 		if (data->parse.map[(int)(data->rec.posy - data->rec.dirx *
-		(data->rec.speed + 0.1))][(int)data->rec.posx] != '1')
+		(data->rec.speed))][(int)data->rec.posx] != '1')
 			data->rec.posy -= data->rec.dirx * data->rec.speed;
 		if (data->parse.map[(int)data->rec.posy][(int)(data->rec.posx +
-		data->rec.diry * (data->rec.speed + 0.1))] != '1')
+		data->rec.diry * (data->rec.speed))] != '1')
 			data->rec.posx += data->rec.diry * data->rec.speed;
 	}
 	if (keycode == 2)
 	{
 		if (data->parse.map[(int)(data->rec.posy + data->rec.dirx *
-		(data->rec.speed * 0.1))][(int)data->rec.posx] != '1')
+		(data->rec.speed))][(int)data->rec.posx] != '1')
 			data->rec.posy += data->rec.dirx * data->rec.speed;
 		if (data->parse.map[(int)data->rec.posy][(int)(data->rec.posx -
-		data->rec.diry * (data->rec.speed + 0.1))] != '1')
+		data->rec.diry * (data->rec.speed))] != '1')
 			data->rec.posx -= data->rec.diry * data->rec.speed;
 	}
 	return (1);
