@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/08/25 16:12:52 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/28 18:13:24 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct		s_parse
 	char			*map_str;
 	char			**map;
 	char			dir;
-	int				screen_x; /*r1*/
-	int				screen_y; /*screen_y*/
+	int				screen_x;
+	int				screen_y;
 	char			*n_path;
 	char			*s_path;
 	char			*w_path;
@@ -125,7 +125,7 @@ typedef struct		s_rec
 	int				stepx;//what direction to step in x or y-direction (+1 or -1)
 	int				stepy;
 	int				hit;
-	int				side;//was a NS or a EW wall hit?
+	int				side;
 	int				lineheight;
 	int				drawstart;
 	int				drawend;
@@ -156,7 +156,6 @@ typedef struct		s_spr
 	float			*sprites_x;
 	float			*sprites_y;
 	float			spritedistance;
-	int				vmovescreen;
 }					t_spr;
 
 

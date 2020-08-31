@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/08/25 14:38:26 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/28 18:13:47 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,6 @@ void 		init_sprites(t_data *data)
 	data->spr.sprites_x = 0;
 	data->spr.sprites_y = 0;
 	data->spr.spritedistance = 0;
-	data->spr.vmovescreen = 0;
 }
 
 void		ft_init_struct(t_data *data)
