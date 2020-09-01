@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 10:23:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/08/28 18:13:47 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/31 17:31:58 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,60 +41,10 @@ void		init_raycasting(t_data *data)
 	data->rec.wallheight = 0;
 }
 
-void		init_parse(t_data *data)
-{
-	data->parse.info = NULL;
-	data->parse.map_str = NULL;
-	data->parse.map = NULL;
-	data->parse.dir = 0;
-	data->parse.screen_x = 0;
-	data->parse.screen_y = 0;
-	data->parse.n_path = 0;
-	data->parse.s_path = 0;
-	data->parse.w_path = 0;
-	data->parse.e_path = 0;
-	data->parse.sp_path = 0;
-	data->parse.s = 0;
-	data->parse.f = -1;
-	data->parse.f1 = 0;
-	data->parse.f2 = 0;
-	data->parse.f3 = 0;
-	data->parse.c = -1;
-	data->parse.c1 = 0;
-	data->parse.c2 = 0;
-	data->parse.c3 = 0;
-	data->parse.map_h = 0;
-	data->parse.map_w = 0;
-	data->parse.pos_ix = 0;
-	data->parse.pos_iy = 0;
-}
-
-void 		init_check(t_data *data)
-{
-	data->check.v_r = -1;
-	data->check.v_path_n = -1;
-	data->check.v_path_s = -1;
-	data->check.v_path_e = -1;
-	data->check.v_path_w = -1;
-	data->check.v_path_sp = -1;
-	data->check.v_c = -1;
-	data->check.v_f = -1;
-}
-
 void		init_mlx(t_data *data)
 {
 	data->mlx.mlx_ptr = 0;
 	data->mlx.mlx_win = 0;
-}
-
-void		init_dis(t_data *data)
-{
-	data->dis.addr = 0;
-	data->dis.img = 0;
-	data->dis.line_length = 0;
-	data->dis.endian = 0;
-	data->dis.bits_per_pixel = 0;
-
 }
 
 void 		init_texture(t_data *data)

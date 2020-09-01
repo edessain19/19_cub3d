@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/08/28 18:13:24 by evrard           ###   ########.fr       */
+/*   Updated: 2020/09/01 09:13:13 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,10 @@ typedef struct		s_data
 
 int					main(int argc, char **argv);
 void				ft_init_struct(t_data *data);
+void				init_dis(t_data *data);
+void				init_parse(t_data *data);
+void 				init_check(t_data *data);
+int     			ft_bmp(t_data *data);
 
 
 /*

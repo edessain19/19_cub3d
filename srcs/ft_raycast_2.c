@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/04 11:33:37 by edessain          #+#    #+#             */
-/*   Updated: 2020/08/25 14:42:38 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/31 18:45:10 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	calculate_height(t_data *data)
 		data->rec.drawend = data->parse.screen_y - 1;
 }
 
-void	calculate_dist(t_data *data)
+void 	calculate_dist(t_data *data)
 {
 	if (data->rec.side == 0)
 		data->rec.perpwalldist = (data->rec.mapx - data->rec.posx +
@@ -38,12 +38,11 @@ void	calculate_dist(t_data *data)
 		data->rec.perpwalldist = 0.1;
 }
 
-//jump to next map square, OR in x-direction, OR in y-direction
-void    perform_dda(int hit, t_data *data)
+void 	perform_dda(int hit, t_data *data)
 {
     while (hit == 0)
     {
-        if (data->rec.sidedistx < data->rec.sidedisty)
+    	if (data->rec.sidedistx < data->rec.sidedisty)
         {
             data->rec.sidedistx += data->rec.deltadistx;
             data->rec.mapx += data->rec.stepx;
@@ -59,14 +58,14 @@ void    perform_dda(int hit, t_data *data)
             hit = 1;
     }
 }
-//sidedist = length of ray from current position to next x or y-side
-//calculate step and initial sideDist
+
 void    step_and_sidedist(t_data *data)
 {
 	if (data->rec.raydirx < 0)
 	{
 		data->rec.stepx = -1;
-		data->rec.sidedistx = (data->rec.posx - data->rec.mapx) * data->rec.deltadistx;
+		data->rec.sidedistx = (data->rec.posx - data->rec.mapx)
+			* data->rec.deltadistx;
 	}
 	else
 	{
@@ -90,11 +89,11 @@ void    step_and_sidedist(t_data *data)
 
 void    ray_and_deltadist(int x, t_data *data)
 {
-    data->rec.camerax = 2 * x / (float)data->parse.screen_x - 1;//x-coordinate in camera space
-    data->rec.raydirx = data->rec.dirx + data->rec.planex * data->rec.camerax;
-    data->rec.raydiry = data->rec.diry + data->rec.planey * data->rec.camerax;
-    data->rec.mapx = (int)data->rec.posx;
-    data->rec.mapy = (int)data->rec.posy;
-    data->rec.deltadistx = fabs(1 / data->rec.raydirx);
-    data->rec.deltadisty = fabs(1 / data->rec.raydiry);
+	data->rec.camerax = 2 * x / (float)data->parse.screen_x - 1;
+	data->rec.raydirx = data->rec.dirx + data->rec.planex * data->rec.camerax;
+	data->rec.raydiry = data->rec.diry + data->rec.planey * data->rec.camerax;
+	data->rec.mapx = (int)data->rec.posx;
+	data->rec.mapy = (int)data->rec.posy;
+	data->rec.deltadistx = fabs(1 / data->rec.raydirx);
+	data->rec.deltadisty = fabs(1 / data->rec.raydiry);
 }

@@ -6,7 +6,7 @@
 #    By: edessain <edessain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/20 13:33:12 by edessain          #+#    #+#              #
-#    Updated: 2020/08/28 18:21:43 by evrard           ###   ########.fr        #
+#    Updated: 2020/09/01 09:12:53 by evrard           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SRCS 			= ./srcs/main.c \
 					./srcs/ft_raycast_2.c \
 					./srcs/textures.c \
 					./srcs/ft_init_struct.c \
+					./srcs/ft_init_struct_2.c \
+					./srcs/bmp.c \
 				 	./parsing/ft_parsing.c \
 				 	./parsing/ft_parsing_info.c \
 					./parsing/ft_parsing_info_2.c \

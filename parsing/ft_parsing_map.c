@@ -123,6 +123,6 @@ int		ft_parsing_map(t_data *data)
 		return (-1);
 	if (ft_get_sprt(data) < 0)
 		return (-1);
-	ft_print_map(data);
+	//ft_print_map(data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hbuisser <hbuisser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:50:53 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/08/28 09:52:18 by evrard           ###   ########.fr       */
+/*   Updated: 2020/08/31 17:37:52 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int		keys_up_down(t_data *data, int keycode)
 {
 	if (keycode == 126 || keycode == 13)
 	{
-		if (data->parse.map[(int)data->rec.posy][(int)(data->rec.posx + data->rec.dirx *
+		if (data->parse.map[(int)data->rec.posy]
+			[(int)(data->rec.posx + data->rec.dirx *
 				data->rec.speed)] != '1')
 			data->rec.posx += data->rec.dirx * data->rec.speed;
 		if (data->parse.map[(int)(data->rec.posy +
@@ -25,7 +26,8 @@ int		keys_up_down(t_data *data, int keycode)
 	}
 	if (keycode == 125 || keycode == 1)
 	{
-		if (data->parse.map[(int)data->rec.posy][(int)(data->rec.posx - data->rec.dirx *
+		if (data->parse.map[(int)data->rec.posy]
+			[(int)(data->rec.posx - data->rec.dirx *
 				data->rec.speed)] != '1')
 			data->rec.posx -= data->rec.dirx * data->rec.speed;
 		if (data->parse.map[(int)(data->rec.posy -
@@ -45,8 +47,8 @@ int		keys_rot_left(t_data *data, int keycode)
 		data->rec.diry = data->rec.olddirx * sin(-data->rec.rotation) +
 			data->rec.diry * cos(-data->rec.rotation);
 		data->rec.oldplanex = data->rec.planex;
-		data->rec.planex = data->rec.planex * cos(-data->rec.rotation) -
-			data->rec.planey * sin(-data->rec.rotation);
+		data->rec.planex = data->rec.planex * cos(-data->rec.rotation)
+			- data->rec.planey * sin(-data->rec.rotation);
 		data->rec.planey = data->rec. oldplanex * sin(-data->rec.rotation) +
 			data->rec.planey * cos(-data->rec.rotation);
 	}
