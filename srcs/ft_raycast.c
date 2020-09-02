@@ -15,7 +15,7 @@
 void	*start_raycasting(t_data *data)
 {
 	int		x;
-	int 	hit;
+	int		hit;
 
 	x = 0;
 	hit = 0;
@@ -34,13 +34,15 @@ void	*start_raycasting(t_data *data)
 		x++;
 	}
 	sprites_raycasting(data);
-	mlx_put_image_to_window(data->mlx.mlx_ptr, data->mlx.mlx_win, data->dis.img, 0, 0);
+	mlx_put_image_to_window(data->mlx.mlx_ptr,
+		data->mlx.mlx_win, data->dis.img, 0, 0);
 	return (NULL);
 }
 
 void	ft_verline(int x, t_data *data)
 {
 	int y;
+
 	y = 0;
 	while (y < data->rec.drawstart)
 	{
@@ -52,7 +54,8 @@ void	ft_verline(int x, t_data *data)
 		data->tex.texy = (int)data->tex.texpos & (data->tex.texheight - 1);
 		data->tex.texpos += data->tex.step;
 		data->dis.addr[y * data->parse.screen_x + x] =
-			data->tex.color[data->tex.texy * data->tex.texheight + data->tex.texx];
+			data->tex.color[data->tex.texy * data->tex.texheight
+			+ data->tex.texx];
 		y++;
 	}
 	while (y < data->parse.screen_y)

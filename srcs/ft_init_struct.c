@@ -47,7 +47,7 @@ void		init_mlx(t_data *data)
 	data->mlx.mlx_win = 0;
 }
 
-void 		init_texture(t_data *data)
+void		init_texture(t_data *data)
 {
 	data->tex.color_n = 0;
 	data->tex.color_s = 0;
@@ -63,7 +63,7 @@ void 		init_texture(t_data *data)
 	data->tex.step = 0;
 }
 
-void 		init_sprites(t_data *data)
+void		init_sprites(t_data *data)
 {
 	data->spr.nbsprites = 0;
 	data->spr.spr_tex = NULL;

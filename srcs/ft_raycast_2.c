@@ -26,7 +26,7 @@ void	calculate_height(t_data *data)
 		data->rec.drawend = data->parse.screen_y - 1;
 }
 
-void 	calculate_dist(t_data *data)
+void	calculate_dist(t_data *data)
 {
 	if (data->rec.side == 0)
 		data->rec.perpwalldist = (data->rec.mapx - data->rec.posx +
@@ -38,28 +38,28 @@ void 	calculate_dist(t_data *data)
 		data->rec.perpwalldist = 0.1;
 }
 
-void 	perform_dda(int hit, t_data *data)
+void	perform_dda(int hit, t_data *data)
 {
-    while (hit == 0)
-    {
-    	if (data->rec.sidedistx < data->rec.sidedisty)
-        {
-            data->rec.sidedistx += data->rec.deltadistx;
-            data->rec.mapx += data->rec.stepx;
-            data->rec.side = 0;
-        }
-        else
-        {
-            data->rec.sidedisty += data->rec.deltadisty;
-            data->rec.mapy += data->rec.stepy;
-            data->rec.side = 1;
-        }
-        if (data->parse.map[data->rec.mapy][data->rec.mapx] == '1')
-            hit = 1;
-    }
+	while (hit == 0)
+	{
+		if (data->rec.sidedistx < data->rec.sidedisty)
+		{
+			data->rec.sidedistx += data->rec.deltadistx;
+			data->rec.mapx += data->rec.stepx;
+			data->rec.side = 0;
+		}
+		else
+		{
+			data->rec.sidedisty += data->rec.deltadisty;
+			data->rec.mapy += data->rec.stepy;
+			data->rec.side = 1;
+		}
+		if (data->parse.map[data->rec.mapy][data->rec.mapx] == '1')
+			hit = 1;
+	}
 }
 
-void    step_and_sidedist(t_data *data)
+void	step_and_sidedist(t_data *data)
 {
 	if (data->rec.raydirx < 0)
 	{
@@ -87,7 +87,7 @@ void    step_and_sidedist(t_data *data)
 	}
 }
 
-void    ray_and_deltadist(int x, t_data *data)
+void	ray_and_deltadist(int x, t_data *data)
 {
 	data->rec.camerax = 2 * x / (float)data->parse.screen_x - 1;
 	data->rec.raydirx = data->rec.dirx + data->rec.planex * data->rec.camerax;

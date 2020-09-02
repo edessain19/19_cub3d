@@ -49,7 +49,7 @@ void		init_dis(t_data *data)
 	data->dis.bits_per_pixel = 0;
 }
 
-void 		init_check(t_data *data)
+void		init_check(t_data *data)
 {
 	data->check.v_r = -1;
 	data->check.v_path_n = -1;

@@ -49,7 +49,7 @@ int		keys_rot_left(t_data *data, int keycode)
 		data->rec.oldplanex = data->rec.planex;
 		data->rec.planex = data->rec.planex * cos(-data->rec.rotation)
 			- data->rec.planey * sin(-data->rec.rotation);
-		data->rec.planey = data->rec. oldplanex * sin(-data->rec.rotation) +
+		data->rec.planey = data->rec.oldplanex * sin(-data->rec.rotation) +
 			data->rec.planey * cos(-data->rec.rotation);
 	}
 	return (1);
@@ -65,7 +65,7 @@ int		keys_rot_right(t_data *data, int keycode)
 		data->rec.diry = data->rec.olddirx * sin(data->rec.rotation) +
 			data->rec.diry * cos(data->rec.rotation);
 		data->rec.oldplanex = data->rec.planex;
-		data->rec.planex = data->rec.planex *  cos(data->rec.rotation) -
+		data->rec.planex = data->rec.planex * cos(data->rec.rotation) -
 			data->rec.planey * sin(data->rec.rotation);
 		data->rec.planey = data->rec.oldplanex * sin(data->rec.rotation) +
 			data->rec.planey * cos(data->rec.rotation);
@@ -73,7 +73,7 @@ int		keys_rot_right(t_data *data, int keycode)
 	return (1);
 }
 
-int 	key_move_right_left(t_data *data, int keycode)
+int		key_move_right_left(t_data *data, int keycode)
 {
 	if (keycode == 0)
 	{
