@@ -273,7 +273,7 @@ void				ft_verline(int x, t_data *data);
 */
 
 int     			check_errors(t_data *data);
-int     			check_walls(t_data *data);
+int     			check_walls(t_data *data, int k);
 int					check_around(int i, int j, t_data *data);
 int					check_map_characters(t_data *data);
 int					return_error_exit(t_data *data);

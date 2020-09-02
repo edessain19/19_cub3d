@@ -12,7 +12,7 @@
 
 #include "../include/cub3d.h"
 
-int 	ft_check_space(int i, char *str)
+int		ft_check_space(int i, char *str)
 {
 	int j;
 
@@ -61,7 +61,7 @@ int		parse_map(int fd, t_data *data, char *line)
 	{
 		if (line[0] == 0 || data->parse.map_str == NULL)
 		{
-			write(1, "Error\nError with the parsing of the map\n",40);
+			write(1, "Error\nError with the parsing of the map\n", 40);
 			return (exit_all(data));
 		}
 		data->parse.map_str = ft_strjoin(data->parse.map_str, line);
@@ -78,11 +78,11 @@ int		parse_map(int fd, t_data *data, char *line)
 	return (1);
 }
 
-int ft_parse_cub(t_data *data, char *filename)
+int		ft_parse_cub(t_data *data, char *filename)
 {
 	int		fd;
-	int 	i;
-	char 	*line;
+	int		i;
+	char	*line;
 
 	i = 0;
 	line = "";

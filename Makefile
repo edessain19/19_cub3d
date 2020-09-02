@@ -31,7 +31,6 @@ SRCS 			= ./srcs/main.c \
 					./parsing/check_error.c \
 					./parsing/check_error_2.c \
 					./parsing/check_error_3.c \
-					./parsing/check_parsing_error.c \
 					./parsing/ft_exit.c \
 					./sprites/ray_sprites.c \
 					./sprites/ray_sprites_2.c \

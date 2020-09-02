@@ -12,7 +12,7 @@
 
 #include "../include/cub3d.h"
 
-int 	check_textures(t_data *data)
+int		check_textures(t_data *data)
 {
 	if (check_path(data, data->parse.n_path) < 0)
 		return (-1);
@@ -27,14 +27,14 @@ int 	check_textures(t_data *data)
 	return (1);
 }
 
-int	    check_path(t_data *data, char *str)
+int		check_path(t_data *data, char *str)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	if (str[0] != '.' || str[1] != '/')
 	{
-		// Attention a verifier que cette condition soit bonne!!!! vraiment pas sûr
+		// condition a verifier!
 		write(1, "Error\n", 6);
 		write(1, "Wrong texture path\n", 19);
 		return (exit_all(data));
@@ -52,7 +52,7 @@ int	    check_path(t_data *data, char *str)
 	return (1);
 }
 
-int	    check_others(t_data *data)
+int		check_others(t_data *data)
 {
 	if (data->parse.screen_x <= 0 || data->parse.screen_y <= 0)
 	{
@@ -65,11 +65,11 @@ int	    check_others(t_data *data)
 	if (data->parse.screen_y > 1440)
 		data->parse.screen_y = 1440;
 	if (data->parse.f < 0 || data->parse.c < 0)
-        return (exit_all(data));
+		return (exit_all(data));
 	return (1);
 }
 
-int 	check_info(t_data *data)
+int		check_info(t_data *data)
 {
 	if (data->check.v_r != 0 || data->check.v_path_n != 0 ||
 		data->check.v_path_s != 0 || data->check.v_path_w != 0 ||
