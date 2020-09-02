@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/09/01 09:13:13 by evrard           ###   ########.fr       */
+/*   Updated: 2020/09/02 08:49:59 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <string.h>
 # include <math.h>
 # include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 # include "../minilibx/mlx.h"
 
 /*

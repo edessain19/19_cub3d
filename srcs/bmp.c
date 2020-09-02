@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 09:11:25 by evrard            #+#    #+#             */
-/*   Updated: 2020/09/01 17:49:34 by evrard           ###   ########.fr       */
+/*   Updated: 2020/09/02 09:35:40 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,12 @@ int     ft_bmp(t_data *data)
     int     fd;
     int     file_size;
 
-    if ((fd = open("screenshot.bmp", O_RDWR | O_CREAT | S_IRWXO)) < 0)
+    fd = open("./screenshot.bmp", O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, S_IRWXU);
+    if (fd < 0)
+    {
+        write(1, "Error\nThe screenshot has failed!\n", 33);
         return (exit_all(data));
+    }
     file_size = 54 + (data->parse.screen_x * data->parse.screen_y) * 4;
     creat_header(fd, data, file_size);
     write(fd, (char *)data->dis.addr, (data->parse.screen_x * data->parse.screen_y * 4));

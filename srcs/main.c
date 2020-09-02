@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 11:06:39 by edessain          #+#    #+#             */
-/*   Updated: 2020/09/01 16:29:11 by evrard           ###   ########.fr       */
+/*   Updated: 2020/09/02 08:48:39 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		ft_errors(int ac, char **av)
 {
 	int fd;
 
+	fd = 0;
 	if (ac == 1 || ac > 3)
 	{
 		write(1, "Error\nInvalid arguments\n", 24);
@@ -32,6 +33,8 @@ int		ft_errors(int ac, char **av)
 		write(1, "Error\nNo map include\n", 21);
 		return (-1);
 	}
+	if (fd > 0)
+		close(fd);
 	return (0);
 }
 
@@ -50,6 +53,7 @@ int		launch_program(t_data *data, char *av)
 		data->parse.screen_y);
 	data->dis.addr = (int *)mlx_get_data_addr(data->dis.img,
 		&data->dis.bits_per_pixel, &data->dis.line_length, &data->dis.endian);
+	start_raycasting(data);
 	return (1);
 }
 
@@ -61,10 +65,6 @@ int		main(int ac, char **av)
 		return (-1);
 	else if (ac == 2)
 	{
-		if ((launch_program(&data, av[1])) < 0)
-			return (exit_all(&data));
-		start_raycasting(&data);
-		mlx_put_image_to_window(data.mlx.mlx_ptr, data.mlx.mlx_win, data.dis.img, 0, 0);
 		mlx_hook(data.mlx.mlx_win, 2, 1L << 1, ft_keyboard, &data);
 		mlx_hook(data.mlx.mlx_win, 17, 0, exit_all, &data);
 		mlx_loop(data.mlx.mlx_ptr);
