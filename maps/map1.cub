@@ -3,7 +3,7 @@ R 640 480
 S ./textures/pillar.xpm
 WE ./textures/greystone.xpm
 EA ./textures/wood.xpm
-F 255,248,220
+F 255       ,      248    ,       220
 
 SO ./textures/bluestone.xpm
 C 135,206,250

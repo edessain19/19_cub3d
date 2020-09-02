@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/05 14:30:40 by evrard            #+#    #+#             */
-/*   Updated: 2020/08/25 14:38:23 by evrard           ###   ########.fr       */
+/*   Updated: 2020/09/02 15:43:46 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,10 @@ void	init_n_s(t_data *data)
 	}
 }
 
-
 int		init_dir(t_data *data)
 {
 	data->tex.texwidth = 64;
 	data->tex.texheight = 64;
-//	data->rec.posx = data->parse.pos_ix;
-//	data->rec.posy = data->parse.pos_iy;
 	init_e_w(data);
 	init_n_s(data);
 	if (!(data->spr.zbuffer = malloc(sizeof(int *) * data->parse.screen_x + 1)))

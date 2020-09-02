@@ -92,7 +92,7 @@ int		ft_parse_cub(t_data *data, char *filename)
 	if (parse_map(fd, data, line) < 0)
 		return (-1);
 	close(fd);
-	if (ft_parsing_info(data) < 0)
+	if (ft_parsing_info(data, -1) < 0)
 		return (-1);
 	if (check_info(data) < 0)
 		return (-1);

@@ -14,8 +14,8 @@
 
 void	write_sprites(t_data *data)
 {
-	int y;
-	int d;
+	int		y;
+	int		d;
 
 	d = 0;
 	y = data->spr.drawstarty;
@@ -24,7 +24,8 @@ void	write_sprites(t_data *data)
 		d = y * 256 - data->parse.screen_y * 128 +
 			data->spr.sprheight * 128;
 		data->spr.texy = ((d * 64) / data->spr.sprheight) / 256;
-		if ((data->spr.color[64 * data->spr.texy + data->spr.texx] & 0x00FFFFFF) != 0)
+		if ((data->spr.color[64 * data->spr.texy
+		+ data->spr.texx] & 0x00FFFFFF) != 0)
 			data->dis.addr[y * data->parse.screen_x + data->spr.stripe] =
 				data->spr.color[64 * data->spr.texy + data->spr.texx];
 		y++;
@@ -38,9 +39,10 @@ void	verline_sprites(t_data *data)
 	{
 		data->spr.texx = (int)((data->spr.stripe - (-data->spr.sprwidth / 2
 		+ data->spr.spritescreenx)) * 64 / data->spr.sprwidth);
-		if (data->spr.transformy > 0 && data->spr.stripe > 0 && data->spr.stripe <
-			data->parse.screen_x && data->spr.transformy < data->spr.zbuffer[data->spr.stripe]
-				&& data->spr.texx < 64)
+		if (data->spr.transformy > 0 && data->spr.stripe > 0
+			&& data->spr.stripe < data->parse.screen_x && data->spr.transformy
+			< data->spr.zbuffer[data->spr.stripe]
+			&& data->spr.texx < 64)
 		{
 			write_sprites(data);
 		}
@@ -58,7 +60,8 @@ void	calculate_draw_start_end(t_data *data)
 	data->spr.drawendy = data->spr.sprheight / 2 + data->parse.screen_y / 2;
 	if (data->spr.drawendy >= data->parse.screen_y)
 		data->spr.drawendy = data->parse.screen_y - 1;
-	data->spr.sprwidth = (int)fabs((float)data->parse.screen_y / data->spr.transformy);
+	data->spr.sprwidth = (int)fabs((float)data->parse.screen_y
+		/ data->spr.transformy);
 	data->spr.drawstartx = -data->spr.sprwidth / 2 + data->spr.spritescreenx;
 	if (data->spr.drawstartx < 0)
 		data->spr.drawstartx = 0;

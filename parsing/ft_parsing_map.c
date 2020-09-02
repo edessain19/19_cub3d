@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parsing_map.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/02 16:21:45 by evrard            #+#    #+#             */
+/*   Updated: 2020/09/02 16:21:49 by evrard           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
-char	*create_new_line(char *str, int diff)
+char	*create_line(char *str, int diff)
 {
 	int		i;
 	char	*new;
@@ -25,13 +37,11 @@ char	*create_new_line(char *str, int diff)
 	return (new);
 }
 
-int		ft_size_map(t_data *data)
+int		ft_size_map(t_data *data, int i)
 {
-	int i;
-	size_t len;
-	int diff;
+	size_t	len;
+	int		diff;
 
-	i = 0;
 	diff = 0;
 	len = ft_strlen(data->parse.map[i]);
 	while (data->parse.map[i] != NULL)
@@ -48,7 +58,7 @@ int		ft_size_map(t_data *data)
 		if (ft_strlen(data->parse.map[i]) < len)
 		{
 			diff = len - ft_strlen(data->parse.map[i]);
-			if (!(data->parse.map[i] = create_new_line(data->parse.map[i], diff)))
+			if (!(data->parse.map[i] = create_line(data->parse.map[i], diff)))
 				return (-1);
 		}
 		i++;
@@ -80,7 +90,7 @@ int		ft_get_position2(int i, int j, t_data *data)
 	return (1);
 }
 
-int ft_get_position(t_data *data)
+int		ft_get_position(t_data *data)
 {
 	int		i;
 	int		j;
@@ -89,7 +99,7 @@ int ft_get_position(t_data *data)
 	while (data->parse.map[i] != NULL)
 	{
 		j = 0;
-		while(data->parse.map[i][j] != 0)
+		while (data->parse.map[i][j] != 0)
 		{
 			if (ft_get_position2(i, j, data) < 0)
 				return (-1);
@@ -100,29 +110,29 @@ int ft_get_position(t_data *data)
 	return (1);
 }
 
-void 	ft_print_map(t_data *data)
-{
-	int i;
-
-	i = 0;
-	while (data->parse.map[i] != NULL)
-	{
-		printf("%s\n", data->parse.map[i]);
-		i++;
-	}
-}
+/*
+**void 	ft_print_map(t_data *data)
+**{
+**	int i;
+**
+**	i = 0;
+**	while (data->parse.map[i] != NULL)
+**	{
+**		printf("%s\n", data->parse.map[i]);
+**		i++;
+**	}
+**}
+*/
 
 int		ft_parsing_map(t_data *data)
 {
-
 	if (!(data->parse.map = ft_split(data->parse.map_str, '\n')))
 		return (-1);
 	if (ft_get_position(data) < 0)
 		return (-1);
-	if (ft_size_map(data) < 0)
+	if (ft_size_map(data, 0) < 0)
 		return (-1);
 	if (ft_get_sprt(data) < 0)
 		return (-1);
-	//ft_print_map(data);
 	return (0);
 }

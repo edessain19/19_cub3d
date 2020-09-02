@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 12:48:13 by edessain          #+#    #+#             */
-/*   Updated: 2020/09/02 08:49:59 by evrard           ###   ########.fr       */
+/*   Updated: 2020/09/02 16:27:07 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,17 +219,18 @@ void				ft_get_size(char *str, int i, t_data *data);
 void     			ft_get_ceiling(char *str, int i, t_data *data);
 void        		ft_get_floor(char *str, int i, t_data *data);
 int					ft_parsing_lettre(char *str, int i, t_data *data, char c);
-int					ft_parsing_info(t_data *data);
+int					ft_parsing_info(t_data *data, int i);
 int 				ft_get_rgb(int i, int j, int k);
 
 
-char				*create_new_line(char *str, int diff);
-int					ft_size_map(t_data *data);
+char				*create_line(char *str, int diff);
+int					ft_size_map(t_data *data, int i);
 
 
 int					ft_parsing_map(t_data *data);
 
 char     			*ft_remove_tab(t_data *data, int i, int j);
+int 				ft_pass_space(char *str, int i);
 
 
 void 				calculate_colors(t_data *data);

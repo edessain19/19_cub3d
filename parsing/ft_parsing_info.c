@@ -6,13 +6,13 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:26:23 by edessain          #+#    #+#             */
-/*   Updated: 2020/08/25 09:50:21 by evrard           ###   ########.fr       */
+/*   Updated: 2020/09/02 16:16:09 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int 	ft_get_rgb(int i, int j, int k)
+int		ft_get_rgb(int i, int j, int k)
 {
 	if (i > 255 || i < 0 || j > 255 || j < 0 || k > 255 || k < 0)
 	{
@@ -49,7 +49,7 @@ int		ft_parsing_lettre(char *str, int i, t_data *data, char c)
 	return (i + 1);
 }
 
-void 	ft_check_letters(t_data *data, char c)
+void	ft_check_letters(t_data *data, char c)
 {
 	if (c == 'n')
 		data->check.v_path_n++;
@@ -63,12 +63,9 @@ void 	ft_check_letters(t_data *data, char c)
 		data->check.v_path_sp++;
 }
 
-int		ft_parsing_info(t_data *data)
+int		ft_parsing_info(t_data *data, int i)
 {
-	int		i;
-
-	i = 0;
-	while (data->parse.info[i])
+	while (data->parse.info[++i])
 	{
 		if (data->parse.info[i] == 'R')
 			i = ft_parsing_lettre(data->parse.info, i, data, 'r');
@@ -80,19 +77,15 @@ int		ft_parsing_info(t_data *data)
 			i = ft_parsing_lettre(data->parse.info, i, data, 'w');
 		else if (data->parse.info[i] == 'E' && data->parse.info[i + 1] == 'A')
 			i = ft_parsing_lettre(data->parse.info, i, data, 'e');
-		else if (data->parse.info[i] == 'S' && data->parse.info[i + 1] == ' ' )
+		else if (data->parse.info[i] == 'S' && data->parse.info[i + 1] == ' ')
 			i = ft_parsing_lettre(data->parse.info, i, data, 'S');
 		else if (data->parse.info[i] == 'F')
 			i = ft_parsing_lettre(data->parse.info, i, data, 'f');
 		else if (data->parse.info[i] == 'C')
 			i = ft_parsing_lettre(data->parse.info, i, data, 'c');
-		else
-			i++;
 		if (i == 0)
 			return (-1);
 	}
-//	printf("%s\n", data->parse.s_path);
-//	printf("%s\n", data->parse.info);
 	data->parse.c = ft_get_rgb(data->parse.c1, data->parse.c2, data->parse.c3);
 	data->parse.f = ft_get_rgb(data->parse.f1, data->parse.f2, data->parse.f3);
 	return (0);
