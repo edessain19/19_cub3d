@@ -48,9 +48,9 @@ int		check_map_characters(t_data *data)
 
 int		check_around(int i, int j, t_data *data)
 {
-    if (data->parse.map[i - 1][j - 1] == ' ')
+	if (data->parse.map[i - 1][j - 1] == ' ')
 		return (-1);
-    if (data->parse.map[i - 1][j + 1] == ' ')
+	if (data->parse.map[i - 1][j + 1] == ' ')
 		return (-1);
 	if (data->parse.map[i + 1][j + 1] == ' ')
 		return (-1);
@@ -67,40 +67,42 @@ int		check_around(int i, int j, t_data *data)
 	return (1);
 }
 
-int     check_walls(t_data *data)
+int		check_walls(t_data *data)
 {
-    int     i;
-    int     j;
-    int k;
+	int		i;
+	int		j;
+	int		k;
 
-    k = 0;
-    i = 0;
-    j = 0;
-    while (i < data->parse.map_h)
-    {
-        j = 0;
-        while (data->parse.map[i][j] != 0)
-        {
-            if (data->parse.map[i][j] == '0' && (check_around(i, j, data) == -1))
-            {
-                k = check_around(i,j,data);
-                return (return_error_exit(data));
-            }
-            if (data->parse.map[i][j] == '2' && (check_around(i, j, data) == -1))
-                return (return_error_exit(data));
-            j++;
-        }
-        i++;
-    }
-    return (1);
+	k = 0;
+	i = 0;
+	j = 0;
+	while (i < data->parse.map_h)
+	{
+		j = 0;
+		while (data->parse.map[i][j] != 0)
+		{
+			if (data->parse.map[i][j] == '0'
+				&& (check_around(i, j, data) == -1))
+			{
+				k = check_around(i, j, data);
+				return (return_error_exit(data));
+			}
+			if (data->parse.map[i][j] == '2' 
+				&& (check_around(i, j, data) == -1))
+				return (return_error_exit(data));
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
-int     check_errors(t_data *data)
+int		check_errors(t_data *data)
 {
-    if (check_walls(data) < 0)
-        return (-1);
-    if (check_map_characters(data) < 0)
-        return (-1);
+	if (check_walls(data) < 0)
+		return (-1);
+	if (check_map_characters(data) < 0)
+		return (-1);
 	if (check_pos_init(data) < 0)
 		return (-1);
 	if (check_borders_columns(data) < 0)
@@ -111,5 +113,5 @@ int     check_errors(t_data *data)
 		return (-1);
 	if (check_others(data) < 0)
 		return (-1);
-    return (1);
+	return (1);
 }

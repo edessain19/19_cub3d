@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 11:06:39 by edessain          #+#    #+#             */
-/*   Updated: 2020/09/02 08:48:39 by evrard           ###   ########.fr       */
+/*   Updated: 2020/09/02 11:08:44 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int		main(int ac, char **av)
 		return (-1);
 	else if (ac == 2)
 	{
+		if ((launch_program(&data, av[1])) < 0)
+			return (exit_all(&data));
 		mlx_hook(data.mlx.mlx_win, 2, 1L << 1, ft_keyboard, &data);
 		mlx_hook(data.mlx.mlx_win, 17, 0, exit_all, &data);
 		mlx_loop(data.mlx.mlx_ptr);
