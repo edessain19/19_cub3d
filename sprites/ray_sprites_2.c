@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/03 11:52:48 by evrard            #+#    #+#             */
-/*   Updated: 2020/08/28 18:25:03 by evrard           ###   ########.fr       */
+/*   Updated: 2020/09/15 16:52:39 by evrard           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	write_sprites(t_data *data)
 		d = y * 256 - data->parse.screen_y * 128 +
 			data->spr.sprheight * 128;
 		data->spr.texy = ((d * 64) / data->spr.sprheight) / 256;
-		if ((data->spr.color[64 * data->spr.texy
-		+ data->spr.texx] & 0x00FFFFFF) != 0)
+		if (data->spr.texy < 64 && ((data->spr.color[64 * data->spr.texy
+		+ data->spr.texx] & 0x00FFFFFF) != 0))
 			data->dis.addr[y * data->parse.screen_x + data->spr.stripe] =
 				data->spr.color[64 * data->spr.texy + data->spr.texx];
 		y++;
