@@ -6,7 +6,7 @@
 #    By: edessain <edessain@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/20 13:33:12 by edessain          #+#    #+#              #
-#    Updated: 2020/09/30 16:37:04 by edessain         ###   ########.fr        #
+#    Updated: 2020/10/01 10:00:01 by edessain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,7 @@ CC				= gcc -g -Wall -Wextra -Werror #-fsanitize=address
 RM				= rm -f
 MLXFLAGS 		= -I ./minilibx -L ./minilibx -lmlx -framework OpenGl -framework Appkit
 LIBFLAGS 		= -I ./libft -L ./libft -L . ./libft/*.c
-# -I Add the directory dir to the list of directories to be searched for header files
-# -L Searches the library when linking
+
 
 all:			libft_all minilibx_all ${NAME}
 $(NAME):		${OBJS}
@@ -56,8 +55,7 @@ fclean:			libft_fclean clean
 				@${RM} ${NAME}
 re:				fclean all
 
-# In this last section we make other makefiles compile with the -C flag
-# The -C flag makes you go to the appropriate path and do the asked command
+
 libft_all:
 	make -C $(LIBFT_PATH) all
 	cp ./libft/libft.a libft.a
