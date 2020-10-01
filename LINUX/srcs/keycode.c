@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keycode.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbuisser <hbuisser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edessain <edessain@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/10 14:50:53 by hbuisser          #+#    #+#             */
-/*   Updated: 2020/08/31 17:37:52 by evrard           ###   ########.fr       */
+/*   Created: 2020/02/10 14:50:53 by edessain          #+#    #+#             */
+/*   Updated: 2020/10/01 10:56:16 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		keys_up_down(t_data *data, int keycode)
 {
-	if (keycode == 126 || keycode == 13)
+	if (keycode == 119)
 	{
 		if (data->parse.map[(int)data->rec.posy]
 			[(int)(data->rec.posx + data->rec.dirx *
@@ -24,7 +24,7 @@ int		keys_up_down(t_data *data, int keycode)
 				data->rec.diry * data->rec.speed)][(int)data->rec.posx] != '1')
 			data->rec.posy += data->rec.diry * data->rec.speed;
 	}
-	if (keycode == 125 || keycode == 1)
+	if (keycode == 115)
 	{
 		if (data->parse.map[(int)data->rec.posy]
 			[(int)(data->rec.posx - data->rec.dirx *
@@ -39,7 +39,7 @@ int		keys_up_down(t_data *data, int keycode)
 
 int		keys_rot_left(t_data *data, int keycode)
 {
-	if (keycode == 123)
+	if (keycode == 65361)
 	{
 		data->rec.olddirx = data->rec.dirx;
 		data->rec.dirx = data->rec.dirx * cos(-data->rec.rotation) -
@@ -57,7 +57,7 @@ int		keys_rot_left(t_data *data, int keycode)
 
 int		keys_rot_right(t_data *data, int keycode)
 {
-	if (keycode == 124)
+	if (keycode == 65363)
 	{
 		data->rec.olddirx = data->rec.dirx;
 		data->rec.dirx = data->rec.dirx * cos(data->rec.rotation) -
@@ -75,7 +75,7 @@ int		keys_rot_right(t_data *data, int keycode)
 
 int		key_move_right_left(t_data *data, int keycode)
 {
-	if (keycode == 0)
+	if (keycode == 97)
 	{
 		if (data->parse.map[(int)(data->rec.posy - data->rec.dirx *
 		(data->rec.speed))][(int)data->rec.posx] != '1')
@@ -84,7 +84,7 @@ int		key_move_right_left(t_data *data, int keycode)
 		data->rec.diry * (data->rec.speed))] != '1')
 			data->rec.posx += data->rec.diry * data->rec.speed;
 	}
-	if (keycode == 2)
+	if (keycode == 100)
 	{
 		if (data->parse.map[(int)(data->rec.posy + data->rec.dirx *
 		(data->rec.speed))][(int)data->rec.posx] != '1')
@@ -99,7 +99,7 @@ int		key_move_right_left(t_data *data, int keycode)
 int		ft_keyboard(int keycode, t_data *data)
 {
 	data->rec.oldplanex = data->rec.planex;
-	if (keycode == 53 || keycode == 17)
+	if (keycode == 65307 || keycode == 17)
 		exit_all(data);
 	keys_up_down(data, keycode);
 	keys_rot_right(data, keycode);
