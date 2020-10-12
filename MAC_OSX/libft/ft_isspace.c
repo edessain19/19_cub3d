@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evrard <evrard@student.s19.be>             +#+  +:+       +#+        */
+/*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/09 09:43:41 by evrard            #+#    #+#             */
-/*   Updated: 2020/10/01 10:45:52 by edessain         ###   ########.fr       */
+/*   Created: 2020/06/09 09:43:41 by edessain          #+#    #+#             */
+/*   Updated: 2020/10/12 08:51:16 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,3 @@ int		ft_isspace(int c)
 		return (1);
 	return (0);
 }
- 

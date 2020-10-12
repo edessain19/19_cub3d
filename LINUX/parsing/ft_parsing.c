@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 13:38:04 by edessain          #+#    #+#             */
-/*   Updated: 2020/08/25 16:13:38 by evrard           ###   ########.fr       */
+/*   Updated: 2020/10/12 10:15:44 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int		parse_data(int fd, t_data *data, int i)
 		}
 	}
 	data->parse.info = ft_strjoin_2(data->parse.info, "\0");
+	if (data->parse.info == NULL)
+		return (exit_all(data));
 	return (1);
 }
 
