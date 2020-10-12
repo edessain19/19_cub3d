@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../cub3d.h"
 
 void	ft_get_size(char *str, int i, t_data *data)
 {

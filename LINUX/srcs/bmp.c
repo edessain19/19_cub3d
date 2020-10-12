@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../cub3d.h"
 
 void	creat_header(int fd, t_data *data, int file_size)
 {

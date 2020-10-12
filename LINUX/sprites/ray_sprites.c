@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../cub3d.h"
 
 void	ft_switch_sprites(t_data *data, int i, int j)
 {

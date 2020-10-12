@@ -10,18 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE_H
-# define CUBE_H
-
-# include "../libft/libft.h"
+#ifndef CUB3D_H
+# define CUB3D_H
+# include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <string.h>
-# include <math.h>
+# include <stdio.h>
+# include <limits.h>
 # include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
+# include <math.h>
 # include "../minilibx/mlx.h"
+# include "../libft/libft.h"
+# define TXT_HW 64
 
 /*
 ** definition structure

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../cub3d.h"
 
 int		keys_up_down(t_data *data, int keycode)
 {
