@@ -6,7 +6,7 @@
 /*   By: evrard <evrard@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/01 09:11:25 by evrard            #+#    #+#             */
-/*   Updated: 2020/09/02 09:35:40 by evrard           ###   ########.fr       */
+/*   Updated: 2020/10/16 19:04:22 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	creat_header(int fd, t_data *data, int file_size)
 	header[19] = (unsigned char)(data->parse.screen_x >> 8);
 	header[20] = (unsigned char)(data->parse.screen_x >> 16);
 	header[21] = (unsigned char)(data->parse.screen_x >> 24);
-	header[22] = (unsigned char)(data->parse.screen_y);
-	header[23] = (unsigned char)(data->parse.screen_y >> 8);
-	header[24] = (unsigned char)(data->parse.screen_y >> 16);
-	header[25] = (unsigned char)(data->parse.screen_y >> 24);
+	header[22] = (unsigned char)((-1) * data->parse.screen_y);
+	header[23] = (unsigned char)((-1) * data->parse.screen_y >> 8);
+	header[24] = (unsigned char)((-1) * data->parse.screen_y >> 16);
+	header[25] = (unsigned char)((-1) * data->parse.screen_y >> 24);
 	header[26] = (unsigned char)(1);
 	header[28] = (unsigned char)(32);
 	write(fd, header, 54);

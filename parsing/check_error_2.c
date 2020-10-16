@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 10:35:39 by edessain          #+#    #+#             */
-/*   Updated: 2020/10/12 17:36:13 by edessain         ###   ########.fr       */
+/*   Updated: 2020/10/16 19:06:37 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ int		check_pos_init(t_data *data)
 {
 	if (data->parse.dir != 'N' && data->parse.dir != 'S' &&
 			data->parse.dir != 'W' && data->parse.dir != 'E')
-	{
-		write(1, "B", 1);
 		return (error_pos_init(data));
-	}
 	if (data->parse.map[(int)data->rec.posy][(int)data->rec.posx + 1] == ' ' ||
 		data->parse.map[(int)data->rec.posy][(int)data->rec.posx - 1] == ' ' ||
 		data->parse.map[(int)data->rec.posy + 1][(int)data->rec.posx] == ' ' ||

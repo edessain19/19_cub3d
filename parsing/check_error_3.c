@@ -6,7 +6,7 @@
 /*   By: edessain <edessain@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 11:00:33 by edessain          #+#    #+#             */
-/*   Updated: 2020/10/12 17:36:20 by edessain         ###   ########.fr       */
+/*   Updated: 2020/10/16 19:39:28 by edessain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int		check_path(t_data *data, char *str)
 	i = 0;
 	if (str[0] != '.' || str[1] != '/')
 	{
-		// condition a verifier!
 		write(1, "Error\n", 6);
 		write(1, "Wrong texture path\n", 19);
 		return (exit_all(data));

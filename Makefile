@@ -3,16 +3,21 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: edessain <edessain@student.s19.be>         +#+  +:+       +#+         #
+#    By: edessain <edessain@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/20 13:33:12 by edessain          #+#    #+#              #
-#    Updated: 2020/10/01 10:00:01 by edessain         ###   ########.fr        #
+#    Updated: 2020/10/16 19:24:14 by edessain         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 			= cub3D
-LIBFT_PATH 		= ./libft
-MINILIBX_PATH   = ./minilibx
+NAME = cub3D
+
+CUB = ./map.cub
+
+MLX = ./minilibx/libmlx.a
+
+LIBFT = ./libft/libft.a
+
 SRCS 			= ./srcs/main.c \
 					./srcs/keycode.c \
 					./srcs/ft_raycast.c \
@@ -35,44 +40,26 @@ SRCS 			= ./srcs/main.c \
 					./sprites/ray_sprites.c \
 					./sprites/ray_sprites_2.c \
 
+FLGS = -Wall -Wextra -Werror -framework OpenGL -framework Appkit
 
-OBJS			= ${SRCS:.c=.o}
-INCLUDE 		= cube3d.h
-LIBFT 			= libft
-MINILIBX 		= minilibx
-CC				= gcc -g -Wall -Wextra -Werror #-fsanitize=address
-RM				= rm -f
-MLXFLAGS 		= -I ./minilibx -L ./minilibx -lmlx -framework OpenGl -framework Appkit
-LIBFLAGS 		= -I ./libft -L ./libft -L . ./libft/*.c
+HEADER = ./cub3d.h
 
+all:
+	make -C ./minilibx
+	make -C ./libft
+	gcc -o $(NAME) -I$(HEADER) $(FLGS) $(SRCS) $(LIBFT) $(MLX)
 
-all:			libft_all minilibx_all ${NAME}
-$(NAME):		${OBJS}
-				@$(CC) $(MLXFLAGS) $(LIBFLAGS) libft.a libmlx.a -I./ $(OBJS) -o $@
-clean:			libft_clean minilibx_clean
-				@${RM} ${OBJS}
-fclean:			libft_fclean clean
-				@${RM} ${NAME}
-re:				fclean all
+clean:
+	make -C ./minilibx clean
+	make -C ./libft clean
+	rm -rf *.o
 
+fclean:
+	make -C ./minilibx clean
+	make -C ./libft fclean
+	rm -rf *.o
+	rm -rf ${NAME}
 
-libft_all:
-	make -C $(LIBFT_PATH) all
-	cp ./libft/libft.a libft.a
-
-libft_clean:
-	make -C $(LIBFT_PATH) clean
-
-libft_fclean:
-	make -C $(LIBFT_PATH) fclean
-	$(RM) libft.a
-
-minilibx_all:
-	make -C $(MINILIBX_PATH) all
-	cp ./minilibX/libmlx.a libmlx.a
-
-minilibx_clean:
-	make -C $(MINILIBX_PATH) clean
-	$(RM) libmlx.a
+re: fclean all
 
 .PHONY: all fclean clean re
